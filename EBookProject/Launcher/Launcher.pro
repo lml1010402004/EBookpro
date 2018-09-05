@@ -30,5 +30,4 @@ include(ThirdApp/ThirdApp.pri)
 INCLUDEPATH+=$$PWD Setting
 include(Setting/Setting.pri)
 
-INCLUDEPATH+=$$PWD PullDownWindow
-include(PullDownWindow/PullDownWindow.pri)
+
