@@ -17,4 +17,8 @@ CONFIG +=ordered
 SUBDIRS += \
     Launcher \
     SleepApp \
-    Fbreader
+    Fbreader \
+    USBTransfer \
+    SambaTransfer \
+    Browser \
+    AppSettings

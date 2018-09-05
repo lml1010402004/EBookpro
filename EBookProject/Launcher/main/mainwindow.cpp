@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
 void MainWindow::paintEvent(QPaintEvent *event)
 {
+
     QPainter *painter = new QPainter(this);
     QRect rect;
     rect.setX(0);
