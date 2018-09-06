@@ -1,6 +1,4 @@
-HEADERS += \
-    $$PWD/mainwindow.h
+HEADERS +=
 
 SOURCES += \
-    $$PWD/mainwindow.cpp \
     $$PWD/main.cpp

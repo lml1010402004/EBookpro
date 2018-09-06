@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,7 +27,43 @@ include(BookShelf/BookShelf.pri)
 INCLUDEPATH+=$$PWD ThirdApp
 include(ThirdApp/ThirdApp.pri)
 
-INCLUDEPATH+=$$PWD Setting
-include(Setting/Setting.pri)
+INCLUDEPATH+=$$PWD Utils
+include(Utils/Utils.pri)
+
+INCLUDEPATH+=$$PWD Application
+include(Application/Application.pri)
+
+INCLUDEPATH+=$$PWD DataItem
+include(DataItem/DataItem.pri)
 
 
+
+
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/release/ -lPinyinIM
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/debug/ -lPinyinIM
+else:unix: LIBS += -L$$PWD/libs/ -lPinyinIM
+
+INCLUDEPATH += $$PWD/libs
+DEPENDPATH += $$PWD/libs
+
+
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/release/ -lStatusBar
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/debug/ -lStatusBar
+else:unix: LIBS += -L$$PWD/libs/ -lStatusBar
+
+INCLUDEPATH += $$PWD/libs
+DEPENDPATH += $$PWD/libs
+
+
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/release/ -lSysSettings
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/debug/ -lSysSettings
+else:unix: LIBS += -L$$PWD/libs/ -lSysSettings
+
+INCLUDEPATH += $$PWD/libs
+DEPENDPATH += $$PWD/libs
+
+RESOURCES += \
+    pics.qrc
