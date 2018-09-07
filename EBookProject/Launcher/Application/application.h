@@ -8,6 +8,12 @@
 #define GLOBAL_SCREEN_FIXED_WIDTH 600*VIEW_SCALE_UP
 #define GLOBAL_SCREEN_FIXED_HEIGHT 800*VIEW_SCALE_UP
 
+
+
+#define HOME_PAGE_MODULE 0
+#define BOOK_SHELF_MODULE 1
+
+
 //==================HomePage Module===========================
 #define HPM_LEFTBOOK_RECT 0
 #define HPM_RIGHTBOOK_RECT 1
@@ -37,6 +43,7 @@
 //====================Bookshelf module==========================
 #define BSM_SEARCH_BUTTON 30
 #define BSM_HOME_BUTTON 31
+#define BSM_TEXT 29
 #define BSM_READ_ORDER_ITEM 32
 #define BSM_READ_BOOK_NAME 33
 #define BSM_READ_TIME 34

@@ -4,6 +4,7 @@
 #include<QString>
 #include"DataItem/conditionitem.h"
 #include"DataBase/database.h"
+#include"Utils/redefineqrect.h"
 #include<QRect>
 
 class DrawBookshelf
@@ -11,14 +12,14 @@ class DrawBookshelf
 public:
     DrawBookshelf();
     ~DrawBookshelf();
-    void drawHomeButton(QPainter *painter,QRect rect,int flag);
-    void drawArrangeTextView(QPainter *painter,QRect rect,QString str);
+    void drawHomeButton(QPainter *painter,myQRect *rect);
+    void drawArrangeTextView(QPainter *painter,myQRect *rect,QString str);
     void drawSelectedCondition(QPainter *painter,QList<ConditionItem> *conditionlist,int index);
     void drawNineBooks(QPainter *painter,QList<localDirectoryItem> *booklist);
 
-    void drawTheFirstandLastPageIcon(QPainter *painter,QRect firstrect,int firstflag,QRect lastrect,int lastflag);
-    void drawTheNextandEndPageIcon(QPainter *painter,QRect nextrect,int nextflag,QRect endrect,int endflag);
-    void drawCurrentPageandTotalPages(QPainter *painter,int currentpage,int totalpages,QRect rect);
+    void drawTheFirstandLastPageIcon(QPainter *painter,myQRect *firstrect,myQRect *lastrect);
+    void drawTheNextandEndPageIcon(QPainter *painter,myQRect *nextrect,myQRect *endrect);
+    void drawCurrentPageandTotalPages(QPainter *painter,int currentpage,int totalpages,myQRect *rect);
     QRect rect;
 
 };

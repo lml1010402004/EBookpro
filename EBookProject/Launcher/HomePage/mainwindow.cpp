@@ -90,7 +90,7 @@ void MainWindow::initView()
         myrect->rect.setWidth(mainpage_w[i]);
         myrect->rect.setHeight(mainpage_h[i]);
         myrect->isPressed = false;
-        RFIle::assignMacroDefinition(0,myrect,i);
+        RFIle::assignMacroDefinition(HOME_PAGE_MODULE,myrect,i);
         rectlist->append(myrect);
     }
 
@@ -129,7 +129,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
                 currentPagebooklist = commonUtils::getCurrentPageBooks(totaltemp,currentPageOfMainPage,3);
                 qDebug()<<"currentPagebooklist->size()==="<<currentPagebooklist->size();
             }else{
-
                 firstpage = true;
                 endpage = false;
             }
@@ -162,7 +161,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
                 bookshelf = new BookShelf(this);
             }
             bookshelf->show();
-
             break;
         case HPM_APP_BUTTON:
             if(thirdapplication==NULL){
@@ -192,7 +190,6 @@ void MainWindow::paintEvent(QPaintEvent *event)
     statusbar->drawWifiStatus(painter,true);
     statusbar->drawPullDownRectangle(painter);
     statusbar->drawBattery(painter,80);
-
 
     //    QPainter *painter,QStringList bookCoverPath,QStringList booktitle,QList<QRect> rect)
     currentbookcoverlist.append(cover_group[0]);

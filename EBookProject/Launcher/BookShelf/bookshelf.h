@@ -4,7 +4,6 @@
 #include <QMainWindow>
 #include<QPainter>
 #include<QMouseEvent>
-#include<QRect>
 #include<QList>
 #include"BookShelf/bookshelf.h"
 #include<DataItem/conditionitem.h>
@@ -12,6 +11,7 @@
 #include"statusbar.h"
 #include"statusbar_global.h"
 #include"drawbookshelf.h"
+#include"Utils/redefineqrect.h"
 
 class BookShelf : public QMainWindow
 {
@@ -33,9 +33,9 @@ private:
     int current_page;
     int total_pages;
     int condition_selected_index;
-    QRect rect;
+    myQRect *myrect;
     ConditionItem conditionitem;
-    QList<QRect> *rectlist;
+    QList<myQRect*> *rectlist;
     int targetwidgetindex;
     StatusBar *statusbar;
     DrawBookshelf *drawbookshelf;

@@ -9,7 +9,7 @@ RFIle::RFIle()
 void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
 {
     switch (module) {
-    case 0://represent HomePage module
+    case HOME_PAGE_MODULE://represent HomePage module
         switch (index) {
         case 0:
             rect->xid =HPM_LEFTBOOK_RECT;
@@ -78,7 +78,47 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
             break;
         }
         break;
-    case 1://represent Bookshelf module
+    case BOOK_SHELF_MODULE://represent Bookshelf module
+        switch (index) {
+        case 0:
+            rect->xid = BSM_SEARCH_BUTTON;
+            break;
+        case 1:
+            rect->xid = BSM_HOME_BUTTON;
+            break;
+        case 2:
+            rect->xid = BSM_TEXT;
+            break;
+        case 3:
+            rect->xid= BSM_READ_ORDER_ITEM;
+            break;
+        case 4:
+            rect->xid = BSM_READ_BOOK_NAME;
+            break;
+        case 5:
+            rect->xid = BSM_READ_TIME;
+            break;
+        case 6:
+            rect->xid = BSM_READ_BOOK_AUTHOR;
+            break;
+        case 7:
+            rect->xid = BSM_FIRST_PAGE;
+            break;
+        case 8:
+            rect->xid = BSM_LAST_PAGE;
+            break;
+        case 9:
+            rect->xid = BSM_PAGES_CONTENT;
+            break;
+        case 10:
+            rect->xid =BSM_NEXT_PAEG;
+            break;
+        case 11:
+            rect->xid = BSM_END_PAGE;
+            break;
+        default:
+            break;
+        }
 
         break;
     default:

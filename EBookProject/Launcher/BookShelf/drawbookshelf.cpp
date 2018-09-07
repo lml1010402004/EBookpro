@@ -35,19 +35,19 @@ DrawBookshelf::~DrawBookshelf()
 
 }
 
-void DrawBookshelf::drawHomeButton(QPainter *painter,QRect rect, int flag)
+void DrawBookshelf::drawHomeButton(QPainter *painter,myQRect *rect)
 {
-    if(flag==1){
-        painter->drawPixmap(rect,home_pressed);
+    if(rect->isPressed){
+        painter->drawPixmap(rect->rect,home_pressed);
     }else{
-        painter->drawPixmap(rect,home_unpress);
+        painter->drawPixmap(rect->rect,home_unpress);
     }
 
 }
 
-void DrawBookshelf::drawArrangeTextView(QPainter *painter,QRect rect, QString str)
+void DrawBookshelf::drawArrangeTextView(QPainter *painter,myQRect *rect, QString str)
 {
-    painter->drawText(rect,str);
+    painter->drawText(rect->rect,str);
 }
 
 void DrawBookshelf::drawSelectedCondition(QPainter *painter, QList<ConditionItem> *conditionlist, int index)
@@ -163,37 +163,37 @@ void DrawBookshelf::drawNineBooks(QPainter *painter, QList<localDirectoryItem> *
     }
 }
 
-void DrawBookshelf::drawTheFirstandLastPageIcon(QPainter *painter, QRect firstrect,int firstflag, QRect lastrect,int lastflag)
+void DrawBookshelf::drawTheFirstandLastPageIcon(QPainter *painter, myQRect *firstrect, myQRect *lastrect)
 {
-    if(firstflag==1){
-        painter->drawPixmap(firstrect,firstpath_pressed);
+    if(firstrect->isPressed){
+        painter->drawPixmap(firstrect->rect,firstpath_pressed);
     }else{
-        painter->drawPixmap(firstrect,firstpath_unpress);
+        painter->drawPixmap(firstrect->rect,firstpath_unpress);
     }
-    if(lastflag==1){
-        painter->drawPixmap(lastrect,lastpath_pressed);
+    if(lastrect->isPressed){
+        painter->drawPixmap(lastrect->rect,lastpath_pressed);
     }else{
-        painter->drawPixmap(lastrect,lastpath_unpressed);
+        painter->drawPixmap(lastrect->rect,lastpath_unpressed);
     }
 
 }
 
-void DrawBookshelf::drawTheNextandEndPageIcon(QPainter *painter, QRect nextrect, int nextflag, QRect endrect, int endflag)
+void DrawBookshelf::drawTheNextandEndPageIcon(QPainter *painter, myQRect *nextrect, myQRect *endrect)
 {
 
-    if(nextflag==1){
-        painter->drawPixmap(nextrect,forwardpath_pressed);
+    if(nextrect->isPressed){
+        painter->drawPixmap(nextrect->rect,forwardpath_pressed);
     }else{
-        painter->drawPixmap(nextrect,forwardpath_unpressed);
+        painter->drawPixmap(nextrect->rect,forwardpath_unpressed);
     }
-    if(endflag==1){
-        painter->drawPixmap(endrect,endpath_pressed);
+    if(endrect->isPressed){
+        painter->drawPixmap(endrect->rect,endpath_pressed);
     }else{
-        painter->drawPixmap(endrect,endpath_unpress);
+        painter->drawPixmap(endrect->rect,endpath_unpress);
     }
 }
 
-void DrawBookshelf::drawCurrentPageandTotalPages(QPainter *painter, int currentpage, int totalpages, QRect rect)
+void DrawBookshelf::drawCurrentPageandTotalPages(QPainter *painter, int currentpage, int totalpages, myQRect *rect)
 {
-  painter->drawText(rect,QString::number(currentpage)+"/"+QString::number(totalpages));
+  painter->drawText(rect->rect,QString::number(currentpage)+"/"+QString::number(totalpages));
 }
