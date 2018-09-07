@@ -39,7 +39,7 @@ void ThirdApplications::paintEvent(QPaintEvent *event)
 
 void ThirdApplications::mousePressEvent(QMouseEvent *event)
 {
-    targetwidgetindex = commonUtils::getTheTargetWidget(event->x(),event->y(),rectlist);
+//    targetwidgetindex = commonUtils::getTheTargetWidget(event->x(),event->y(),rectlist);
     this->repaint();
     this->close();
 }

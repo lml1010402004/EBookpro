@@ -11,6 +11,8 @@
 #include<QRect>
 #include<QList>
 #include<QMainWindow>
+#include"Utils/redefineqrect.h"
+
 
 
 
@@ -30,15 +32,11 @@ public:
 
     int getTheBatteryPercentage();
 
-    static int getTheTargetWidget(int pos_x,int pos_y,QList<QRect> *listrect);
+    static int getTheTargetWidget(int pos_x,int pos_y,QList<myQRect*> *listrect);
 
     static void formattingDisk();
     static void backToHomePageSlot();
     static int returnLightValue(int progress);
-
-
-
-
 
 
 private:

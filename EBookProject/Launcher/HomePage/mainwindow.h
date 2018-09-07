@@ -7,7 +7,6 @@
 #include<QPainter>
 #include<QList>
 #include<QRect>
-#include<QRect>
 #include"drawmainpage.h"
 //#include"modulepages/pulldownwindow.h"
 #include"statusbar.h"
@@ -17,6 +16,7 @@
 #include"DataBase/database.h"
 #include"BookShelf/bookshelf.h"
 #include"ThirdApp/thirdapplications.h"
+
 
 
 
@@ -49,8 +49,8 @@ private:
     QStringList currentbookcoverlist;
     QStringList currentbookcovertitle;
     QStringList threebookstringlist;
-    QList<QRect> *currentbookcoverrect;
-    QList<QRect> *threebookrect;
+    QList<myQRect*> *currentbookcoverrect;
+    QList<myQRect*> *threebookrect;
     QList<localDirectoryItem> *totaltemp;
     int currentPageOfMainPage ;
     int unable_next;
@@ -62,17 +62,19 @@ private:
     void init();
     void initView();
     void initConnection();
+    void assignMacroDefinition(myQRect *rect,int index);
 
     void getBookDataFromDataBase();
 
-    QRect rect;
+
     int targetWidgetIndex;
     int totalPagesOfBooks;
     QList<localDirectoryItem>  *currentPagebooklist;
 
 
 
-    QList<QRect> *rectlist;
+    QList<myQRect*> *rectlist;
+    myQRect *myrect;
 
 
 

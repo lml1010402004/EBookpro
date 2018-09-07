@@ -185,14 +185,14 @@ void BookShelf::paintEvent(QPaintEvent *event)
 void BookShelf::mousePressEvent(QMouseEvent *event)
 {
 
-    targetwidgetindex = commonUtils::getTheTargetWidget(event->x(),event->y(),rectlist);
-    if(targetwidgetindex>-1){
-        bookshelf_rectflag[targetwidgetindex] = 1;
-        if(targetwidgetindex>5&&targetwidgetindex<10){
-            condition_selected_index  = targetwidgetindex;
-        }
-        this->repaint();
-    }
+//    targetwidgetindex = commonUtils::getTheTargetWidget(event->x(),event->y(),rectlist);
+//    if(targetwidgetindex>-1){
+//        bookshelf_rectflag[targetwidgetindex] = 1;
+//        if(targetwidgetindex>5&&targetwidgetindex<10){
+//            condition_selected_index  = targetwidgetindex;
+//        }
+//        this->repaint();
+//    }
 }
 
 void BookShelf::mouseReleaseEvent(QMouseEvent *event)

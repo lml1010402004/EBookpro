@@ -5,18 +5,14 @@
 #include<QBrush>
 
 
-
-const int mainpage1[8] = {100,110,150,200,350,110,150,200};
-const int mainpage2[4] ={260,430,80,40};
-const int mainpage3[4] ={40,540,40,40};
-const int mainpage4[12] = {90,480,120,150,240,480,120,150,390,480,120,150};
-const int mainpage5[4] = {520,540,40,40};
-const int mainpage6[12] = {70,700,60,60,270,700,60,60,470,700,60,60};
-const int mainpage7[4] = {260,10,80,40};
+const int mainapge_x[21] = {100,350,100,350,160,410,280,40,90,240,390,520,120,270,420,70,270,470,80,280,480};
+const int mainpage_y[21] = {110,110,200,200,330,330,450,530,480,480,480,530,640,640,640,700,700,700,770,770,770};
+const int mainpage_w[21] =   {150,150,150,150,60,60,40,40,120,120,120,40,80,80,80,64,64,64,60,60,60};
+const int mainpage_h[21] =     {200,200,40,40,20,20,20,40,150,150,150,40,20,20,20,64,64,64,20,20,20};
 
 
-//assign the default value to rect.
-int rectflag[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
+
+
 
 const QString homeiconpath = ":/mypic/pics/homeicon.png";
 
@@ -67,8 +63,8 @@ void MainWindow::init()
     thirdapplication = new ThirdApplications(this);
 
     statusbar = new StatusBar(this);
-    currentbookcoverrect = new QList<QRect>;
-    threebookrect = new QList<QRect>;
+    currentbookcoverrect = new QList<myQRect*>;
+    threebookrect = new QList<myQRect*>;
     totaltemp = new QList<localDirectoryItem>;
     currentPagebooklist = new QList<localDirectoryItem>;
 
@@ -85,79 +81,20 @@ void MainWindow::init()
 void MainWindow::initView()
 {
 
-    rectlist = new QList<QRect>;
+    rectlist = new QList<myQRect*>;
 
-    rect.setX(mainpage1[0]);
-    rect.setY(mainpage1[1]);
-    rect.setWidth(mainpage1[2]);
-    rect.setHeight(mainpage1[3]);
-    rectlist->append(rect);//left_cover  index=0
+    for(int i=0;i<sizeof(mainapge_x);i++){
+      myrect = new myQRect;
+      myrect->rect.setX(mainapge_x[i]);
+      myrect->rect.setY(mainpage_y[i]);
+      myrect->rect.setWidth(mainpage_w[i]);
+      myrect->rect.setHeight(mainpage_h[i]);
+      myrect->isPressed = false;
+      assignMacroDefinition(myrect,i);
+//      myrect->xid = i;//只有这个界面中的控件的xid从0 至 20
+      rectlist->append(myrect);
+    }
 
-    rect.setX(mainpage1[4]);
-    rect.setY(mainpage1[5]);
-    rect.setWidth(mainpage1[6]);
-    rect.setHeight(mainpage1[7]);
-    rectlist->append(rect);//right_cover  index =1
-
-    rect.setX(mainpage2[0]);
-    rect.setY(mainpage2[1]);
-    rect.setWidth(mainpage2[2]);
-    rect.setHeight(mainpage2[3]);
-    rectlist->append(rect);//New Books index =2
-
-    rect.setX(mainpage3[0]);
-    rect.setY(mainpage3[1]);
-    rect.setWidth(mainpage3[2]);
-    rect.setHeight(mainpage3[3]);
-    rectlist->append(rect);  //Last Page index=3
-
-    rect.setX(mainpage4[0]);
-    rect.setY(mainpage4[1]);
-    rect.setWidth(mainpage4[2]);
-    rect.setHeight(mainpage4[3]);
-    rectlist->append(rect);//first book in line index =4
-
-    rect.setX(mainpage4[4]);
-    rect.setY(mainpage4[5]);
-    rect.setWidth(mainpage4[6]);
-    rect.setHeight(mainpage4[7]);
-    rectlist->append(rect);//second book in line index =5
-
-    rect.setX(mainpage4[8]);
-    rect.setY(mainpage4[9]);
-    rect.setWidth(mainpage4[10]);
-    rect.setHeight(mainpage4[11]);
-    rectlist->append(rect);//third book in line index =6
-
-    rect.setX(mainpage5[0]);
-    rect.setY(mainpage5[1]);
-    rect.setWidth(mainpage5[2]);
-    rect.setHeight(mainpage5[3]);
-    rectlist->append(rect);//next page index = 7
-
-    rect.setX(mainpage6[0]);
-    rect.setY(mainpage6[1]);
-    rect.setWidth(mainpage6[2]);
-    rect.setHeight(mainpage6[3]);
-    rectlist->append(rect);//book shelf  index =8
-
-    rect.setX(mainpage6[4]);
-    rect.setY(mainpage6[5]);
-    rect.setWidth(mainpage6[6]);
-    rect.setHeight(mainpage6[7]);
-    rectlist->append(rect);// applications index=9
-
-    rect.setX(mainpage6[8]);
-    rect.setY(mainpage6[9]);
-    rect.setWidth(mainpage6[10]);
-    rect.setHeight(mainpage6[11]);
-    rectlist->append(rect);//Setting index=10
-
-    rect.setX(mainpage7[0]);
-    rect.setY(mainpage7[1]);
-    rect.setWidth(mainpage7[2]);
-    rect.setHeight(mainpage7[3]);
-    rectlist->append(rect);//pull rectangle index = 11
 
 }
 
@@ -166,7 +103,8 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 {
     targetWidgetIndex = commonUtils::getTheTargetWidget(event->x(),event->y(),rectlist);
     if(targetWidgetIndex>-1){
-        rectflag[targetWidgetIndex] = 1;
+
+        rectlist->at(targetWidgetIndex)->isPressed = true;
         this->repaint();
     }
 }
@@ -179,7 +117,8 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     if(targetWidgetIndex>-1){
-        rectflag[targetWidgetIndex] = 0;
+//        rectflag[targetWidgetIndex] = 0;
+//        rectlist->at(targetWidgetIndex).isPressed = false;
         switch (targetWidgetIndex) {
         case 0:
             break;
@@ -223,6 +162,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
             threebookrect->clear();
             for(int i=0;i<currentPagebooklist->size();i++){
                 threebookrect->append(rectlist->at(4+i));//4 is the index of rect in the layout.
+
             }
 
             break;
@@ -269,33 +209,116 @@ void MainWindow::paintEvent(QPaintEvent *event)
     statusbar->drawPullDownRectangle(painter);
     statusbar->drawBattery(painter,80);
 
-    //    QPainter *painter,QStringList bookCoverPath,QStringList booktitle,QList<QRect> rect)
-    currentbookcoverlist.append(cover_group[0]);
-    currentbookcoverlist.append(cover_group[1]);
-    currentbookcovertitle.append("");
-    currentbookcovertitle.append("");
-    currentbookcoverrect->append(rectlist->at(0));
-    currentbookcoverrect->append(rectlist->at(1));
-    drawmainpage->drawCurrentBookCover(painter,currentbookcoverlist,currentbookcovertitle,currentbookcoverrect);
-    drawmainpage->drawTextView(painter,rectlist->at(2),tr("NewB"));
-    drawmainpage->drawNextPage(painter,rectflag[7],rectlist->at(7),endpage);
+     painter->drawRect(rectlist->at(HPM_LEFTBOOK_RECT)->rect);
+     painter->drawRect(rectlist->at(HPM_RIGHTBOOK_RECT)->rect);
 
-    drawmainpage->drawLastPage(painter,rectflag[3],rectlist->at(3),firstpage);
 
-    for(int i=0;i<currentPagebooklist->size();i++){
-        qDebug()<<"currentPagebooklist..."<<currentPagebooklist->at(i).file_name;
-    }
-    drawmainpage->drawThreeBooksArea(painter,threebookrect,currentPagebooklist);
 
-    drawmainpage->drawThreeModulesBottom1(painter,rectflag[8],rectlist->at(8));
-    drawmainpage->drawThreeModulesBottom2(painter,rectflag[9],rectlist->at(9));
-    drawmainpage->drawThreeModulesBottom3(painter,rectflag[10],rectlist->at(10));
+
+
+//    for(int i=0;i<21;i++){
+//        painter->drawRect(rectlist->at(i)->rect);
+//    }
+
+//    //    QPainter *painter,QStringList bookCoverPath,QStringList booktitle,QList<QRect> rect)
+//    currentbookcoverlist.append(cover_group[0]);
+//    currentbookcoverlist.append(cover_group[1]);
+//    currentbookcovertitle.append("");
+//    currentbookcovertitle.append("");
+//    currentbookcoverrect->append(rectlist->at(0));
+//    currentbookcoverrect->append(rectlist->at(1));
+//    drawmainpage->drawCurrentBookCover(painter,currentbookcoverlist,currentbookcovertitle,currentbookcoverrect);
+//    drawmainpage->drawTextView(painter,rectlist->at(2),tr("NewB"));
+//    drawmainpage->drawNextPage(painter,rectlist->at(7)->isPressed,rectlist->at(7),endpage);
+
+//    drawmainpage->drawLastPage(painter,rectlist->at(3)->isPressed,rectlist->at(3),firstpage);
+
+//    for(int i=0;i<currentPagebooklist->size();i++){
+//        qDebug()<<"currentPagebooklist..."<<currentPagebooklist->at(i).file_name;
+//    }
+//    drawmainpage->drawThreeBooksArea(painter,threebookrect,currentPagebooklist);
+
+//    drawmainpage->drawThreeModulesBottom1(painter,rectlist->at(8)->isPressed,rectlist->at(8));
+//    drawmainpage->drawThreeModulesBottom2(painter,rectlist->at(9)->isPressed,rectlist->at(9));
+//    drawmainpage->drawThreeModulesBottom3(painter,rectlist->at(10)->isPressed,rectlist->at(10));
 
 }
 
 void MainWindow::initConnection()
 {
 
+
+}
+
+void MainWindow::assignMacroDefinition(myQRect *rect,int index)
+{
+    switch (index) {
+    case 0:
+     rect->xid =HPM_LEFTBOOK_RECT;
+        break;
+    case 1:
+     rect->xid = HPM_RIGHTBOOK_RECT;
+        break;
+    case 2:
+        rect->xid = HPM_LEFTBOOK_NAME_RECT;
+        break;
+    case 3:
+        rect->xid = HPM_RIGHTBOOK_NAME_RECT;
+        break;
+    case 4:
+        rect->xid = HPM_LEFTBOOK_AUTHOR_RECT;
+        break;
+    case 5:
+        rect->xid = HPM_RIGHTBOOK_AUTHOR_RECT;
+        break;
+    case 6:
+        rect->xid = HPM_NEW_BOOK;
+        break;
+    case 7:
+        rect->xid = HPM_LASTPAGE_BUTTON;
+        break;
+    case 8:
+        rect->xid = HPM_FIRSTBOOK_RECT;
+        break;
+    case 9:
+        rect->xid = HPM_SECONDBOOK_RECT;
+        break;
+    case 10:
+        rect->xid = HPM_THIRDBOOK_RECT;
+        break;
+    case 11:
+        rect->xid = HPM_NEXTPAGE_BUTTON;
+        break;
+    case 12:
+        rect->xid = HPM_FIRSTBOOK_NAME;
+        break;
+    case 13:
+        rect->xid = HPM_SECONDBOOK_NAME;
+        break;
+    case 14:
+        rect->xid = HPM_THIRDBOOK_NAME;
+        break;
+    case 15:
+        rect->xid = HPM_BOOKSHELF_BUTTON;
+        break;
+    case 16:
+        rect->xid = HPM_APP_BUTTON;
+        break;
+    case 17:
+        rect->xid = HPM_SETTING_BUTTON;
+        break;
+    case 18:
+        rect->xid = HPM_BOOKSHELF_NAME;
+        break;
+    case 19:
+        rect->xid = HPM_APP_NAME;
+        break;
+    case 20:
+        rect->xid = HPM_SETTING_NAME;
+        break;
+    default:
+        break;
+    }
 
 }
 

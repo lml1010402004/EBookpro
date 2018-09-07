@@ -7,6 +7,10 @@
 #include<QList>
 #include<QFont>
 #include"DataBase/database.h"
+#include"Utils/redefineqrect.h"
+
+
+
 
 class DrawMainPage
 {
@@ -17,18 +21,18 @@ public:
     QFont font;
 
 
-    void drawCurrentBookCover(QPainter *painter,QStringList bookCoverPath,QStringList booktitle,QList<QRect> *rect);
-    void drawCurrentBookAuthor(QPainter *painter,QString bookAuthor,QRect rect);
-    void drawCurrentBookProgress(QPainter *painter,int percentage,QRect rect);
+    void drawCurrentBookCover(QPainter *painter,QStringList bookCoverPath,QStringList booktitle,QList<myQRect*> *rect);
+    void drawCurrentBookAuthor(QPainter *painter,QString bookAuthor,myQRect* rect);
+    void drawCurrentBookProgress(QPainter *painter,int percentage,myQRect* rect);
 //    void drawThreeBooksOfCurrentPage(QPainter *painter,QList<>)
 
-    void drawLastPage(QPainter *painter,int index,QRect rect,bool firstpage);
-    void drawNextPage(QPainter *painter,int index,QRect rect,bool endpage);
-    void drawTextView(QPainter *painter,QRect rect,QString title);
-    void drawThreeModulesBottom1(QPainter *painter,int index ,QRect rect);
-    void drawThreeModulesBottom2(QPainter *painter,int index ,QRect rect);
-    void drawThreeModulesBottom3(QPainter *painter,int index ,QRect rect);
-    void drawThreeBooksArea(QPainter *painter,QList<QRect> *rectlist,QList<localDirectoryItem> *booklist);
+    void drawLastPage(QPainter *painter,bool isPressed,myQRect* rect,bool firstpage);
+    void drawNextPage(QPainter *painter,bool isPressed,myQRect* rect,bool endpage);
+    void drawTextView(QPainter *painter,myQRect* rect,QString title);
+    void drawThreeModulesBottom1(QPainter *painter,bool isPressed ,myQRect* rect);
+    void drawThreeModulesBottom2(QPainter *painter,bool isPressed ,myQRect* rect);
+    void drawThreeModulesBottom3(QPainter *painter,bool isPressed ,myQRect* rect);
+    void drawThreeBooksArea(QPainter *painter,QList<myQRect*> *rectlist,QList<localDirectoryItem> *booklist);
 
 
 
