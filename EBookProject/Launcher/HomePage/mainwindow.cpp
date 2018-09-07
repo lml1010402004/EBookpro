@@ -3,6 +3,7 @@
 #include<QDebug>
 #include"Utils/commonutils.h"
 #include<QBrush>
+#include"Application/rfile.h"
 
 
 const int mainapge_x[21] = {100,350,100,350,160,410,280,40,90,240,390,520,120,270,420,70,270,470,80,280,480};
@@ -89,7 +90,7 @@ void MainWindow::initView()
         myrect->rect.setWidth(mainpage_w[i]);
         myrect->rect.setHeight(mainpage_h[i]);
         myrect->isPressed = false;
-        assignMacroDefinition(myrect,i);
+        RFIle::assignMacroDefinition(0,myrect,i);
         rectlist->append(myrect);
     }
 
@@ -206,10 +207,7 @@ void MainWindow::paintEvent(QPaintEvent *event)
 
     drawmainpage->drawLastPage(painter,rectlist->at(HPM_LASTPAGE_BUTTON),firstpage);
 
-    qDebug()<<"======================"<<QString::number(threebookrect->size());
-    qDebug()<<"======================"<<QString::number(threebookrect->size());
-    qDebug()<<"======================"<<QString::number(threebookrect->size());
-    qDebug()<<"======================"<<QString::number(threebookrect->size());
+
     drawmainpage->drawThreeBooksArea(painter,threebookrect,currentPagebooklist);
 
     drawmainpage->drawThreeModulesBottom1(painter,rectlist->at(HPM_BOOKSHELF_BUTTON));
@@ -224,87 +222,14 @@ void MainWindow::initConnection()
 
 }
 
-void MainWindow::assignMacroDefinition(myQRect *rect,int index)
-{
-    switch (index) {
-    case 0:
-        rect->xid =HPM_LEFTBOOK_RECT;
-        break;
-    case 1:
-        rect->xid = HPM_RIGHTBOOK_RECT;
-        break;
-    case 2:
-        rect->xid = HPM_LEFTBOOK_NAME_RECT;
-        break;
-    case 3:
-        rect->xid = HPM_RIGHTBOOK_NAME_RECT;
-        break;
-    case 4:
-        rect->xid = HPM_LEFTBOOK_AUTHOR_RECT;
-        break;
-    case 5:
-        rect->xid = HPM_RIGHTBOOK_AUTHOR_RECT;
-        break;
-    case 6:
-        rect->xid = HPM_NEW_BOOK;
-        break;
-    case 7:
-        rect->xid = HPM_LASTPAGE_BUTTON;
-        break;
-    case 8:
-        rect->xid = HPM_FIRSTBOOK_RECT;
-        break;
-    case 9:
-        rect->xid = HPM_SECONDBOOK_RECT;
-        break;
-    case 10:
-        rect->xid = HPM_THIRDBOOK_RECT;
-        break;
-    case 11:
-        rect->xid = HPM_NEXTPAGE_BUTTON;
-        break;
-    case 12:
-        rect->xid = HPM_FIRSTBOOK_NAME;
-        break;
-    case 13:
-        rect->xid = HPM_SECONDBOOK_NAME;
-        break;
-    case 14:
-        rect->xid = HPM_THIRDBOOK_NAME;
-        break;
-    case 15:
-        rect->xid = HPM_BOOKSHELF_BUTTON;
-        break;
-    case 16:
-        rect->xid = HPM_APP_BUTTON;
-        break;
-    case 17:
-        rect->xid = HPM_SETTING_BUTTON;
-        break;
-    case 18:
-        rect->xid = HPM_BOOKSHELF_NAME;
-        break;
-    case 19:
-        rect->xid = HPM_APP_NAME;
-        break;
-    case 20:
-        rect->xid = HPM_SETTING_NAME;
-        break;
-    default:
-        break;
-    }
-
-}
 
 void MainWindow::assignDynamicRectstoThreerect(int i)
 {
 
     switch (i) {
     case 0:
-
         break;
     case 1:
-
         threebookrect->append(rectlist->at(HPM_FIRSTBOOK_RECT));
         break;
     case 2:
@@ -351,3 +276,5 @@ void MainWindow::getBookDataFromDataBase()
 
 
 }
+
+

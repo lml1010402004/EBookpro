@@ -39,6 +39,7 @@ public:
     static int returnLightValue(int progress);
 
 
+
 private:
 
     QStringList arguments;

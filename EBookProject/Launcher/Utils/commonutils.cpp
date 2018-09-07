@@ -244,6 +244,9 @@ int commonUtils::returnLightValue(int progress)
 }
 
 
+
+
+
 QList<localDirectoryItem>* getCurrentPageBooks(QList<localDirectoryItem> *list,int currentPage,int pagesize){
   QList<localDirectoryItem> *templist = new QList<localDirectoryItem>;
   int totalpages = 0;
