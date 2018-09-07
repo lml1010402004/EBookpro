@@ -62,10 +62,6 @@ void DrawMainPage::drawCurrentBookCover(QPainter *painter,QStringList bookCoverP
     }
 
 
-
-
-
-
 }
 
 void DrawMainPage::drawCurrentBookAuthor(QPainter *painter, QString bookAuthor, myQRect* rect)
@@ -79,10 +75,10 @@ void DrawMainPage::drawCurrentBookProgress(QPainter *painter, int percentage, my
     painter->drawText(rect->rect,QString::number(percentage));
 }
 
-void DrawMainPage::drawLastPage(QPainter *painter, bool isPressed, myQRect* rect,bool firstpage)
+void DrawMainPage::drawLastPage(QPainter *painter, myQRect* rect,bool firstpage)
 {
     if(!firstpage){
-        if(!isPressed){
+        if(!rect->isPressed){
             painter->drawPixmap(rect->rect,lastpageunpressed);
         }else{
             painter->drawPixmap(rect->rect,lastpagepressed);
@@ -91,10 +87,10 @@ void DrawMainPage::drawLastPage(QPainter *painter, bool isPressed, myQRect* rect
 
 }
 
-void DrawMainPage::drawNextPage(QPainter *painter, bool isPressed, myQRect* rect,bool endpage)
+void DrawMainPage::drawNextPage(QPainter *painter, myQRect* rect,bool endpage)
 {
     if(!endpage){
-        if(!isPressed){
+        if(!rect->isPressed){
             painter->drawPixmap(rect->rect,nextpageunpressed);
         }else{
             painter->drawPixmap(rect->rect,nextpagepressed);
@@ -110,9 +106,9 @@ void DrawMainPage::drawTextView(QPainter *painter,myQRect* rect,QString title)
 
 }
 
-void DrawMainPage::drawThreeModulesBottom1(QPainter *painter, bool isPressed, myQRect* rect)
+void DrawMainPage::drawThreeModulesBottom1(QPainter *painter, myQRect* rect)
 {
-    if(isPressed){
+    if(rect->isPressed){
         painter->drawPixmap(rect->rect,bookshelf_pressed);
     }else{
         painter->drawPixmap(rect->rect,bookshelf);
@@ -120,9 +116,9 @@ void DrawMainPage::drawThreeModulesBottom1(QPainter *painter, bool isPressed, my
 
 }
 
-void DrawMainPage::drawThreeModulesBottom2(QPainter *painter, bool isPressed, myQRect* rect)
+void DrawMainPage::drawThreeModulesBottom2(QPainter *painter, myQRect* rect)
 {
-    if(isPressed){
+    if(rect->isPressed){
         painter->drawPixmap(rect->rect,application_pressed);
     }else{
         painter->drawPixmap(rect->rect,application);
@@ -130,9 +126,9 @@ void DrawMainPage::drawThreeModulesBottom2(QPainter *painter, bool isPressed, my
 
 }
 
-void DrawMainPage::drawThreeModulesBottom3(QPainter *painter, bool isPressed, myQRect* rect)
+void DrawMainPage::drawThreeModulesBottom3(QPainter *painter, myQRect* rect)
 {
-    if(isPressed){
+    if(rect->isPressed){
         painter->drawPixmap(rect->rect,setting_pressed);
     }else{
         painter->drawPixmap(rect->rect,setting);

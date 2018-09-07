@@ -26,12 +26,12 @@ public:
     void drawCurrentBookProgress(QPainter *painter,int percentage,myQRect* rect);
 //    void drawThreeBooksOfCurrentPage(QPainter *painter,QList<>)
 
-    void drawLastPage(QPainter *painter,bool isPressed,myQRect* rect,bool firstpage);
-    void drawNextPage(QPainter *painter,bool isPressed,myQRect* rect,bool endpage);
+    void drawLastPage(QPainter *painter,myQRect* rect,bool firstpage);
+    void drawNextPage(QPainter *painter,myQRect* rect,bool endpage);
     void drawTextView(QPainter *painter,myQRect* rect,QString title);
-    void drawThreeModulesBottom1(QPainter *painter,bool isPressed ,myQRect* rect);
-    void drawThreeModulesBottom2(QPainter *painter,bool isPressed ,myQRect* rect);
-    void drawThreeModulesBottom3(QPainter *painter,bool isPressed ,myQRect* rect);
+    void drawThreeModulesBottom1(QPainter *painter,myQRect* rect);
+    void drawThreeModulesBottom2(QPainter *painter,myQRect* rect);
+    void drawThreeModulesBottom3(QPainter *painter,myQRect* rect);
     void drawThreeBooksArea(QPainter *painter,QList<myQRect*> *rectlist,QList<localDirectoryItem> *booklist);
 
 

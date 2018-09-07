@@ -63,6 +63,7 @@ private:
     void initView();
     void initConnection();
     void assignMacroDefinition(myQRect *rect,int index);
+    void assignDynamicRectstoThreerect(int i);
 
     void getBookDataFromDataBase();
 
