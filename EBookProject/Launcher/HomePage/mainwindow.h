@@ -15,7 +15,7 @@
 #include"DataBase/database.h"
 #include"BookShelf/bookshelf.h"
 #include"ThirdApp/thirdapplications.h"
-#include"Application/pulldownwindow.h"
+
 
 
 
@@ -38,7 +38,7 @@ private:
     StatusBar *statusbar;
 //    Settings *settings;
     BookShelf *bookshelf;
-    PulldownWindow *pulldownwindow;
+
     ThirdApplications *thirdapplication;
 
 

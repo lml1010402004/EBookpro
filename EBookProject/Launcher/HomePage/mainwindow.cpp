@@ -4,6 +4,7 @@
 #include"Utils/commonutils.h"
 #include<QBrush>
 #include"Application/rfile.h"
+#include"Application/pulldownwindow.h"
 
 
 const int mainapge_x[21] = {100,350,100,350,160,410,280,40,90,240,390,520,120,270,420,70,270,470,80,280,480};
@@ -12,8 +13,8 @@ const int mainpage_w[21] =   {150,150,150,150,60,60,40,40,120,120,120,40,80,80,8
 const int mainpage_h[21] =     {200,200,40,40,20,20,20,40,150,150,150,40,20,20,20,64,64,64,20,20,20};
 
 
-
-
+PulldownWindow *pulldownwindow;
+int pulldownwindowrect[] = {250,0,100,60};
 
 const QString homeiconpath = ":/mypic/pics/homeicon.png";
 
@@ -32,6 +33,7 @@ QList<QMainWindow*> *mainwindowlist;
 const QString cover_group[3] = {":/mypic/pics/txt_cover.png",":/mypic/pics/pdf_cover.png",":/mypic/pics/epub_cover.png"};
 
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
@@ -44,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    delete drawmainpage,statusbar,currentbookcoverrect,threebookrect;
+    delete drawmainpage,statusbar,currentbookcoverrect,threebookrect,pulldownwindow;
     drawmainpage = NULL;
     pulldownwindow = NULL;
     statusbar = NULL;
@@ -81,7 +83,7 @@ void MainWindow::init()
 
 void MainWindow::initView()
 {
-    //    pulldownwindow = new PulldownWindow(this);
+
     rectlist = new QList<myQRect*>;
     for(int i=0;i<sizeof(mainapge_x);i++){
         myrect = new myQRect;
@@ -104,6 +106,13 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
         rectlist->at(targetWidgetIndex)->isPressed = true;
         this->repaint();
     }
+    if(event->x()>pulldownwindowrect[0]&&event->x()<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
+            event->y()<pulldownwindowrect[3]){
+        if(pulldownwindow==NULL){
+            pulldownwindow = new PulldownWindow(this);
+        }
+        pulldownwindow->show();
+    }
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
@@ -117,10 +126,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
         rectlist->at(targetWidgetIndex)->isPressed = false;
         switch (targetWidgetIndex) {
         case HPM_LEFTBOOK_RECT:
-            if(pulldownwindow==NULL){
-                pulldownwindow = new PulldownWindow(this);
-            }
-            pulldownwindow->show();
+
             break;
         case HPM_RIGHTBOOK_RECT:
             break;

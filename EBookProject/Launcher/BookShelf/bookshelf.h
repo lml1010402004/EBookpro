@@ -12,6 +12,7 @@
 #include"statusbar_global.h"
 #include"drawbookshelf.h"
 #include"Utils/redefineqrect.h"
+//#include"Application/pulldownwindow.h"
 
 class BookShelf : public QMainWindow
 {
@@ -43,6 +44,7 @@ private:
     QList<QString> list;
     QList<localDirectoryItem> *totalbookinfolist;
     QList<localDirectoryItem> *currentpagebookinfolist;
+//    PulldownWindow *pulldownwindow;
 
     void init();
     void initView();

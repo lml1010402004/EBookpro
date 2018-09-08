@@ -3,6 +3,8 @@
 #include"Utils/commonutils.h"
 #include<QApplication>
 #include"Application/rfile.h"
+#include"Application/pulldownwindow.h"
+
 
 
 const int BOOKSHELF_X[12] = {400,500,40,120,260,380,500,130,200,270,360,430};
@@ -10,6 +12,10 @@ const int BOOKSHELF_Y[12] = {48,48,120,120,120,120,120,730,730,740,730,730};
 const int BOOKSHELF_W[12] = {48,48,60,100,100,100,100,40,40,80,40,40};
 const int BOOKSHELF_HE[12] = {48,48,40,40,40,40,40,40,40,40,40,40};
 
+
+extern int pulldownwindowrect[];
+
+extern PulldownWindow *pulldownwindow;
 
 QString emptypath = ":/mypic/pics/circlempty";
 
@@ -36,6 +42,7 @@ BookShelf::~BookShelf()
 }
 
 void BookShelf::init(){
+
     drawbookshelf = new DrawBookshelf;
     statusbar = new StatusBar(this);
     condition_selected_index = 3;
@@ -43,6 +50,7 @@ void BookShelf::init(){
     conditonsItemlist = new QList<ConditionItem>;
     totalbookinfolist = new QList<localDirectoryItem>;
     currentpagebookinfolist = new QList<localDirectoryItem>;
+
 
 
     list.clear();
@@ -127,6 +135,16 @@ void BookShelf::mousePressEvent(QMouseEvent *event)
         }
         this->repaint();
     }
+
+    if(event->x()>pulldownwindowrect[0]&&event->x()<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
+            event->y()<pulldownwindowrect[3]){
+        if(pulldownwindow==NULL){
+            pulldownwindow = new PulldownWindow(this);
+        }
+        pulldownwindow->show();
+    }
+
+
 }
 
 void BookShelf::mouseReleaseEvent(QMouseEvent *event)
