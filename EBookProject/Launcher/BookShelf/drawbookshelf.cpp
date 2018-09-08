@@ -47,6 +47,11 @@ void DrawBookshelf::drawHomeButton(QPainter *painter,myQRect *rect)
 
 void DrawBookshelf::drawArrangeTextView(QPainter *painter,myQRect *rect, QString str)
 {
+    qDebug()<<"rect.x"<<QString::number(rect->rect.x());
+    qDebug()<<"rect.y"<<QString::number(rect->rect.y());
+    qDebug()<<"rect.w"<<QString::number(rect->rect.width());
+    qDebug()<<"rect.he"<<QString::number(rect->rect.height());
+
     painter->drawText(rect->rect,str);
 }
 
@@ -60,7 +65,7 @@ void DrawBookshelf::drawSelectedCondition(QPainter *painter, QList<ConditionItem
       rect.setY(position3[2]);
       rect.setWidth(position3[3]);
       rect.setHeight(position3[4]);
-      if(i==index-6){// because the index of rect is 6
+      if(i==index-3){// because the index of rect is 3
       painter->drawPixmap(rect,circle_pressed);
       }else{
       painter->drawPixmap(rect,circle_unpress);

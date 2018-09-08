@@ -41,27 +41,18 @@
 
 
 //====================Bookshelf module==========================
-#define BSM_SEARCH_BUTTON 30
-#define BSM_HOME_BUTTON 31
-#define BSM_TEXT 29
-#define BSM_READ_ORDER_ITEM 32
-#define BSM_READ_BOOK_NAME 33
-#define BSM_READ_TIME 34
-#define BSM_READ_BOOK_AUTHOR 35
-#define BSM_FIRST_BOOK 36
-#define BSM_SECOND_BOOK_37
-#define BSM_THIRD_BOOK 38
-#define BSM_FOURTH_BOOK 39
-#define BSM_FIVTH_BOOK 40
-#define BSM_SIXTH_BOOK 41
-#define BSM_SEVENTH_BOOK 42
-#define BSM_EIGHTTH_BOOK 43
-#define BSM_NINTH_BOOK 44
-#define BSM_FIRST_PAGE 45
-#define BSM_LAST_PAGE 46
-#define BSM_PAGES_CONTENT 47
-#define BSM_NEXT_PAEG 48
-#define BSM_END_PAGE 49
+#define BSM_SEARCH_BUTTON 0
+#define BSM_HOME_BUTTON 1
+#define BSM_TEXT 2
+#define BSM_READ_ORDER_ITEM 3
+#define BSM_READ_BOOK_NAME 4
+#define BSM_READ_TIME 5
+#define BSM_READ_BOOK_AUTHOR 6
+#define BSM_FIRST_PAGE 7
+#define BSM_LAST_PAGE 8
+#define BSM_PAGES_CONTENT 9
+#define BSM_NEXT_PAEG 10
+#define BSM_END_PAGE 11
 
 
 

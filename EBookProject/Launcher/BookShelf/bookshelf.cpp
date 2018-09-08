@@ -47,9 +47,9 @@ void BookShelf::init(){
 
     list.clear();
     list.append(tr("Read"));
-    list.append(QObject::tr("Name"));
-    list.append(QObject::tr("Time"));
-    list.append(QObject::tr("Author"));
+    list.append(tr("Name"));
+    list.append(tr("Time"));
+    list.append(tr("Author"));
     for(int i=0;i<list.size();i++){
         conditionitem.setCircle_icon_path(emptypath);
         conditionitem.setText_str(list.at(i));
@@ -73,7 +73,7 @@ void BookShelf::init(){
 void BookShelf::initView(){
 
     rectlist = new QList<myQRect*>;
-    for(int i =0;i<sizeof(BOOKSHELF_HE);i++){
+    for(int i =0;i<12;i++){
         myrect = new myQRect;
         myrect->rect.setX(BOOKSHELF_X[i]);
         myrect->rect.setY(BOOKSHELF_Y[i]);
@@ -83,6 +83,7 @@ void BookShelf::initView(){
         RFIle::assignMacroDefinition(BOOK_SHELF_MODULE,myrect,i);
         rectlist->append(myrect);
     }
+
 
 }
 
@@ -102,76 +103,81 @@ void BookShelf::paintEvent(QPaintEvent *event)
     QLineF line(0,100,600,100);
     painter->drawLine(line);
 
-    qDebug()<<"currentpagebooklistinfolist==========="<<currentpagebookinfolist->size();
+
     drawbookshelf->drawNineBooks(painter,currentpagebookinfolist);
     drawbookshelf->drawCurrentPageandTotalPages(painter,current_page,total_pages,rectlist->at(BSM_PAGES_CONTENT));
-//    drawbookshelf->drawArrangeTextView(painter,rectlist->at(BSM_TEXT),tr("Sort"));
+    drawbookshelf->drawArrangeTextView(painter,rectlist->at(BSM_TEXT),tr("Sort"));
+    drawbookshelf->drawHomeButton(painter,rectlist->at(1));
 
-//    drawbookshelf->drawTheFirstandLastPageIcon(painter,rectlist->at(BSM_FIRST_PAGE),rectlist->at(BSM_LAST_PAGE));
+    drawbookshelf->drawTheFirstandLastPageIcon(painter,rectlist->at(BSM_FIRST_PAGE),rectlist->at(BSM_LAST_PAGE));
 
-//    drawbookshelf->drawTheNextandEndPageIcon(painter,rectlist->at(BSM_NEXT_PAEG),rectlist->at(BSM_END_PAGE));
+    drawbookshelf->drawTheNextandEndPageIcon(painter,rectlist->at(BSM_NEXT_PAEG),rectlist->at(BSM_END_PAGE));
 
-//    drawbookshelf->drawSelectedCondition(painter,conditonsItemlist,condition_selected_index);
+    drawbookshelf->drawSelectedCondition(painter,conditonsItemlist,condition_selected_index);
 }
 
 void BookShelf::mousePressEvent(QMouseEvent *event)
 {
 
-        targetwidgetindex = commonUtils::getTheTargetWidget(event->x(),event->y(),rectlist);
-        if(targetwidgetindex>-1){
-            rectlist->at(targetwidgetindex)->isPressed = true;
-            if(targetwidgetindex>5&&targetwidgetindex<10){
-                condition_selected_index  = targetwidgetindex;
-            }
-            this->repaint();
+    targetwidgetindex = commonUtils::getTheTargetWidget(event->x(),event->y(),rectlist);
+    if(targetwidgetindex>-1){
+        rectlist->at(targetwidgetindex)->isPressed = true;
+        if(targetwidgetindex>2&&targetwidgetindex<7){
+            condition_selected_index  = targetwidgetindex;
         }
+        this->repaint();
+    }
 }
 
 void BookShelf::mouseReleaseEvent(QMouseEvent *event)
 {
 
     if(targetwidgetindex>-1){
-       rectlist->at(targetwidgetindex)->isPressed = false;
+        rectlist->at(targetwidgetindex)->isPressed = false;
         switch (targetwidgetindex){
-        case 0:
-            this->close();
+        case BSM_SEARCH_BUTTON:
+
             break;
-        case 1:
-            current_page = 1;
+        case BSM_HOME_BUTTON:
+             this->close();
+            break;
+        case BSM_TEXT:
+
+            break;
+        case BSM_READ_ORDER_ITEM:
+            current_page =1;
             emit updateDataSignal();
             break;
-        case 2:
+        case BSM_READ_BOOK_NAME:
+            current_page =1;
+            emit updateDataSignal();
+            break;
+        case BSM_READ_TIME:
+            current_page =1;
+            emit updateDataSignal();
+            break;
+        case BSM_READ_BOOK_AUTHOR:
+            current_page =1;
+            emit updateDataSignal();
+            break;
+        case BSM_FIRST_PAGE:
+            current_page =1;
+            emit updateDataSignal();
+            break;
+        case BSM_LAST_PAGE:
             if(current_page>1){
                 current_page--;
                 emit updateDataSignal();
             }
             break;
-        case 3:
+        case BSM_NEXT_PAEG:
             if(current_page<total_pages){
                 current_page++;
                 emit updateDataSignal();
             }
             break;
-        case 4:
+        case BSM_END_PAGE:
             current_page = total_pages;
-            emit updateDataSignal();
-            break;
-        case 5:
-            break;
-        case 6:
-            current_page =1;
-            emit updateDataSignal();
-            break;
-        case 7:
-            current_page =1;
-            emit updateDataSignal();
-            break;
-        case 8:
-            current_page =1;
-            emit updateDataSignal();
-            break;
-        case 9:
-            current_page =1;
             emit updateDataSignal();
             break;
 
@@ -230,19 +236,19 @@ void BookShelf::processFinisheds(){
 void BookShelf::updateDataSlot(){
     totalbookinfolist->clear();
     switch (condition_selected_index) {
-    case 6:
+    case BSM_READ_ORDER_ITEM:
         totalbookinfolist = Database::getInstance()->getAllDataFromTouchedTable();
         total_pages = getTotalPagesForEachCondition(totalbookinfolist);
         break;
-    case 7:
+    case BSM_READ_BOOK_NAME:
         totalbookinfolist = Database::getInstance()->getAllDataFromTotalBooklistTable("name");
         total_pages = getTotalPagesForEachCondition(totalbookinfolist);
         break;
-    case 8:
+    case BSM_READ_TIME:
         totalbookinfolist = Database::getInstance()->getAllDataFromTotalBooklistTable("xid");
         total_pages = getTotalPagesForEachCondition(totalbookinfolist);
         break;
-    case 9:
+    case BSM_READ_BOOK_AUTHOR:
         totalbookinfolist = Database::getInstance()->getAllDataFromTotalBooklistTable("author");
         total_pages = getTotalPagesForEachCondition(totalbookinfolist);
         break;
