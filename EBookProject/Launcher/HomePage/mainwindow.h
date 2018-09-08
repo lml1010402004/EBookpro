@@ -8,7 +8,6 @@
 #include<QList>
 #include<QRect>
 #include"drawmainpage.h"
-//#include"modulepages/pulldownwindow.h"
 #include"statusbar.h"
 #include"statusbar_global.h"
 #include<QStringList>
@@ -16,7 +15,7 @@
 #include"DataBase/database.h"
 #include"BookShelf/bookshelf.h"
 #include"ThirdApp/thirdapplications.h"
-
+#include"Application/pulldownwindow.h"
 
 
 
@@ -36,10 +35,10 @@ public:
 
 private:
     DrawMainPage *drawmainpage;
-//    PullDownWindow *pulldownwindow;
     StatusBar *statusbar;
 //    Settings *settings;
     BookShelf *bookshelf;
+    PulldownWindow *pulldownwindow;
     ThirdApplications *thirdapplication;
 
 

@@ -48,16 +48,6 @@ INCLUDEPATH += $$PWD/libs
 DEPENDPATH += $$PWD/libs
 
 
-
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/release/ -lStatusBar
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/debug/ -lStatusBar
-else:unix: LIBS += -L$$PWD/libs/ -lStatusBar
-
-INCLUDEPATH += $$PWD/libs
-DEPENDPATH += $$PWD/libs
-
-
-
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/release/ -lSysSettings
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/debug/ -lSysSettings
 else:unix: LIBS += -L$$PWD/libs/ -lSysSettings
@@ -67,3 +57,10 @@ DEPENDPATH += $$PWD/libs
 
 RESOURCES += \
     pics.qrc
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/release/ -lStatusBar
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/debug/ -lStatusBar
+else:unix: LIBS += -L$$PWD/libs/ -lStatusBar
+
+INCLUDEPATH += $$PWD/libs
+DEPENDPATH += $$PWD/libs

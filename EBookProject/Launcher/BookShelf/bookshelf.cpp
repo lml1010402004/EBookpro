@@ -38,7 +38,7 @@ BookShelf::~BookShelf()
 void BookShelf::init(){
     drawbookshelf = new DrawBookshelf;
     statusbar = new StatusBar(this);
-    condition_selected_index = 6;
+    condition_selected_index = 3;
 
     conditonsItemlist = new QList<ConditionItem>;
     totalbookinfolist = new QList<localDirectoryItem>;

@@ -46,7 +46,7 @@ MainWindow::~MainWindow()
 {
     delete drawmainpage,statusbar,currentbookcoverrect,threebookrect;
     drawmainpage = NULL;
-    //    pulldownwindow = NULL;
+    pulldownwindow = NULL;
     statusbar = NULL;
     currentbookcoverrect = NULL;
     threebookrect = NULL;
@@ -58,7 +58,7 @@ void MainWindow::init()
 {
 
     drawmainpage = new DrawMainPage;
-    //    pulldownwindow = new PullDownWindow(this);
+    pulldownwindow = new PulldownWindow(this);
     //    settings = new Settings(this);
     bookshelf = new BookShelf(this);
     thirdapplication = new ThirdApplications(this);
@@ -81,7 +81,7 @@ void MainWindow::init()
 
 void MainWindow::initView()
 {
-
+    //    pulldownwindow = new PulldownWindow(this);
     rectlist = new QList<myQRect*>;
     for(int i=0;i<sizeof(mainapge_x);i++){
         myrect = new myQRect;
@@ -117,12 +117,15 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
         rectlist->at(targetWidgetIndex)->isPressed = false;
         switch (targetWidgetIndex) {
         case HPM_LEFTBOOK_RECT:
+            if(pulldownwindow==NULL){
+                pulldownwindow = new PulldownWindow(this);
+            }
+            pulldownwindow->show();
             break;
         case HPM_RIGHTBOOK_RECT:
             break;
         case HPM_LASTPAGE_BUTTON:
             if(currentPageOfMainPage>1){
-
                 endpage = false;
                 firstpage = false;
                 currentPageOfMainPage--;
