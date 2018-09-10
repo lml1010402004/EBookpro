@@ -1,0 +1,9 @@
+#ifndef APPLICATION_H
+#define APPLICATION_H
+
+#define GLOBAL_FIXED_WIDTH 600
+#define GLOBAL_FIXED_HEIGHT 800
+
+
+
+#endif // APPLICATION_H

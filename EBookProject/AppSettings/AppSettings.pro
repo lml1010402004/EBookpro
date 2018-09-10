@@ -37,3 +37,43 @@ include(wallpaper/wallpaper.pri)
 
 INCLUDEPATH +=$$PWD wifi
 include(wifi/wifi.pri)
+
+INCLUDEPATH +=$$PWD utils
+include(utils/utils.pri)
+
+INCLUDEPATH +=$$PWD application
+include(application/application.pri)
+
+INCLUDEPATH +=$$PWD dataitem
+include(dataitem/dataitem.pri)
+
+
+
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/release/ -lPinyinIM
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/debug/ -lPinyinIM
+else:unix: LIBS += -L$$PWD/libs/ -lPinyinIM
+
+INCLUDEPATH += $$PWD/libs
+DEPENDPATH += $$PWD/libs
+
+
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/release/ -lStatusBar
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/debug/ -lStatusBar
+else:unix: LIBS += -L$$PWD/libs/ -lStatusBar
+
+INCLUDEPATH += $$PWD/libs
+DEPENDPATH += $$PWD/libs
+
+
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/release/ -lSysSettings
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/debug/ -lSysSettings
+else:unix: LIBS += -L$$PWD/libs/ -lSysSettings
+
+INCLUDEPATH += $$PWD/libs
+DEPENDPATH += $$PWD/libs
+
+RESOURCES += \
+    mypic.qrc

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/pic">
+        <file>pics/home_pressed.png</file>
+        <file>pics/home_unpress.png</file>
+    </qresource>
+</RCC>
