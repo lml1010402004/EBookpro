@@ -1,8 +1,8 @@
 #include "drawmainwindow.h"
+#include"utils/application.h"
 
-const QString home_pressed=":/pic/pics/home_pressed.png";
-const QString home_unpress = ":/pic/pics/home_unpress.png";
-
+extern const QString home_pressed;
+extern const QString home_unpress;
 
 const QString item_icon_paths[] = {
     ":/pic/pics/light_unpress.png",

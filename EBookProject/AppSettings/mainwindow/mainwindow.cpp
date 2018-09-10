@@ -6,6 +6,9 @@ const int homexywh[] = {500,48,48,48};
 const int setting[] = {260,110,80,60};
 
 
+
+
+
 int items_xywh[8][4] = {
     {50,170,500,70},
     {50,240,500,70},
@@ -73,7 +76,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
 
 MainWindow::~MainWindow(){
-  delete myrect,pulldownwindow,statusbar,drawmainwindow,systemitemlist,item;
+    delete myrect,pulldownwindow,statusbar,drawmainwindow,systemitemlist,item;
     myrect  = NULL;
     item = NULL;
     systemitemlist = NULL;
@@ -85,6 +88,9 @@ MainWindow::~MainWindow(){
 void MainWindow::init(){
 
     targetWidgetIndex = -1;
+
+    wallpaper = new Wallpaper(this);
+
     initView();
 
 }
@@ -101,6 +107,7 @@ void MainWindow::initView(){
     pulldownwindow = new PulldownWindow(this);
     statusbar = new StatusBar(this);
     drawmainwindow = new DrawMainWindow;
+
 
     initsettingsModules();
 
@@ -128,7 +135,7 @@ void MainWindow::initsettingsModules()
         item->itemiconrect.setY(item_icon_xywh[i][1]);
         item->itemiconrect.setWidth(item_icon_xywh[i][2]);
         item->itemiconrect.setHeight(item_icon_xywh[i][3]);
-//        item->item_icon_path = item_icon_paths[i];
+        //        item->item_icon_path = item_icon_paths[i];
         item->ispressed = false;
         systemitemlist->append(item);
 
@@ -178,6 +185,20 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
         systemitemlist->at(targetWidgetIndex)->ispressed = true;
         this->repaint();
     }
+    switch (targetWidgetIndex) {
+    case 0:
+
+        break;
+    case 1:
+        if(wallpaper!=NULL){
+            wallpaper = new Wallpaper(this);
+        }
+        wallpaper->show();
+        break;
+    default:
+        break;
+    }
+
 
 
 }

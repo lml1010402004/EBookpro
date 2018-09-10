@@ -18,5 +18,7 @@
         <file>pics/usb_unpress.png</file>
         <file>pics/wallpaper_pressed.png</file>
         <file>pics/wallpaper_unpress.png</file>
+        <file>pics/back_pressed.png</file>
+        <file>pics/back_unpress.png</file>
     </qresource>
 </RCC>

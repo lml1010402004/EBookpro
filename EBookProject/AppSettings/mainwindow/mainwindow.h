@@ -10,9 +10,7 @@
 #include"application/statusbar_global.h"
 #include"drawmainwindow.h"
 #include<QList>
-
-
-
+#include"wallpaper/wallpaper.h"
 
 
 class MainWindow : public QMainWindow
@@ -41,6 +39,8 @@ private:
     int targetWidgetIndex;
     QList<SystemItems*> *systemitemlist;
     SystemItems *item;
+    Wallpaper *wallpaper;
+
 
 
 signals:

@@ -47,6 +47,9 @@ include(application/application.pri)
 INCLUDEPATH +=$$PWD dataitem
 include(dataitem/dataitem.pri)
 
+INCLUDEPATH +=$$PWD other
+include(other/other.pri)
+
 
 
 
