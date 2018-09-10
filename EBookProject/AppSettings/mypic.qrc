@@ -2,7 +2,21 @@
     <qresource prefix="/pic">
         <file>pics/home_pressed.png</file>
         <file>pics/home_unpress.png</file>
-        <file>pics/network_icon.png</file>
-        <file>pics/network_icon_pressed.png</file>
+        <file>pics/date_pressed.png</file>
+        <file>pics/date_unpress.png</file>
+        <file>pics/language_pressed.png</file>
+        <file>pics/language_unpress.png</file>
+        <file>pics/light_pressed.png</file>
+        <file>pics/light_unpress.png</file>
+        <file>pics/network_pressed.png</file>
+        <file>pics/network_unpress.png</file>
+        <file>pics/other_pressed.png</file>
+        <file>pics/other_unpress.png</file>
+        <file>pics/restore_pressed.png</file>
+        <file>pics/restore_unpress.png</file>
+        <file>pics/usb_pressed.png</file>
+        <file>pics/usb_unpress.png</file>
+        <file>pics/wallpaper_pressed.png</file>
+        <file>pics/wallpaper_unpress.png</file>
     </qresource>
 </RCC>

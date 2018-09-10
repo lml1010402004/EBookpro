@@ -5,17 +5,28 @@ const QString home_unpress = ":/pic/pics/home_unpress.png";
 
 
 const QString item_icon_paths[] = {
-    ":/pic/pics/network_icon.png",
-    ":/pic/pics/network_icon.png",
-    ":/pic/pics/network_icon.png",
-    ":/pic/pics/network_icon.png",
-    ":/pic/pics/network_icon.png",
-    ":/pic/pics/network_icon.png",
-    ":/pic/pics/network_icon.png",
-    ":/pic/pics/network_icon.png"
+    ":/pic/pics/light_unpress.png",
+    ":/pic/pics/wallpaper_unpress.png",
+    ":/pic/pics/network_unpress.png",
+    ":/pic/pics/usb_unpress.png",
+    ":/pic/pics/date_unpress.png",
+    ":/pic/pics/language_unpress.png",
+    ":/pic/pics/restore_unpress.png",
+    ":/pic/pics/other_unpress.png"
 };
 
-const QString path_pressed = ":/pic/pics/network_icon_pressed.png";
+const QString item_pressed[] = {
+    ":/pic/pics/light_pressed.png",
+    ":/pic/pics/wallpaper_pressed.png",
+    ":/pic/pics/network_pressed.png",
+    ":/pic/pics/usb_pressed.png",
+    ":/pic/pics/date_pressed.png",
+    ":/pic/pics/language_pressed.png",
+    ":/pic/pics/restore_pressed.png",
+    ":/pic/pics/other_pressed.png"
+};
+
+
 
 
 
@@ -51,7 +62,7 @@ void DrawMainWindow::drawSettingItems(QPainter *painter, QList<SystemItems*> *it
         painter->drawRect(itemlist->at(i)->itemrect);
         painter->drawText(itemlist->at(i)->itemtextrect,itemlist->at(i)->getItem_text_text());
         if(itemlist->at(i)->ispressed){
-            painter->drawPixmap(itemlist->at(i)->itemiconrect,path_pressed);
+            painter->drawPixmap(itemlist->at(i)->itemiconrect,item_pressed[i]);
         }else{
             painter->drawPixmap(itemlist->at(i)->itemiconrect,item_icon_paths[i]);
         }
