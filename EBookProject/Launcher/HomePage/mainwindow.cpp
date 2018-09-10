@@ -59,6 +59,7 @@ MainWindow::~MainWindow()
 void MainWindow::init()
 {
 
+//    myprocess = new QProcess(this);
     drawmainpage = new DrawMainPage;
     pulldownwindow = new PulldownWindow(this);
     //    settings = new Settings(this);
@@ -179,6 +180,9 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 
             break;
         case HPM_SETTING_BUTTON:
+
+//            commonUtils::openSettingApp(process,NULL);
+            myprocess.start("/usr/local/app/AppSettings");
 
             break;
 

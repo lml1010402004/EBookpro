@@ -15,6 +15,7 @@
 #include"DataBase/database.h"
 #include"BookShelf/bookshelf.h"
 #include"ThirdApp/thirdapplications.h"
+#include<QProcess>
 
 
 
@@ -36,10 +37,10 @@ public:
 private:
     DrawMainPage *drawmainpage;
     StatusBar *statusbar;
-//    Settings *settings;
     BookShelf *bookshelf;
 
     ThirdApplications *thirdapplication;
+    QProcess myprocess;
 
 
 
