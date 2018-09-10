@@ -15,6 +15,7 @@
 
 
 
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -30,6 +31,7 @@ public:
 private:
     void init();
     void initView();
+    void initsettingsModules();
 
     StatusBar *statusbar;
     PulldownWindow *pulldownwindow;

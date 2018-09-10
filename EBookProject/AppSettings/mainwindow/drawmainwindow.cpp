@@ -3,6 +3,10 @@
 const QString home_pressed=":/pic/pics/home_pressed.png";
 const QString home_unpress = ":/pic/pics/home_unpress.png";
 
+
+
+
+
 DrawMainWindow::DrawMainWindow()
 {
 
