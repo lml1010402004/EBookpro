@@ -9,7 +9,6 @@
 #include"application/statusbar.h"
 #include"application/statusbar_global.h"
 #include"drawmainwindow.h"
-#include"utils/redefineqrect.h"
 #include<QList>
 
 
@@ -38,7 +37,10 @@ private:
     DrawMainWindow *drawmainwindow;
     myQRect *myrect;
 
+
     int targetWidgetIndex;
+    QList<SystemItems*> *systemitemlist;
+    SystemItems *item;
 
 
 signals:

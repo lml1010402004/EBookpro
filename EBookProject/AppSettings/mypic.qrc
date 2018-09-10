@@ -3,5 +3,6 @@
         <file>pics/home_pressed.png</file>
         <file>pics/home_unpress.png</file>
         <file>pics/network_icon.png</file>
+        <file>pics/network_icon_pressed.png</file>
     </qresource>
 </RCC>

@@ -2,9 +2,9 @@
 #define DRAWMAINWINDOW_H
 #include<QPainter>
 #include<QPaintEvent>
-#include"utils/redefineqrect.h"
 #include<QFont>
 #include"dataitem/systemitems.h"
+#include"utils/redefineqrect.h"
 
 
 class DrawMainWindow

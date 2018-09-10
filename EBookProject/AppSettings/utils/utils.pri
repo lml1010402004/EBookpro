@@ -1,5 +1,7 @@
 HEADERS += \
     $$PWD/application.h \
-    $$PWD/redefineqrect.h
+    $$PWD/redefineqrect.h \
+    $$PWD/commonutils.h
 
-SOURCES +=
+SOURCES += \
+    $$PWD/commonutils.cpp

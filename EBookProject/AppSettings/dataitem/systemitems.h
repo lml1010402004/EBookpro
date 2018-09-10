@@ -16,6 +16,8 @@ public:
 
     QRect itemiconrect;
     QString item_icon_path;
+    bool ispressed;
+
 
 public:
 
