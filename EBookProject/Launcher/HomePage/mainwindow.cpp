@@ -32,7 +32,8 @@ QList<QMainWindow*> *mainwindowlist;
 
 const QString cover_group[3] = {":/mypic/pics/txt_cover.png",":/mypic/pics/pdf_cover.png",":/mypic/pics/epub_cover.png"};
 
-
+const QString SETTING = "/usr/local/app/AppSettings";
+const QString APP_WORKING_DIR = "/usr/local/app/";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
@@ -59,7 +60,7 @@ MainWindow::~MainWindow()
 void MainWindow::init()
 {
 
-//    myprocess = new QProcess(this);
+    myprocess = new QProcess(this);
     drawmainpage = new DrawMainPage;
     pulldownwindow = new PulldownWindow(this);
     //    settings = new Settings(this);
@@ -106,13 +107,14 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
     if(targetWidgetIndex>-1){
         rectlist->at(targetWidgetIndex)->isPressed = true;
         this->repaint();
-    }
-    if(event->x()>pulldownwindowrect[0]&&event->x()<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
-            event->y()<pulldownwindowrect[3]){
-        if(pulldownwindow==NULL){
-            pulldownwindow = new PulldownWindow(this);
+    }else{
+        if(event->x()>pulldownwindowrect[0]&&event->x()<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
+                event->y()<pulldownwindowrect[3]){
+            if(pulldownwindow==NULL){
+                pulldownwindow = new PulldownWindow(this);
+            }
+            pulldownwindow->show();
         }
-        pulldownwindow->show();
     }
 }
 
@@ -171,26 +173,28 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
                 bookshelf = new BookShelf(this);
             }
             bookshelf->show();
+            return;
             break;
         case HPM_APP_BUTTON:
             if(thirdapplication==NULL){
                 thirdapplication = new ThirdApplications(this);
             }
             thirdapplication->show();
+            return;
 
             break;
         case HPM_SETTING_BUTTON:
-
-//            commonUtils::openSettingApp(process,NULL);
-            myprocess.start("/usr/local/app/AppSettings");
-
+            myprocess->setEnvironment(myprocess->environment());
+            myprocess->setWorkingDirectory(APP_WORKING_DIR);
+            myprocess->start(SETTING);
+            return;
             break;
-
         default:
             break;
         }
-        this->repaint();
         targetWidgetIndex = -1;
+        this->repaint();
+
     }
 
 }

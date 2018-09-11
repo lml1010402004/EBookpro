@@ -40,7 +40,7 @@ private:
     BookShelf *bookshelf;
 
     ThirdApplications *thirdapplication;
-    QProcess myprocess;
+    QProcess *myprocess;
 
 
 
