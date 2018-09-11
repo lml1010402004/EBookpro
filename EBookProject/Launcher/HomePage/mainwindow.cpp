@@ -173,21 +173,21 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
                 bookshelf = new BookShelf(this);
             }
             bookshelf->show();
-            return;
+
             break;
         case HPM_APP_BUTTON:
             if(thirdapplication==NULL){
                 thirdapplication = new ThirdApplications(this);
             }
             thirdapplication->show();
-            return;
+
 
             break;
         case HPM_SETTING_BUTTON:
             myprocess->setEnvironment(myprocess->environment());
             myprocess->setWorkingDirectory(APP_WORKING_DIR);
             myprocess->start(SETTING);
-            return;
+
             break;
         default:
             break;

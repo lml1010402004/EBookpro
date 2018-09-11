@@ -3,8 +3,7 @@ HEADERS += \
     $$PWD/statusbar.h \
     $$PWD/statusbar_global.h \
     $$PWD/rfile.h \
-    $$PWD/pulldownwindow.h \
-    $$PWD/drawpulldownwindow.h
+    $$PWD/pulldownwindow.h
 
 SOURCES += \
     $$PWD/rfile.cpp
