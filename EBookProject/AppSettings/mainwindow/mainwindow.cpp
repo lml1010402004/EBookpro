@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include"application.h"
 #include"utils/commonutils.h"
+#include<QDebug>
 
 const int homexywh[] = {500,48,48,48};
 const int setting[] = {260,110,80,60};
@@ -83,6 +84,10 @@ MainWindow::~MainWindow(){
     drawmainwindow = NULL;
     statusbar = NULL;
     pulldownwindow = NULL;
+
+    for(int i=0;i<20;i++){
+        qDebug()<<"exit the setting app";
+    }
 }
 
 void MainWindow::init(){
@@ -209,6 +214,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event){
     if(x>homexywh[0]&&x<homexywh[0]+homexywh[2]&&y>homexywh[1]&&y<homexywh[1]+homexywh[3]){
         myrect->isPressed = false;
         this->close();
+        exit(0);
     }
 
     if(targetWidgetIndex>-1){
