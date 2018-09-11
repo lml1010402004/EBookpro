@@ -190,7 +190,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
 
         break;
     case 1:
-        if(wallpaper!=NULL){
+        if(wallpaper==NULL){
             wallpaper = new Wallpaper(this);
         }
         wallpaper->show();

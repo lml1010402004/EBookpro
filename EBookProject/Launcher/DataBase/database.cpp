@@ -72,6 +72,11 @@ bool falg = openDataBase();
 
 }
 
+Database::~Database()
+{
+
+}
+
 
 
 /**
