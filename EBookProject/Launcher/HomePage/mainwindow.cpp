@@ -47,9 +47,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    delete drawmainpage,statusbar,currentbookcoverrect,threebookrect,pulldownwindow;
+    delete drawmainpage,statusbar,currentbookcoverrect,threebookrect;
     drawmainpage = NULL;
-    pulldownwindow = NULL;
     statusbar = NULL;
     currentbookcoverrect = NULL;
     threebookrect = NULL;
@@ -184,9 +183,12 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 
             break;
         case HPM_SETTING_BUTTON:
+            if(myprocess==NULL){
+                myprocess = new QProcess(this);
+            }
             myprocess->setEnvironment(myprocess->environment());
-            myprocess->setWorkingDirectory(APP_WORKING_DIR);
-            myprocess->start(SETTING);
+            myprocess->setWorkingDirectory("/usr/local/app");
+            myprocess->start("/usr/local/app/AppSettings");
 
             break;
         default:
@@ -232,8 +234,7 @@ void MainWindow::paintEvent(QPaintEvent *event)
 
 void MainWindow::initConnection()
 {
-
-
+ QObject::connect(myprocess,SIGNAL(finished(int ,QProcess::ExitStatus)),this,SLOT(processFinished(int)));
 }
 
 
@@ -258,6 +259,16 @@ void MainWindow::assignDynamicRectstoThreerect(int i)
     default:
         break;
     }
+
+
+}
+
+void MainWindow::processFinished(int value)
+{
+
+        myprocess->close();
+        delete myprocess;
+        myprocess = NULL;
 
 
 }

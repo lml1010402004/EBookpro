@@ -85,9 +85,6 @@ MainWindow::~MainWindow(){
     statusbar = NULL;
     pulldownwindow = NULL;
 
-    for(int i=0;i<20;i++){
-        qDebug()<<"exit the setting app";
-    }
 }
 
 void MainWindow::init(){
@@ -170,9 +167,7 @@ void MainWindow::paintEvent(QPaintEvent *event){
     rect.setWidth(setting[2]);
     rect.setHeight(setting[3]);
     painter->drawText(rect,system_text);
-
     drawmainwindow->drawSettingItems(painter,systemitemlist);
-
 
 }
 
@@ -213,6 +208,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event){
     int y = event->y();
     if(x>homexywh[0]&&x<homexywh[0]+homexywh[2]&&y>homexywh[1]&&y<homexywh[1]+homexywh[3]){
         myrect->isPressed = false;
+        qDebug()<<"-------------------setting quit()--------------------";
         this->close();
         exit(0);
     }

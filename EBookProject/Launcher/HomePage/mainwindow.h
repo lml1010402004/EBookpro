@@ -78,6 +78,10 @@ private:
     QList<myQRect*> *rectlist;
     myQRect *myrect;
 
+signals:
+public slots:
+    void processFinished(int value);
+
 
 
 
