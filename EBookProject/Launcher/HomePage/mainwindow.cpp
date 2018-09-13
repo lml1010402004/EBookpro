@@ -48,8 +48,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
 
-
-
     for(int n =0;n<currentbookcoverrect->size();n++){
         delete currentbookcoverrect->at(n);
 
@@ -203,8 +201,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
                 thirdapplication = new ThirdApplications(this);
             }
             thirdapplication->show();
-
-
             break;
         case HPM_SETTING_BUTTON:
             commonutils->openSettingApp(myprocess,"/usr/local/app/AppSettings");

@@ -2,7 +2,7 @@
 #include"application.h"
 #include"Utils/commonutils.h"
 
-int thirdapp_rect[5] = {0,0,0,0,0};
+
 
 ThirdApplications::ThirdApplications(QWidget *parent) : QMainWindow(parent)
 {
@@ -15,7 +15,7 @@ ThirdApplications::ThirdApplications(QWidget *parent) : QMainWindow(parent)
 
 ThirdApplications::~ThirdApplications()
 {
-
+  delete statusbar,rectlist,mydrawapplication;
 }
 
 void ThirdApplications::init()
@@ -28,12 +28,19 @@ void ThirdApplications::init()
 void ThirdApplications::initView()
 {
     rectlist = new QList<QRect>;
+    statusbar = new StatusBar(this);
 
 }
 
 void ThirdApplications::paintEvent(QPaintEvent *event)
 {
-    QPainter *painter = new QPainter;
+    QPainter *painter = new QPainter(this);
+    statusbar->drawBattery(painter,30);
+    statusbar->drawPullDownRectangle(painter);
+    statusbar->drawSystemTime(painter,"15:30");
+    statusbar->drawWifiStatus(painter,true);
+
+
 
 }
 
@@ -51,7 +58,7 @@ void ThirdApplications::mouseMoveEvent(QMouseEvent *event)
 
 void ThirdApplications::mouseReleaseEvent(QMouseEvent *event)
 {
-    thirdapp_rect[targetwidgetindex] =0;
+
     if(targetwidgetindex>-1){
         switch (targetwidgetindex) {
         case 0:

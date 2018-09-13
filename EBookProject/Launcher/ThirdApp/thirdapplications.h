@@ -7,6 +7,8 @@
 #include<QMouseEvent>
 #include"ThirdApp/thirdapplications.h"
 #include"ThirdApp/drawthirdapplication.h"
+#include"statusbar.h"
+#include"statusbar_global.h"
 
 class ThirdApplications : public QMainWindow
 {
@@ -27,6 +29,7 @@ private:
     QRect rect;
     DrawThirdApplication *mydrawapplication;
     int targetwidgetindex;
+    StatusBar *statusbar;
 
 
 signals:
