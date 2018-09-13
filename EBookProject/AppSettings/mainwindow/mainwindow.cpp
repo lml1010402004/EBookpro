@@ -83,8 +83,7 @@ MainWindow::~MainWindow(){
         delete systemitemlist->at(i);
 
     }
-
-    delete drawmainwindow,pulldownwindow,statusbar;
+    delete drawmainwindow,pulldownwindow,statusbar,systemitemlist;
 
 
 }
@@ -110,37 +109,36 @@ void MainWindow::initView(){
     drawmainwindow = new DrawMainWindow;
 
 
-   // initsettingsModules();
+    initsettingsModules();
 
 }
 
 void MainWindow::initsettingsModules()
 {
-//    systemitemlist = new QList<SystemItems*>;
+    systemitemlist = new QList<SystemItems*>;
+    for(int i=0;i<8;i++){
+        item = new SystemItems;
+        item->itemrect.setX(items_xywh[i][0]);
+        item->itemrect.setY(items_xywh[i][1]);
+        item->itemrect.setWidth(items_xywh[i][2]);
+        item->itemrect.setHeight(items_xywh[i][3]);
 
-//    for(int i=0;i<8;i++){
-//        item = new SystemItems;
-//        item->itemrect.setX(items_xywh[i][0]);
-//        item->itemrect.setY(items_xywh[i][1]);
-//        item->itemrect.setWidth(items_xywh[i][2]);
-//        item->itemrect.setHeight(items_xywh[i][3]);
+        item->itemtextrect.setX(item_text_xywh[i][0]);
+        item->itemtextrect.setY(item_text_xywh[i][1]);
+        item->itemtextrect.setWidth(item_text_xywh[i][2]);
+        item->itemtextrect.setHeight(item_text_xywh[i][3]);
 
-//        item->itemtextrect.setX(item_text_xywh[i][0]);
-//        item->itemtextrect.setY(item_text_xywh[i][1]);
-//        item->itemtextrect.setWidth(item_text_xywh[i][2]);
-//        item->itemtextrect.setHeight(item_text_xywh[i][3]);
+        item->setItem_text_text(item_text_text[i]);
 
-//        item->setItem_text_text(item_text_text[i]);
+        item->itemiconrect.setX(item_icon_xywh[i][0]);
+        item->itemiconrect.setY(item_icon_xywh[i][1]);
+        item->itemiconrect.setWidth(item_icon_xywh[i][2]);
+        item->itemiconrect.setHeight(item_icon_xywh[i][3]);
+        //        item->item_icon_path = item_icon_paths[i];
+        item->ispressed = false;
+        systemitemlist->append(item);
 
-//        item->itemiconrect.setX(item_icon_xywh[i][0]);
-//        item->itemiconrect.setY(item_icon_xywh[i][1]);
-//        item->itemiconrect.setWidth(item_icon_xywh[i][2]);
-//        item->itemiconrect.setHeight(item_icon_xywh[i][3]);
-//        //        item->item_icon_path = item_icon_paths[i];
-//        item->ispressed = false;
-//        systemitemlist->append(item);
-
-//    }
+    }
 
 }
 
@@ -152,21 +150,21 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
 }
 
 void MainWindow::paintEvent(QPaintEvent *event){
-//     QPainter *painter = new QPainter(this);
-//    statusbar->drawBattery(painter,30);
-//    statusbar->drawPullDownRectangle(painter);
-//    statusbar->drawSystemTime(painter,"15:30");
-//    statusbar->drawWifiStatus(painter,true);
-//    drawmainwindow->drawHomeIcon(painter,myrect);
-//    QLineF line(0,100,600,100);
-//    painter->drawLine(line);
-//    QRect rect;
-//    rect.setX(setting[0]);
-//    rect.setY(setting[1]);
-//    rect.setWidth(setting[2]);
-//    rect.setHeight(setting[3]);
-//    painter->drawText(rect,system_text);
-//    drawmainwindow->drawSettingItems(painter,systemitemlist);
+    QPainter *painter = new QPainter(this);
+    statusbar->drawBattery(painter,30);
+    statusbar->drawPullDownRectangle(painter);
+    statusbar->drawSystemTime(painter,"15:30");
+    statusbar->drawWifiStatus(painter,true);
+    drawmainwindow->drawHomeIcon(painter,myrect);
+    QLineF line(0,100,600,100);
+    painter->drawLine(line);
+    QRect rect;
+    rect.setX(setting[0]);
+    rect.setY(setting[1]);
+    rect.setWidth(setting[2]);
+    rect.setHeight(setting[3]);
+    painter->drawText(rect,system_text);
+    drawmainwindow->drawSettingItems(painter,systemitemlist);
 
 }
 
