@@ -1,5 +1,7 @@
 HEADERS += \
-    $$PWD/conditionitem.h
+    $$PWD/conditionitem.h \
+    $$PWD/systemitems.h
 
 SOURCES += \
-    $$PWD/conditionitem.cpp
+    $$PWD/conditionitem.cpp \
+    $$PWD/systemitems.cpp

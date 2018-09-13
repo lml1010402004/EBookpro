@@ -7,6 +7,7 @@ class SystemItems
 {
 public:
     SystemItems();
+    ~SystemItems();
 
 
     QRect itemrect;

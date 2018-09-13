@@ -9,6 +9,7 @@
 #include"ThirdApp/drawthirdapplication.h"
 #include"statusbar.h"
 #include"statusbar_global.h"
+#include"Utils/redefineqrect.h"
 
 class ThirdApplications : public QMainWindow
 {
@@ -25,11 +26,18 @@ public:
 private:
     void init();
     void initView();
+
+    void initAppItems();
+
     QList<QRect> *rectlist;
-    QRect rect;
+    myQRect *myhomerect;
+    myQRect *apptext;
     DrawThirdApplication *mydrawapplication;
     int targetwidgetindex;
     StatusBar *statusbar;
+    SystemItems *item;
+
+    QList<SystemItems*> *systemitemlist;
 
 
 signals:
