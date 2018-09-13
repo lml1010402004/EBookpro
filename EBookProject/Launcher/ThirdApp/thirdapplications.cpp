@@ -129,10 +129,16 @@ void ThirdApplications::mousePressEvent(QMouseEvent *event)
     if(x>HOME_XYWH[0]&&x<HOME_XYWH[0]+HOME_XYWH[2]&&y>HOME_XYWH[1]&&y<HOME_XYWH[1]+HOME_XYWH[3]){
         myhomerect->isPressed = true;
         this->repaint();
+
     }
 
-    this->repaint();
-    this->close();
+    targetwidgetindex = commonUtils::getTargetIndexInSettingModule(x,y,systemitemlist);
+    if(targetwidgetindex>-1){
+        systemitemlist->at(targetwidgetindex)->ispressed = true;
+        this->repaint();
+    }
+
+
 }
 
 void ThirdApplications::mouseMoveEvent(QMouseEvent *event)
@@ -142,6 +148,12 @@ void ThirdApplications::mouseMoveEvent(QMouseEvent *event)
 
 void ThirdApplications::mouseReleaseEvent(QMouseEvent *event)
 {
+    int x = event->x();
+    int y = event->y();
+    if(x>HOME_XYWH[0]&&x<(HOME_XYWH[0]+HOME_XYWH[2])&&y>HOME_XYWH[1]&&y<(HOME_XYWH[1]+HOME_XYWH[3])){
+        myhomerect->isPressed = false;
+        this->close();
+    }
 
     if(targetwidgetindex>-1){
         switch (targetwidgetindex) {
@@ -157,7 +169,7 @@ void ThirdApplications::mouseReleaseEvent(QMouseEvent *event)
             break;
         }
 
-        this->repaint(rectlist->at(targetwidgetindex));
+        this->repaint();
         targetwidgetindex = -1;
 
     }

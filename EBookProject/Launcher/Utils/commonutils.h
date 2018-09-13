@@ -12,6 +12,7 @@
 #include<QList>
 #include<QMainWindow>
 #include"Utils/redefineqrect.h"
+#include"DataItem/systemitems.h"
 
 
 
@@ -39,6 +40,8 @@ public:
     static void formattingDisk();
     static void backToHomePageSlot();
     static int returnLightValue(int progress);
+
+    static  int getTargetIndexInSettingModule(int x,int y ,QList<SystemItems*> *list);
 
 
 
