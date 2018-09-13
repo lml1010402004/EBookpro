@@ -27,9 +27,10 @@ public:
 
     static  QList<localDirectoryItem>* getCurrentPageBooks(QList<localDirectoryItem> *list,int currentPage,int pagesize);
     void openBookFromFBreader(QProcess *process,QString bookpath);
-  static  void openSettingApp(QProcess *process,QString apppath);
+    void openSettingApp(QProcess *process,QString apppath);
 
     void drawProgressBarOpeningBook(QPainter *painter);
+
 
     int getTheBatteryPercentage();
 

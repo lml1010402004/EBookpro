@@ -2,6 +2,7 @@
 #include"application.h"
 #include"utils/commonutils.h"
 #include<QDebug>
+#include<QApplication>
 
 const int homexywh[] = {500,48,48,48};
 const int setting[] = {260,110,80,60};
@@ -77,22 +78,25 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
 
 MainWindow::~MainWindow(){
-    delete myrect,pulldownwindow,statusbar,drawmainwindow,systemitemlist,item;
-    myrect  = NULL;
+    delete myrect,item;
+    myrect= NULL;
     item = NULL;
+    for(int i=0;i<systemitemlist->size();i++){
+        delete systemitemlist->at(i);
+        systemitemlist = NULL;
+    }
+    delete systemitemlist;
     systemitemlist = NULL;
+    delete drawmainwindow,pulldownwindow,statusbar;
     drawmainwindow = NULL;
-    statusbar = NULL;
     pulldownwindow = NULL;
+    statusbar = NULL;
 
 }
 
 void MainWindow::init(){
 
     targetWidgetIndex = -1;
-
-    wallpaper = new Wallpaper(this);
-
     initView();
 
 }
@@ -153,7 +157,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
 }
 
 void MainWindow::paintEvent(QPaintEvent *event){
-    QPainter *painter = new QPainter(this);
+     QPainter *painter = new QPainter(this);
     statusbar->drawBattery(painter,30);
     statusbar->drawPullDownRectangle(painter);
     statusbar->drawSystemTime(painter,"15:30");
@@ -190,10 +194,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
 
         break;
     case 1:
-        if(wallpaper==NULL){
-            wallpaper = new Wallpaper(this);
-        }
-        wallpaper->show();
+
         break;
     default:
         break;
@@ -204,13 +205,15 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event){
+
+
     int x = event->x();
     int y = event->y();
     if(x>homexywh[0]&&x<homexywh[0]+homexywh[2]&&y>homexywh[1]&&y<homexywh[1]+homexywh[3]){
         myrect->isPressed = false;
         qDebug()<<"-------------------setting quit()--------------------";
         this->close();
-        exit(0);
+        qApp->exit(0);
     }
 
     if(targetWidgetIndex>-1){

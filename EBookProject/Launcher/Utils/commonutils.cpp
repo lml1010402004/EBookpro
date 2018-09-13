@@ -22,9 +22,8 @@
 
 QString HOME_PIC_PATH;
 const QString FBReader_PATH = "/usr/local/FBReader/FBReader";
-const QString SETTING_APP = "/usr/local/app/AppSettings";
 const QString FBReader_WORK_DIRECTORY = "/usr/local/FBReader";
-//const QString APPSETTINGS = "/usr/local/app";
+const QString APPSETTINGS = "/usr/local/app";
 
 const QString Loading_path = ":/mypic/pics/loading.png";
 
@@ -159,9 +158,9 @@ void commonUtils::openBookFromFBreader(QProcess *mprocess,QString bookpath)
  */
 void commonUtils::openSettingApp(QProcess *process, QString apppath)
 {
-//    process->setEnvironment(process->environment());
-//    process->setWorkingDirectory(APPSETTINGS);
-//    process->start(SETTING_APP);
+    process->setEnvironment(process->environment());
+    process->setWorkingDirectory(APPSETTINGS);
+    process->start(apppath);
 
 
 }

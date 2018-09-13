@@ -47,11 +47,35 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    delete drawmainpage,statusbar,currentbookcoverrect,threebookrect;
+
+
+
+    for(int n =0;n<currentbookcoverrect->size();n++){
+        delete currentbookcoverrect->at(n);
+
+    }
+
+
+    for(int l=0;l<rectlist->size();l++){
+        delete rectlist->at(l);
+    }
+
+    delete drawmainpage,statusbar,currentbookcoverrect,threebookrect,myprocess,commonutils,
+            currentbookcoverlist,bookshelf,totaltemp,currentPagebooklist,thirdapplication,rectlist;
     drawmainpage = NULL;
     statusbar = NULL;
     currentbookcoverrect = NULL;
     threebookrect = NULL;
+    myprocess = NULL;
+    bookshelf = NULL;
+    totaltemp = NULL;
+    currentPagebooklist = NULL;
+    thirdapplication = NULL;
+    rectlist = NULL;
+    commonutils = NULL;
+
+    delete pulldownwindow;
+    pulldownwindow = NULL;
 
 }
 
@@ -59,10 +83,10 @@ MainWindow::~MainWindow()
 void MainWindow::init()
 {
 
+    commonutils = new commonUtils;
     myprocess = new QProcess(this);
     drawmainpage = new DrawMainPage;
     pulldownwindow = new PulldownWindow(this);
-    //    settings = new Settings(this);
     bookshelf = new BookShelf(this);
     thirdapplication = new ThirdApplications(this);
 
@@ -183,13 +207,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 
             break;
         case HPM_SETTING_BUTTON:
-            if(myprocess==NULL){
-                myprocess = new QProcess(this);
-            }
-            myprocess->setEnvironment(myprocess->environment());
-            myprocess->setWorkingDirectory("/usr/local/app");
-            myprocess->start("/usr/local/app/AppSettings");
-
+            commonutils->openSettingApp(myprocess,"/usr/local/app/AppSettings");
             break;
         default:
             break;
@@ -265,10 +283,10 @@ void MainWindow::assignDynamicRectstoThreerect(int i)
 
 void MainWindow::processFinished(int value)
 {
+  if(value==0){
+      qDebug()<<"hello Setting quit successfully!!!";
+  }
 
-        myprocess->close();
-        delete myprocess;
-        myprocess = NULL;
 
 
 }

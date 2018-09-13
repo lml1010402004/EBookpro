@@ -16,6 +16,7 @@
 #include"BookShelf/bookshelf.h"
 #include"ThirdApp/thirdapplications.h"
 #include<QProcess>
+#include"Utils/commonutils.h"
 
 
 
@@ -41,6 +42,9 @@ private:
 
     ThirdApplications *thirdapplication;
     QProcess *myprocess;
+
+    commonUtils *commonutils;
+
 
 
 
