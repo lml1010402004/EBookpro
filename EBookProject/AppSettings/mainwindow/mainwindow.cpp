@@ -170,48 +170,46 @@ void MainWindow::paintEvent(QPaintEvent *event){
 
 void MainWindow::mousePressEvent(QMouseEvent *event){
 
-//    int x = event->x();
-//    int y = event->y();
-//    if(x>homexywh[0]&&x<homexywh[0]+homexywh[2]&&y>homexywh[1]&&y<homexywh[1]+homexywh[3]){
-//        myrect->isPressed = true;
-//        this->repaint();
-//    }
+    int x = event->x();
+    int y = event->y();
+    if(x>homexywh[0]&&x<homexywh[0]+homexywh[2]&&y>homexywh[1]&&y<homexywh[1]+homexywh[3]){
+        myrect->isPressed = true;
+        this->repaint();
+    }
 
-//    targetWidgetIndex = commonUtils::getTargetIndexInSettingModule(x,y,systemitemlist);
-//    if(targetWidgetIndex>-1){
-//        systemitemlist->at(targetWidgetIndex)->ispressed = true;
-//        this->repaint();
-//    }
-//    switch (targetWidgetIndex) {
-//    case 0:
+    targetWidgetIndex = commonUtils::getTargetIndexInSettingModule(x,y,systemitemlist);
+    if(targetWidgetIndex>-1){
+        systemitemlist->at(targetWidgetIndex)->ispressed = true;
+        this->repaint();
+    }
+    switch (targetWidgetIndex) {
+    case 0:
 
-//        break;
-//    case 1:
+        break;
+    case 1:
 
-//        break;
-//    default:
-//        break;
-//    }
+        break;
+    default:
+        break;
+    }
 
 
 
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event){
-            this->close();
-            qApp->exit(0);
 
-//    int x = event->x();
-//    int y = event->y();
-//    if(x>homexywh[0]&&x<homexywh[0]+homexywh[2]&&y>homexywh[1]&&y<homexywh[1]+homexywh[3]){
-//        myrect->isPressed = false;
-//        qDebug()<<"-------------------setting quit()--------------------";
-//        this->close();
-//        qApp->exit(0);
-//    }
+    int x = event->x();
+    int y = event->y();
+    if(x>homexywh[0]&&x<homexywh[0]+homexywh[2]&&y>homexywh[1]&&y<homexywh[1]+homexywh[3]){
+        myrect->isPressed = false;
+        qDebug()<<"-------------------setting quit()--------------------";
+        this->close();
+        qApp->exit(0);
+    }
 
-//    if(targetWidgetIndex>-1){
-//        systemitemlist->at(targetWidgetIndex)->ispressed = false;
-//        this->repaint();
-//    }
+    if(targetWidgetIndex>-1){
+        systemitemlist->at(targetWidgetIndex)->ispressed = false;
+        this->repaint();
+    }
 }
