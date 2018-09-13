@@ -33,7 +33,7 @@ QList<QMainWindow*> *mainwindowlist;
 const QString cover_group[3] = {":/mypic/pics/txt_cover.png",":/mypic/pics/pdf_cover.png",":/mypic/pics/epub_cover.png"};
 
 const QString SETTING = "/usr/local/app/AppSettings";
-const QString APP_WORKING_DIR = "/usr/local/app/";
+const QString APP_WORKING_DIR = "/usr/local/app";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
