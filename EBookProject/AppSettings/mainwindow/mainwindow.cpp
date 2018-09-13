@@ -8,9 +8,6 @@ const int homexywh[] = {500,48,48,48};
 const int setting[] = {260,110,80,60};
 
 
-
-
-
 int items_xywh[8][4] = {
     {50,170,500,70},
     {50,240,500,70},
