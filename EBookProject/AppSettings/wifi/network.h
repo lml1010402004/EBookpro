@@ -7,6 +7,8 @@
 #include"statusbar_global.h"
 #include"utils/redefineqrect.h"
 #include<QList>
+#include"dataitem/wifiitem.h"
+#include"wifiservice.h"
 
 
 class Network : public QMainWindow
@@ -24,12 +26,19 @@ public:
 private:
     void init();
     void initView();
+    void operateWifi();
+
     DrawNetwork *drawnetwork;
     StatusBar *statusbar;
 
     QList<myQRect*> *rectlist;
     myQRect *myqrect;
+    myQRect *switchbutton;
 
+    QList<wifiItem*> *wifilist;
+    WifiService *mywifiservice;
+
+    int targetwidgetindex;
 
 signals:
 
