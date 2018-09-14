@@ -1,29 +1,34 @@
-#ifndef RESTORE_H
-#define RESTORE_H
+#ifndef WALLPAPER_H
+#define WALLPAPER_H
 
 #include <QMainWindow>
-#include<QPaintEvent>
 #include<QMouseEvent>
+#include<QPaintEvent>
 #include<QPainter>
 
-class Restore : public QMainWindow
+class WallPaper : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit Restore(QWidget *parent = 0);
-    ~Restore();
-    void paintEvent(QPaintEvent *event);
+    explicit WallPaper(QWidget *parent = 0);
+    ~WallPaper();
 
+    void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
+
 private:
     void init();
+    void initView();
+
+
+
 
 signals:
 
 public slots:
 };
 
-#endif // RESTORE_H
+#endif // WALLPAPER_H

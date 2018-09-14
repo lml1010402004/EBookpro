@@ -14,6 +14,8 @@ public:
     void paintEvent(QPaintEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
+    void init();
+
 signals:
 
 public slots:

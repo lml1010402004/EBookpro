@@ -1,22 +1,21 @@
-#ifndef RESTORE_H
-#define RESTORE_H
+#ifndef OTHERMODULE_H
+#define OTHERMODULE_H
 
 #include <QMainWindow>
 #include<QPaintEvent>
 #include<QMouseEvent>
 #include<QPainter>
 
-class Restore : public QMainWindow
+
+class OtherModule : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit Restore(QWidget *parent = 0);
-    ~Restore();
+    explicit OtherModule(QWidget *parent = 0);
+    ~OtherModule();
     void paintEvent(QPaintEvent *event);
-
-    void mousePressEvent(QMouseEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
 
 private:
     void init();
@@ -26,4 +25,4 @@ signals:
 public slots:
 };
 
-#endif // RESTORE_H
+#endif // OTHERMODULE_H

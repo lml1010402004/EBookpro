@@ -78,18 +78,13 @@ MainWindow::~MainWindow(){
     delete myrect,item;
     for(int i=0;i<systemitemlist->size();i++){
         delete systemitemlist->at(i);
-
     }
     delete drawmainwindow,pulldownwindow,statusbar,systemitemlist;
-
-
 }
 
 void MainWindow::init(){
-
     targetWidgetIndex = -1;
     initView();
-
 }
 
 void MainWindow::initView(){
@@ -137,6 +132,17 @@ void MainWindow::initsettingsModules()
 
     }
 
+
+    wallpaper = new WallPaper(this);
+    brightness = new Brightness(this);
+    wifinetwork = new Network(this);
+    dateandtime = new DateAndTime(this);
+    languagekeyboard = new LanguageKeyboard(this);
+    restore = new Restore(this);
+    othermodule = new OtherModule(this);
+
+
+
 }
 
 
@@ -179,12 +185,51 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
         systemitemlist->at(targetWidgetIndex)->ispressed = true;
         this->repaint();
     }
-    switch (targetWidgetIndex) {
+    switch (targetWidgetIndex) {//这里就是Setting item的顺序
     case 0:
-
+        if(brightness==NULL){
+            brightness = new Brightness(this);
+        }
+        brightness->show();
         break;
     case 1:
-
+        if(wallpaper==NULL){
+            wallpaper = new WallPaper(this);
+        }
+        wallpaper->show();
+        break;
+    case 2:
+        if(wifinetwork==NULL){
+            wifinetwork = new Network(this);
+        }
+        wifinetwork->show();
+        break;
+    case 3:
+        //USB
+        break;
+    case 4:
+        if(dateandtime==NULL){
+            dateandtime = new DateAndTime(this);
+        }
+          dateandtime->show();
+        break;
+    case 5:
+        if(languagekeyboard==NULL){
+            languagekeyboard = new LanguageKeyboard(this);
+        }
+        languagekeyboard->show();
+        break;
+    case 6:
+        if(restore==NULL){
+            restore = new Restore(this);
+        }
+        restore->show();
+        break;
+    case 7:
+        if(othermodule==NULL){
+            othermodule = new OtherModule(this);
+        }
+         othermodule->show();
         break;
     default:
         break;

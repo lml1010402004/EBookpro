@@ -1,3 +1,7 @@
-HEADERS +=
+HEADERS += \
+    $$PWD/wallpaper.h \
+    $$PWD/drawwallpaper.h
 
-SOURCES +=
+SOURCES += \
+    $$PWD/wallpaper.cpp \
+    $$PWD/drawwallpaper.cpp

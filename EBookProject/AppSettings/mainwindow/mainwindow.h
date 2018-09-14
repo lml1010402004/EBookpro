@@ -10,6 +10,13 @@
 #include"application/statusbar_global.h"
 #include"drawmainwindow.h"
 #include<QList>
+#include<wallpaper/wallpaper.h>
+#include<brightness/brightness.h>
+#include<wifi/network.h>
+#include<dateandtime/dateandtime.h>
+#include"languageandkeyboard/languagekeyboard.h"
+#include"restore/restore.h"
+#include"other/othermodule.h"
 
 
 
@@ -41,6 +48,13 @@ private:
     SystemItems *item;
 
 
+    WallPaper *wallpaper;
+    Brightness *brightness;
+    Network *wifinetwork;
+    DateAndTime *dateandtime;
+    LanguageKeyboard *languagekeyboard;
+    Restore *restore;
+    OtherModule *othermodule;
 
 
 

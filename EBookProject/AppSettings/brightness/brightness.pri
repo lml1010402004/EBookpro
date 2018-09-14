@@ -1,5 +1,7 @@
 HEADERS += \
-    $$PWD/brightness.h
+    $$PWD/brightness.h \
+    $$PWD/drawbrightness.h
 
 SOURCES += \
-    $$PWD/brightness.cpp
+    $$PWD/brightness.cpp \
+    $$PWD/drawbrightness.cpp
