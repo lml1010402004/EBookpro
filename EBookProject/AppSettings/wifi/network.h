@@ -2,6 +2,12 @@
 #define NETWORK_H
 
 #include <QMainWindow>
+#include"drawnetwork.h"
+#include"statusbar.h"
+#include"statusbar_global.h"
+#include"utils/redefineqrect.h"
+#include<QList>
+
 
 class Network : public QMainWindow
 {
@@ -18,6 +24,12 @@ public:
 private:
     void init();
     void initView();
+    DrawNetwork *drawnetwork;
+    StatusBar *statusbar;
+
+    QList<myQRect*> *rectlist;
+    myQRect *myqrect;
+
 
 signals:
 

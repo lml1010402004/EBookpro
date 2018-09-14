@@ -13,13 +13,13 @@ public:
     DrawWallPaper();
     ~DrawWallPaper();
 
-  void drawHomeIcon(QPainter *painter,myQRect rect);
-  void drawBackIcon(QPainter *painter,myQRect rect);
-  void drawWallPapaerItem(QPainter *painter,int index);
+    void drawHomeIcon(QPainter *painter,myQRect rect);
+    void drawBackIcon(QPainter *painter,myQRect rect);
+    void drawWallPapaerItem(QPainter *painter,int index);
 
 private:
-  QLineF line;
-  QRect rect;
+    QLineF line;
+    QRect rect;
 
 };
 

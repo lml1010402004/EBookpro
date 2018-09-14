@@ -20,5 +20,7 @@
         <file>pics/wallpaper_unpress.png</file>
         <file>pics/back_pressed.png</file>
         <file>pics/back_unpress.png</file>
+        <file>pics/close.png</file>
+        <file>pics/open_wifi.png</file>
     </qresource>
 </RCC>
