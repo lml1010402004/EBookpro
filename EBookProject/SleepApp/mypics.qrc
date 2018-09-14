@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/mypic">
+        <file>pics/slee_bg4_cn.png</file>
+        <file>pics/sleep_bg2.png</file>
+        <file>pics/sleep_bg2_cn.png</file>
+        <file>pics/sleep_bg3.png</file>
+        <file>pics/sleep_bg3_cn.png</file>
+        <file>pics/sleep_bg4.png</file>
+        <file>pics/sleep_bg22.png</file>
+        <file>pics/sleep_bg22_cn.png</file>
+    </qresource>
+</RCC>

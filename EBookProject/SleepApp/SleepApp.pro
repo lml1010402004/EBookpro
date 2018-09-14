@@ -15,4 +15,17 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    syssettings.h
+
+RESOURCES += \
+    mypics.qrc
+
+
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../PROJECTS/SleepScreen/libs/release/ -lSysSettings
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../../PROJECTS/SleepScreen/libs/debug/ -lSysSettings
+else:unix: LIBS += -L$$PWD/../../../../PROJECTS/SleepScreen/libs/ -lSysSettings
+
+INCLUDEPATH += $$PWD/../../../../PROJECTS/SleepScreen/libs
+DEPENDPATH += $$PWD/../../../../PROJECTS/SleepScreen/libs
