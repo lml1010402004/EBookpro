@@ -29,8 +29,6 @@ include(mainwindow/mainwindow.pri)
 INCLUDEPATH +=$$PWD restore
 include(restore/restore.pri)
 
-INCLUDEPATH +=$$PWD usbtransfer
-include(usbtransfer/usbtransfer.pri)
 
 INCLUDEPATH +=$$PWD wallpaper
 include(wallpaper/wallpaper.pri)
