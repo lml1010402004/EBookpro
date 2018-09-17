@@ -35,6 +35,7 @@ void OtherModule::paintEvent(QPaintEvent *event)
 
     QLineF line(0,100,600,100);
     painter->drawLine(line);
+
     drawothermodule->drawTitle(painter,rectlist->at(OTHER_TITLE),tr("Other"));
 
 
