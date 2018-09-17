@@ -7,6 +7,10 @@ const int OTHERMODULE_Y[] = {48,48,130};
 const int OTHERMODULE_w[] ={48,48,80};
 const int OTHERMODULE_HE[] = {48,48,24};
 
+extern int items_xywh[8][4];
+extern int item_text_xywh[8][4];
+extern int item_icon_xywh[8][4];
+
 OtherModule::OtherModule(QWidget *parent) : QMainWindow(parent)
 {
     this->setWindowFlags(Qt::Dialog|Qt::FramelessWindowHint);
@@ -37,7 +41,7 @@ void OtherModule::paintEvent(QPaintEvent *event)
     painter->drawLine(line);
 
     drawothermodule->drawTitle(painter,rectlist->at(OTHER_TITLE),tr("Other"));
-
+    drawothermodule->drawOtherSettingItems(painter,systemitemlist);
 
 
 
@@ -76,5 +80,31 @@ void OtherModule::initView()
         rectlist->append(myqrect);
 
     }
+
+    systemitemlist = new QList<SystemItems*>;
+    for(int i=0;i<2;i++){
+        item = new SystemItems;
+        item->itemrect.setX(items_xywh[i][0]);
+        item->itemrect.setY(items_xywh[i][1]);
+        item->itemrect.setWidth(items_xywh[i][2]);
+        item->itemrect.setHeight(items_xywh[i][3]);
+
+        item->itemtextrect.setX(item_text_xywh[i][0]);
+        item->itemtextrect.setY(item_text_xywh[i][1]);
+        item->itemtextrect.setWidth(item_text_xywh[i][2]);
+        item->itemtextrect.setHeight(item_text_xywh[i][3]);
+
+//        item->setItem_text_text(item_text_text[i]);
+
+        item->itemiconrect.setX(item_icon_xywh[i][0]);
+        item->itemiconrect.setY(item_icon_xywh[i][1]);
+        item->itemiconrect.setWidth(item_icon_xywh[i][2]);
+        item->itemiconrect.setHeight(item_icon_xywh[i][3]);
+        //        item->item_icon_path = item_icon_paths[i];
+        item->ispressed = false;
+        systemitemlist->append(item);
+    }
+
+
 
 }

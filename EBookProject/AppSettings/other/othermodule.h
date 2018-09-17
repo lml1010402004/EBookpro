@@ -29,6 +29,9 @@ private:
     QList<myQRect*> *rectlist;
     myQRect *myqrect;
 
+    QList<SystemItems*> *systemitemlist;
+    SystemItems *item;
+
 signals:
 
 public slots:

@@ -22,7 +22,7 @@ Brightness::~Brightness()
 
 void Brightness::mousePressEvent(QMouseEvent *event)
 {
-
+ this->close();
 }
 
 void Brightness::paintEvent(QPaintEvent *event)
