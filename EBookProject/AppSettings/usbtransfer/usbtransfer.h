@@ -11,6 +11,23 @@
 #include"drawusbtransfer.h"
 #include"usbservice.h"
 
+#include<QThread>
+
+class usbConnectedThread : public QThread{
+
+    Q_OBJECT
+public:
+    usbConnectedThread(QString node);
+    explicit usbConnectedThread(QObject *parent = 0);
+
+protected:
+    void run();
+
+signals:
+     void updateUsbConnectSignal();
+
+
+};
 
 class UsbTransfer : public QMainWindow
 {
@@ -25,6 +42,9 @@ public:
 private:
     void init();
     void initView();
+    void initConnections();
+
+    void insertDataToDatabase();
     StatusBar *statusbar;
     DrawUsbtransfer *drawusbtransfer;
     UsbService *usbservice;
@@ -34,12 +54,14 @@ private:
     QList<myQRect*> *rectlist;
     myQRect *myqrect;
     int targetwidgetiIndex ;
+    usbConnectedThread *usbconnectedthread;
 
 
 
 signals:
 
 public slots:
+    void updateStateOfUsb();
 };
 
 #endif // USBTRANSFER_H

@@ -3,13 +3,19 @@
 #include"rfile.h"
 #include"utils/commonutils.h"
 #include<QApplication>
+#include"database.h"
+#include"QDebug"
 
 const int USB_X[] = {60,500,250,210,260,120,340};
 const int USB_Y[] = {48,48,130,210,380,460,460};
-const int USB_W[] = {48,48,100,180,80,140,140};
+const int USB_W[] = {48,48,100,180,90,140,140};
 const int USB_HE[] = {48,48,40,80,30,40,40};
 
 extern int homexywh[];
+
+const QString TARGETDIREC = "/user/";
+QString USBSTATEADDRESS = "/sys/class/android_usb/android0/state";
+int my_usb_connected;
 
 UsbTransfer::UsbTransfer(QWidget *parent) : QMainWindow(parent)
 {
@@ -25,7 +31,7 @@ UsbTransfer::~UsbTransfer()
     for(int i=0;i<rectlist->size();i++){
         delete rectlist->at(i);
     }
-    delete statusbar,drawusbtransfer,rectlist,myqrect;
+    delete statusbar,drawusbtransfer,rectlist,myqrect,usbconnectedthread,usbservice;
 }
 
 void UsbTransfer::mousePressEvent(QMouseEvent *event)
@@ -37,10 +43,6 @@ void UsbTransfer::mousePressEvent(QMouseEvent *event)
         rectlist->at(targetwidgetiIndex)->isPressed = true;
         this->repaint();
     }
-
-
-
-
 
 }
 
@@ -58,16 +60,21 @@ void UsbTransfer::paintEvent(QPaintEvent *event)
     drawusbtransfer->drawHomeIcon(painter,rectlist->at(USB_HOMEICON));
     drawusbtransfer->drawLogo(painter,rectlist->at(USB_ICON));
     drawusbtransfer->drawTitle(painter,rectlist->at(USB_TITLE),tr("USB_TRANS"));
-    drawusbtransfer->drawState(painter,rectlist->at(USB_STATE),tr("Unconn"));
     drawusbtransfer->drawDataTransfer(painter,rectlist->at(USB_DATATRANSFER));
     drawusbtransfer->drawChargeOnly(painter,rectlist->at(USB_CHRGE));
 
+    if(my_usb_connected==0){
+        drawusbtransfer->drawState(painter,rectlist->at(USB_STATE),tr("Conn"));
+    }else if(my_usb_connected==1){
+        drawusbtransfer->drawState(painter,rectlist->at(USB_STATE),tr("Unconn"));
 
-
+    }
 }
+
 
 void UsbTransfer::mouseReleaseEvent(QMouseEvent *event)
 {
+
     switch (targetwidgetiIndex) {
     case 0:
         this->close();
@@ -79,14 +86,11 @@ void UsbTransfer::mouseReleaseEvent(QMouseEvent *event)
     case 5:
         //transfer data funciton
         if(!usbservice->isEnabled()){
-          usbservice->setEnable(true);
+            usbservice->setEnable(true);
         }
         break;
     case 6:
-        usbservice->setEnable(false);
-        this->close();
-        //check all the data in the directory.
-//        QList<localDire>
+        insertDataToDatabase();
         break;
     default:
         break;
@@ -102,9 +106,13 @@ void UsbTransfer::mouseReleaseEvent(QMouseEvent *event)
 void UsbTransfer::init()
 {
     targetwidgetiIndex = -1;
+    my_usb_connected = 1;
     usbservice = UsbService::getInstance(this);
+    usbconnectedthread = new usbConnectedThread(USBSTATEADDRESS);
+    usbconnectedthread->start();
 
     initView();
+    initConnections();
 
 }
 
@@ -127,3 +135,55 @@ void UsbTransfer::initView()
 
 
 }
+
+void UsbTransfer::initConnections()
+{
+    QObject::connect(usbconnectedthread,SIGNAL(updateUsbConnectSignal()),this,SLOT(updateStateOfUsb()));
+}
+
+
+
+void UsbTransfer::insertDataToDatabase()
+{
+    QList<localDirectoryItem> list = Database::getInstance()->getAllFileInTheTargetDirectory(TARGETDIREC);
+    if(list.size()>0){//保证在打开路径下是有新文件来插入的.
+        Database::getInstance()->insertDataToYitoaDataBase(list);
+    }
+    usbservice->setEnable(false);
+    this->close();
+}
+
+void UsbTransfer::updateStateOfUsb()
+{
+    this->repaint();
+}
+
+
+usbConnectedThread::usbConnectedThread(QString node){
+
+}
+
+usbConnectedThread::usbConnectedThread(QObject *parent){
+
+}
+
+void usbConnectedThread::run()
+{
+    while(1){
+        QFile file(USBSTATEADDRESS);
+        file.open(QIODevice::ReadOnly);
+        QByteArray t = file.readAll();
+
+        QString str = QString(t);
+
+        if(str.contains(QString("CONFIGURED"))){
+            my_usb_connected =0;
+        }else if(str.contains(QString("DISCONNECTED"))){
+            my_usb_connected =1;
+        }
+        emit updateUsbConnectSignal();
+        file.close();
+        sleep(4);
+    }
+}
+
