@@ -39,6 +39,32 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
     case NETWORK_INDEX:
         break;
     case USBTRANSFER_INDEX:
+        switch (index) {
+        case 0:
+            rect->xid = USB_BACKICON;
+            break;
+        case 1:
+            rect->xid = USB_HOMEICON;
+            break;
+        case 2:
+            rect->xid = USB_TITLE;
+            break;
+        case 3:
+            rect->xid = USB_ICON;
+            break;
+        case 4:
+            rect->xid = USB_STATE;
+            break;
+        case 5:
+            rect->xid = USB_DATATRANSFER;
+            break;
+        case 6:
+            rect->xid = USB_CHRGE;
+            break;
+        default:
+            break;
+        }
+
         break;
     case DATEANDTIME_INDEX:
         break;

@@ -17,6 +17,7 @@
 #include"languageandkeyboard/languagekeyboard.h"
 #include"restore/restore.h"
 #include"other/othermodule.h"
+#include"usbtransfer/usbtransfer.h"
 
 
 
@@ -55,6 +56,7 @@ private:
     LanguageKeyboard *languagekeyboard;
     Restore *restore;
     OtherModule *othermodule;
+    UsbTransfer *usbtransfer;
 
 
 

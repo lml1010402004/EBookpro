@@ -72,8 +72,11 @@ void Network::paintEvent(QPaintEvent *event)
     statusbar->drawSystemTime(painter,"15:30");
     statusbar->drawWifiStatus(painter,true);
 
+
     drawnetwork->drawBackIcon(painter,rectlist->at(NETWORK_BACKICON));
     drawnetwork->drawHomeIcon(painter,rectlist->at(NETWORK_HOMEICON));
+    QLineF line(0,100,600,100);
+    painter->drawLine(line);
     drawnetwork->drawNetworkTitle(painter,rectlist->at(NETWORK_TITLE),tr("Network"));
     drawnetwork->drawNetworkWifiText(painter,rectlist->at(NETWORK_WIFITEXT),tr("Wifi"));
     drawnetwork->drawNetworkSwitch(painter,rectlist->at(NETWORK_WIFISWITCH));

@@ -25,6 +25,15 @@
 #define NETWORK_WIFISWITCH 4
 #define NETWORK_SEARCHRESULT_TEXT 5
 
+//=========================USB TRANSFER==============================
+#define USB_BACKICON 0
+#define USB_HOMEICON 1
+#define USB_TITLE 2
+#define USB_ICON 3
+#define USB_STATE 4
+#define USB_DATATRANSFER 5
+#define USB_CHRGE 6
+
 
 
 static const QString home_pressed=":/pic/pics/home_pressed.png";

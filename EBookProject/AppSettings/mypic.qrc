@@ -22,5 +22,6 @@
         <file>pics/back_unpress.png</file>
         <file>pics/close.png</file>
         <file>pics/open_wifi.png</file>
+        <file>pics/usb_transfer.png</file>
     </qresource>
 </RCC>

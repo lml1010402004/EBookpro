@@ -140,6 +140,7 @@ void MainWindow::initsettingsModules()
     languagekeyboard = new LanguageKeyboard(this);
     restore = new Restore(this);
     othermodule = new OtherModule(this);
+    usbtransfer = new UsbTransfer(this);
 
 
 
@@ -206,6 +207,10 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
         break;
     case 3:
         //USB
+        if(usbtransfer==NULL){
+            usbtransfer = new UsbTransfer(this);
+        }
+        usbtransfer->show();
         break;
     case 4:
         if(dateandtime==NULL){
