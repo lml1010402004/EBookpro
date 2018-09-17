@@ -71,6 +71,22 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
     case LANGUAGE_INDEX:
         break;
     case RESTORE_INDEX:
+        switch (index) {
+        case 0:
+            rect->xid = RESTORE_BACKICON;
+            break;
+        case 1:
+            rect->xid = RESTORE_HOMEICON;
+            break;
+        case 2:
+            rect->xid = RESTORE_TEXT;
+            break;
+        case 3:
+            rect->xid = RESTORE_CONFIRM_BUTTON;
+            break;
+        default:
+            break;
+        }
         break;
     case OTHER_INDEX:
         break;

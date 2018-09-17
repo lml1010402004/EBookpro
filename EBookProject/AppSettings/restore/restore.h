@@ -5,6 +5,12 @@
 #include<QPaintEvent>
 #include<QMouseEvent>
 #include<QPainter>
+#include<QList>
+#include"utils/redefineqrect.h"
+#include"drawrestore.h"
+#include"confirmdialog.h"
+#include"statusbar.h"
+#include"statusbar_global.h"
 
 class Restore : public QMainWindow
 {
@@ -20,6 +26,13 @@ public:
 
 private:
     void init();
+    void initView();
+    QList<myQRect*> *rectlist;
+    myQRect *myqrect;
+    DrawRestore *drawrestore;
+    int targetwidgetIndex ;
+    confirmDialog *myconfirmdialog;
+    StatusBar *statusbar;
 
 signals:
 

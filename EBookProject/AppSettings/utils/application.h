@@ -35,6 +35,13 @@
 #define USB_CHRGE 6
 
 
+//=========================RESTORE MODULE==========================
+#define RESTORE_BACKICON 0
+#define RESTORE_HOMEICON 1
+#define RESTORE_TEXT 2
+#define RESTORE_CONFIRM_BUTTON 3
+
+
 
 static const QString home_pressed=":/pic/pics/home_pressed.png";
 static const QString home_unpress = ":/pic/pics/home_unpress.png";
