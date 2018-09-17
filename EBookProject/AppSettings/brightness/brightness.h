@@ -5,6 +5,11 @@
 #include<QMouseEvent>
 #include<QPaintEvent>
 #include<QPainter>
+#include"statusbar.h"
+#include"statusbar_global.h"
+#include"drawbrightness.h"
+#include<QList>
+#include"utils/redefineqrect.h"
 
 class Brightness : public QMainWindow
 {
@@ -22,7 +27,10 @@ private:
     void init();
     void initView();
     void initConnections();
-
+    StatusBar *statusbar;
+    DrawBrightness *drawbrightness;
+    QList<myQRect*> *rectlist;
+    myQRect* myqrect;
 
 
 signals:

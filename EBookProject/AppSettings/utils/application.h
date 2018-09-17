@@ -17,6 +17,12 @@
 
 
 //=========================LIGHT_INDEX==============================
+#define LIGHT_BACKICON 0
+#define LIGHT_HOMEICON 1
+#define LIGHT_HOMETITLE 2
+#define LIGHT_MINUS 3
+#define LIGHT_PLUS 4
+
 //=========================NETWORK_INDEX=============================
 #define NETWORK_BACKICON 0
 #define NETWORK_HOMEICON 1

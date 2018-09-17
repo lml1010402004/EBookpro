@@ -12,22 +12,19 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
     case LIGHT_INDEX:
         switch (index) {
         case 0:
-              rect->xid = NETWORK_BACKICON;
+            rect->xid = LIGHT_BACKICON;
             break;
         case 1:
-              rect->xid = NETWORK_HOMEICON;
+            rect->xid = LIGHT_HOMEICON;
             break;
         case 2:
-              rect->xid = NETWORK_TITLE;
+            rect->xid = LIGHT_HOMETITLE;
             break;
         case 3:
-              rect->xid = NETWORK_WIFITEXT;
+            rect->xid = LIGHT_MINUS;
             break;
         case 4:
-              rect->xid = NETWORK_WIFISWITCH;
-            break;
-        case 5:
-              rect->xid = NETWORK_SEARCHRESULT_TEXT;
+            rect->xid  = LIGHT_PLUS;
             break;
         default:
             break;
@@ -37,6 +34,28 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
     case WALLPAPER_INDEX:
         break;
     case NETWORK_INDEX:
+        switch (index) {
+        case 0:
+            rect->xid = NETWORK_BACKICON;
+            break;
+        case 1:
+            rect->xid = NETWORK_HOMEICON;
+            break;
+        case 2:
+            rect->xid = NETWORK_TITLE;
+            break;
+        case 3:
+            rect->xid = NETWORK_WIFITEXT;
+            break;
+        case 4:
+            rect->xid = NETWORK_WIFISWITCH;
+            break;
+        case 5:
+            rect->xid = NETWORK_SEARCHRESULT_TEXT;
+            break;
+        default:
+            break;
+        }
         break;
     case USBTRANSFER_INDEX:
         switch (index) {
