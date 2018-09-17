@@ -47,6 +47,16 @@
 #define RESTORE_TEXT 2
 #define RESTORE_CONFIRM_BUTTON 3
 
+//=======================DATEANDTIME MODULE=============================
+#define DATEANDTIME_BACKICON 0
+#define DATEANDTIME_HOMEICON 1
+#define DATEANDTIME_TITLE 2
+
+//=======================LANGUAGEKEYBOARD=============================
+#define LANGUAGEKEYBOARD_BACKICON 0
+#define LANGUAGKEYBODRD_HOMEICON 1
+#define LANGUAGEKEBOARD_TITLE 2
+
 
 
 static const QString home_pressed=":/pic/pics/home_pressed.png";

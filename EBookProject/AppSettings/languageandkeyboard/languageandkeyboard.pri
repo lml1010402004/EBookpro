@@ -1,5 +1,7 @@
 HEADERS += \
-    $$PWD/languagekeyboard.h
+    $$PWD/languagekeyboard.h \
+    $$PWD/drawlanguagekeyboard.h
 
 SOURCES += \
-    $$PWD/languagekeyboard.cpp
+    $$PWD/languagekeyboard.cpp \
+    $$PWD/drawlanguagekeyboard.cpp

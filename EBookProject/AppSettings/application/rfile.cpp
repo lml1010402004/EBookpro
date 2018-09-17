@@ -86,8 +86,36 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
 
         break;
     case DATEANDTIME_INDEX:
+        switch (index) {
+        case 0:
+            rect->xid = DATEANDTIME_BACKICON;
+            break;
+        case 1:
+            rect->xid = DATEANDTIME_HOMEICON;
+            break;
+        case 2:
+            rect->xid = DATEANDTIME_TITLE;
+            break;
+        default:
+            break;
+        }
+
         break;
     case LANGUAGE_INDEX:
+        switch (index) {
+        case 0:
+            rect->xid = LANGUAGEKEYBOARD_BACKICON;
+            break;
+        case 1:
+            rect->xid = LANGUAGKEYBODRD_HOMEICON;
+            break;
+        case 2:
+            rect->xid = LANGUAGEKEBOARD_TITLE;
+            break;
+        default:
+            break;
+        }
+
         break;
     case RESTORE_INDEX:
         switch (index) {
