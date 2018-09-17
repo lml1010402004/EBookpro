@@ -17,26 +17,40 @@ DrawWallPaper::~DrawWallPaper()
 
 }
 
-void DrawWallPaper::drawHomeIcon(QPainter *painter,myQRect rect)
+void DrawWallPaper::drawHomeIcon(QPainter *painter,myQRect *rect)
 {
-    if(rect.isPressed){
-        painter->drawPixmap(rect.rect,home_pressed);
+    if(rect->isPressed){
+        painter->drawPixmap(rect->rect,home_pressed);
     }else{
-        painter->drawPixmap(rect.rect,home_unpress);
+        painter->drawPixmap(rect->rect,home_unpress);
     }
 }
 
-void DrawWallPaper::drawBackIcon(QPainter *painter,myQRect rect)
+void DrawWallPaper::drawBackIcon(QPainter *painter,myQRect *rect)
 {
-    if(rect.isPressed){
-       painter->drawPixmap(rect.rect,back_pressed);
+    if(rect->isPressed){
+       painter->drawPixmap(rect->rect,back_pressed);
     }else{
-       painter->drawPixmap(rect.rect,back_unpress);
+       painter->drawPixmap(rect->rect,back_unpress);
     }
 
 }
 
 void DrawWallPaper::drawWallPapaerItem(QPainter *painter, int index)
 {
+
+}
+
+void DrawWallPaper::drawTitle(QPainter *painter, myQRect *rect, QString title)
+{
+    painter->drawText(rect->rect,title);
+}
+
+void DrawWallPaper::drawWallPapers(QPainter *painter, QList<myQRect*> *list)
+{
+    for(int i=0;i<list->size();i++){
+//        painter->drawPixmap(list->at(i),"");
+painter->drawRect(list->at(i)->rect);
+    }
 
 }

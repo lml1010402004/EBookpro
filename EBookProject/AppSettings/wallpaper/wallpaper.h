@@ -1,10 +1,16 @@
 #ifndef WALLPAPER_H
 #define WALLPAPER_H
-
 #include <QMainWindow>
 #include<QMouseEvent>
 #include<QPaintEvent>
 #include<QPainter>
+#include"syssettings.h"
+#include"drawwallpaper.h"
+#include"utils/redefineqrect.h"
+#include<QList>
+#include"statusbar.h"
+#include"statusbar_global.h"
+
 
 class WallPaper : public QMainWindow
 {
@@ -22,6 +28,15 @@ public:
 private:
     void init();
     void initView();
+    SysSettings *mysysseting;
+    DrawWallPaper *drawwallpaper;
+    int index_wallpaper;//scope 0,1,2
+    QList<myQRect*> *rectlist;
+    QList<myQRect*> *wallpaperlist;
+    myQRect *rect;
+     myQRect *myqrect;
+    StatusBar *statusbar;
+    int targetwidgetIndex;
 
 
 

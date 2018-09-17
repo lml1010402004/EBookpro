@@ -32,6 +32,19 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
 
         break;
     case WALLPAPER_INDEX:
+        switch (index) {
+        case 0:
+           rect->xid = WALLPAPER_BACKICON;
+            break;
+        case 1:
+            rect->xid = WALLPAPER_HOMEICON;
+            break;
+        case 2:
+            rect->xid = WALLPAPER_TITLE;
+            break;
+        default:
+            break;
+        }
         break;
     case NETWORK_INDEX:
         switch (index) {

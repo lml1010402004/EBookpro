@@ -62,6 +62,10 @@
 #define OTHER_HOMEICON 1
 #define OTHER_TITLE 2
 
+//=======================WALL PAPEWR======================
+#define WALLPAPER_BACKICON 0
+#define WALLPAPER_HOMEICON 1
+#define WALLPAPER_TITLE 2
 
 
 static const QString home_pressed=":/pic/pics/home_pressed.png";
