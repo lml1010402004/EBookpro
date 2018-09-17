@@ -5,6 +5,10 @@
 #include<QPaintEvent>
 #include<QMouseEvent>
 #include<QPainter>
+#include"statusbar.h"
+#include"statusbar_global.h"
+#include"drawothermodule.h"
+#include"utils/redefineqrect.h"
 
 
 class OtherModule : public QMainWindow
@@ -19,6 +23,11 @@ public:
 
 private:
     void init();
+    void initView();
+    StatusBar *statusbar;
+    DrawOtherModule *drawothermodule;
+    QList<myQRect*> *rectlist;
+    myQRect *myqrect;
 
 signals:
 

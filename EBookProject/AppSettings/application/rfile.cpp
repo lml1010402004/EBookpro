@@ -136,6 +136,20 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
         }
         break;
     case OTHER_INDEX:
+        switch (index) {
+        case 0:
+            rect->xid = OTHER_BACKICON;
+            break;
+        case 1:
+            rect->xid = OTHER_HOMEICON;
+            break;
+        case 2:
+            rect->xid = OTHER_TITLE;
+            break;
+        default:
+            break;
+        }
+
         break;
     default:
         break;

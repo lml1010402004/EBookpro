@@ -57,6 +57,11 @@
 #define LANGUAGKEYBODRD_HOMEICON 1
 #define LANGUAGEKEBOARD_TITLE 2
 
+//=======================OTHER MODULE===========================
+#define OTHER_BACKICON 0
+#define OTHER_HOMEICON 1
+#define OTHER_TITLE 2
+
 
 
 static const QString home_pressed=":/pic/pics/home_pressed.png";
