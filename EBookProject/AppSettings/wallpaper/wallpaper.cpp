@@ -3,6 +3,7 @@
 #include"rfile.h"
 #include"commonutils.h"
 #include<QApplication>
+#include"application/pulldownwindow.h"
 
 const int WALLPAPER_X[] = {60,500,250};
 const int WALLPAPER_Y[] = {48,48,130};
@@ -15,6 +16,8 @@ const int WALLPAPERS_W=140;
 const int WALLPAPERS_HE = 180;
 
 
+extern int pulldownwindowrect[];
+extern PulldownWindow *pulldownwindow;
 
 
 
@@ -63,6 +66,13 @@ void WallPaper::mousePressEvent(QMouseEvent *event)
     if(targetwidgetIndex>-1){
         rectlist->at(targetwidgetIndex)->isPressed = true;
         this->repaint();
+    }
+    if(x>pulldownwindowrect[0]&&x<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
+            y<pulldownwindowrect[3]){
+        if(pulldownwindow==NULL){
+            pulldownwindow = new PulldownWindow(this);
+        }
+        pulldownwindow->show();
     }
 
 }

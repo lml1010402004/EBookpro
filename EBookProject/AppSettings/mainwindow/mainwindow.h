@@ -39,7 +39,6 @@ private:
     void initsettingsModules();
 
     StatusBar *statusbar;
-    PulldownWindow *pulldownwindow;
     DrawMainWindow *drawmainwindow;
     myQRect *myrect;
 

@@ -10,6 +10,7 @@
 #include"drawbrightness.h"
 #include<QList>
 #include"utils/redefineqrect.h"
+#include"myutils.h"
 
 class Brightness : public QMainWindow
 {
@@ -27,10 +28,16 @@ private:
     void init();
     void initView();
     void initConnections();
+     void refreshLightUI(int x,int y,QRect lightrect);
+
     StatusBar *statusbar;
     DrawBrightness *drawbrightness;
     QList<myQRect*> *rectlist;
     myQRect* myqrect;
+    int lightvalue;
+    MyUtils *myutils;
+    QRect lightrect;
+    int targetwidgetIndex;
 
 
 signals:

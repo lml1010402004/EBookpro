@@ -5,7 +5,10 @@ extern const QString home_unpress;
 extern const QString back_unpress;
 extern const QString back_pressed;
 
-
+const QString minus_unpress=":/pic/pics/minus_uppress.png";
+const QString minus_pressed=":/pic/pics/minus_pressed.png";
+const QString plus_unpress=":/pic/pics/plus_unpress.png";
+const QString plus_pressed=":/pic/pics/plus_pressed.png";
 
 DrawBrightness::DrawBrightness()
 {
@@ -42,19 +45,20 @@ void DrawBrightness::drawTitle(QPainter *painter, myQRect *rect,QString title)
 
 void DrawBrightness::drawMinusButton(QPainter *painter, myQRect *rect)
 {
-  if(rect->isPressed){
+    if(rect->isPressed){
+        painter->drawPixmap(rect->rect,minus_pressed);
 
-  }else{
-
-  }
+    }else{
+        painter->drawPixmap(rect->rect,minus_unpress);
+    }
 }
 
 void DrawBrightness::drawPlusButton(QPainter *painter, myQRect *rect)
 {
-  if(rect->isPressed){
-
-  }else{
-
-  }
+    if(rect->isPressed){
+        painter->drawPixmap(rect->rect,plus_pressed);
+    }else{
+        painter->drawPixmap(rect->rect,plus_unpress);
+    }
 
 }

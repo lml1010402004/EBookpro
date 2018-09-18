@@ -3,9 +3,15 @@
 #include"utils/commonutils.h"
 #include<QDebug>
 #include<QApplication>
+#include"application/pulldownwindow.h"
 
 const int homexywh[] = {500,48,48,48};
 const int setting[] = {260,110,80,60};
+
+
+PulldownWindow *pulldownwindow;
+int pulldownwindowrect[] = {250,0,100,60};
+
 
 
 int items_xywh[8][4] = {
@@ -41,16 +47,16 @@ int item_icon_xywh[8][4] = {
     {480,670,50,50}
 };
 
-const QString item_icon_paths[] = {
-    ":/pic/pics/network_icon.png",
-    ":/pic/pics/network_icon.png",
-    ":/pic/pics/network_icon.png",
-    ":/pic/pics/network_icon.png",
-    ":/pic/pics/network_icon.png",
-    ":/pic/pics/network_icon.png",
-    ":/pic/pics/network_icon.png",
-    ":/pic/pics/network_icon.png"
-};
+//const QString item_icon_paths[] = {
+//    ":/pic/pics/network_icon.png",
+//    ":/pic/pics/network_icon.png",
+//    ":/pic/pics/network_icon.png",
+//    ":/pic/pics/network_icon.png",
+//    ":/pic/pics/network_icon.png",
+//    ":/pic/pics/network_icon.png",
+//    ":/pic/pics/network_icon.png",
+//    ":/pic/pics/network_icon.png"
+//};
 
 
 
@@ -181,6 +187,14 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
         this->repaint();
     }
 
+    if(event->x()>pulldownwindowrect[0]&&event->x()<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
+            event->y()<pulldownwindowrect[3]){
+        if(pulldownwindow==NULL){
+            pulldownwindow = new PulldownWindow(this);
+        }
+        pulldownwindow->show();
+    }
+
     targetWidgetIndex = commonUtils::getTargetIndexInSettingModule(x,y,systemitemlist);
     if(targetWidgetIndex>-1){
         systemitemlist->at(targetWidgetIndex)->ispressed = true;
@@ -257,6 +271,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event){
 
     if(targetWidgetIndex>-1){
         systemitemlist->at(targetWidgetIndex)->ispressed = false;
+        targetWidgetIndex = -1;
         this->repaint();
     }
 }
