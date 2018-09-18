@@ -3,10 +3,10 @@
 #include"rfile.h"
 #include"utils/commonutils.h"
 #include<QApplication>
-const int RESTORE_X[] = {60,500,230,230};
+const int RESTORE_X[] = {60,500,250,230};
 const int RESTORE_Y[] ={48,48,240,310};
 const int RESTORE_W[] ={48,48,140,140};
-const int RESTORE_HE[] ={48,48,30,40};
+const int RESTORE_HE[] ={48,48,30,60};
 
 
 /**
@@ -53,7 +53,7 @@ void Restore::paintEvent(QPaintEvent *event)
     QLineF line(0,100,600,100);
     painter->drawLine(line);
     drawrestore->drawTitle(painter,rectlist->at(RESTORE_TEXT),tr("Restore"));
-    drawrestore->drawConfirmButton(painter,rectlist->at(RESTORE_CONFIRM_BUTTON));
+    drawrestore->drawConfirmButton(painter,rectlist->at(RESTORE_CONFIRM_BUTTON),tr("Confirm"));
 
 
 
@@ -80,19 +80,24 @@ void Restore::mouseMoveEvent(QMouseEvent *event)
 void Restore::mouseReleaseEvent(QMouseEvent *event)
 {
     switch(targetwidgetIndex){
-    case 0:
+    case RESTORE_BACKICON:
         this->close();
         break;
-    case 1:
+    case RESTORE_HOMEICON:
         this->close();
         qApp->exit(0);
         break;
-    case 2:
+    case RESTORE_TEXT:
         break;
-    case 3:
+    case RESTORE_CONFIRM_BUTTON:
+        if(myconfirmdialog==NULL)
+            myconfirmdialog = new confirmDialog(this);
+        myconfirmdialog->show();
         break;
-
+    default:
+        break;
     }
+
     if(targetwidgetIndex>-1){
         rectlist->at(targetwidgetIndex)->isPressed = false;
         targetwidgetIndex = -1;

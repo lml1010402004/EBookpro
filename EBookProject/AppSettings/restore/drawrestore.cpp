@@ -38,11 +38,17 @@ void DrawRestore::drawHomeIcon(QPainter *painter, myQRect *rect)
     }
 }
 
-void DrawRestore::drawConfirmButton(QPainter *painter, myQRect *rect)
+void DrawRestore::drawConfirmButton(QPainter *painter, myQRect *rect,QString str)
 {
   if(rect->isPressed){
-
-  }else{
-
+  painter->fillRect(rect->rect,Qt::black);
   }
+  painter->drawRoundedRect(rect->rect,3,3);
+  QRect temprect;
+  temprect.setX(rect->rect.x()+20);
+  temprect.setY(rect->rect.y()+16);
+  temprect.setWidth(rect->rect.width());
+  temprect.setHeight(rect->rect.height());
+  painter->drawText(temprect,str);
+
 }

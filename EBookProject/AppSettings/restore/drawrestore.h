@@ -13,7 +13,7 @@ public:
     void drawTitle(QPainter *painter,myQRect *rect,QString title);
     void drawBackIcon(QPainter *painter,myQRect *rect);
     void drawHomeIcon(QPainter *painter,myQRect *rect);
-    void drawConfirmButton(QPainter *painter,myQRect *rect);
+    void drawConfirmButton(QPainter *painter,myQRect *rect,QString str);
 
 };
 
