@@ -7,6 +7,12 @@
 #include<QList>
 #include<QRect>
 #include<QPainter>
+#include"statusbar.h"
+#include"statusbar_global.h"
+#include<QProcess>
+#include"redefineqrect.h"
+#include"r.h"
+#include"syssettings.h"
 
 const QString wifi_unpress=":/pic/pic/wifi.png";
 const QString wifi_press=":/pic/pic/wifi_pressed.png";
@@ -35,24 +41,37 @@ public:
 
 
 private:
-    void drawCloseIcon(QPainter *painter,QRect rect);
-    void drawShortcutArea(QPainter *painter,QRect rect);
-    void drawGrayArea(QPainter *painter,int al,QRect rect);
-    void drawShortcutIcons(QPainter *painter,int pressed1,QRect rect1,int pressed2,QRect rect2,int pressed3,QRect rect3);
-    void drawLightshortcutandProgressBar(QPainter *painter,QString lightpath,int light_volume,QRect rect,QString floatpath);
+    void drawCloseIcon(QPainter *painter,myQRect* rect);
+    void drawShortcutArea(QPainter *painter,myQRect* rect);
+    void drawGrayArea(QPainter *painter,int al,myQRect* rect);
+    void drawShortcutIcons(QPainter *painter,myQRect* rect1,myQRect* rect2,myQRect* rect3);
+    void drawLightshortcutandProgressBar(QPainter *painter,QString lightpath,int light_volume,myQRect* rect,QString floatpath);
 
 
-    void drawLightPlus(QPainter *painter,QRect plusrect,int pressed);
-    void drawLightMinus(QPainter *painter,QRect minusrect,int pressed);
+    void drawLightPlus(QPainter *painter,myQRect* plusrect);
+    void drawLightMinus(QPainter *painter,myQRect* minusrect);
+
+    void drawProgressBarForLight(QPainter *painter,int value);
+
+    int getTheLightValueFromXY(int pos_x,int pos_y,QRect rect);
+
 
 
 private:
-   void init();
-   void initView();
-   QList<QRect> *rectlist;
-   QRect rect;
-   int targetwidgetindex;
-   int getTheTargetWidget(int x,int y, QList<QRect> *rectlist);
+    void init();
+    void initView();
+    QList<myQRect*> *rectlist;
+    myQRect* myrect;
+    int targetwidgetindex;
+    int getTheTargetWidget(int x,int y, QList<myQRect*> *rectlist);
+    void refreshLightUI(int x,int y);
+
+    StatusBar *statusbar;
+    QProcess *myprocess;
+    QRect lightrect;
+    int lightvalue;
+    bool lightarea;
+    SysSettings *mysyssetting;
 
 signals:
 
