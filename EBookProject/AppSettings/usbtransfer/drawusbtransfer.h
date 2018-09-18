@@ -14,8 +14,7 @@ public:
     void drawTitle(QPainter *painter,myQRect *rect,QString title);
     void drawLogo(QPainter *painter,myQRect *rect);
     void drawState(QPainter *painter,myQRect *rect,QString title);
-    void drawDataTransfer(QPainter *painter,myQRect *rect);
-    void drawChargeOnly(QPainter *painter ,myQRect *rect);
+    void drawDataTransferOrChargeOnly(QPainter *painter,myQRect *rect,QString str);
 
 };
 

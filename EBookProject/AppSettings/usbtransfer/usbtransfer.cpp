@@ -8,8 +8,8 @@
 
 const int USB_X[] = {60,500,250,210,260,120,340};
 const int USB_Y[] = {48,48,130,210,380,460,460};
-const int USB_W[] = {48,48,100,180,90,140,140};
-const int USB_HE[] = {48,48,40,80,30,40,40};
+const int USB_W[] = {48,48,100,180,100,140,140};
+const int USB_HE[] = {48,48,40,80,30,50,50};
 
 extern int homexywh[];
 
@@ -60,8 +60,8 @@ void UsbTransfer::paintEvent(QPaintEvent *event)
     drawusbtransfer->drawHomeIcon(painter,rectlist->at(USB_HOMEICON));
     drawusbtransfer->drawLogo(painter,rectlist->at(USB_ICON));
     drawusbtransfer->drawTitle(painter,rectlist->at(USB_TITLE),tr("USB_TRANS"));
-    drawusbtransfer->drawDataTransfer(painter,rectlist->at(USB_DATATRANSFER));
-    drawusbtransfer->drawChargeOnly(painter,rectlist->at(USB_CHRGE));
+    drawusbtransfer->drawDataTransferOrChargeOnly(painter,rectlist->at(USB_DATATRANSFER),tr("Transfer"));
+    drawusbtransfer->drawDataTransferOrChargeOnly(painter,rectlist->at(USB_CHRGE),tr("Charge"));
 
     if(my_usb_connected==0){
         drawusbtransfer->drawState(painter,rectlist->at(USB_STATE),tr("Conn"));
@@ -76,20 +76,20 @@ void UsbTransfer::mouseReleaseEvent(QMouseEvent *event)
 {
 
     switch (targetwidgetiIndex) {
-    case 0:
+    case USB_BACKICON:
         this->close();
         break;
-    case 1:
+    case USB_HOMEICON:
         this->close();
         qApp->exit(0);
         break;
-    case 5:
+    case USB_DATATRANSFER:
         //transfer data funciton
         if(!usbservice->isEnabled()){
             usbservice->setEnable(true);
         }
         break;
-    case 6:
+    case USB_CHRGE:
         insertDataToDatabase();
         break;
     default:
@@ -122,7 +122,7 @@ void UsbTransfer::initView()
     drawusbtransfer = new DrawUsbtransfer();
     rectlist = new QList<myQRect*>;
 
-    for(int i=0;i<7;i++){
+    for(int i=0;i<7;i++){//7代表这个页面控件的个数
         myqrect = new myQRect;
         myqrect->rect.setX(USB_X[i]);
         myqrect->rect.setY(USB_Y[i]);
@@ -132,7 +132,6 @@ void UsbTransfer::initView()
         RFIle::assignMacroDefinition(USBTRANSFER_INDEX,myqrect,i);
         rectlist->append(myqrect);
     }
-
 
 }
 

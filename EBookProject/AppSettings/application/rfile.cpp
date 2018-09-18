@@ -11,19 +11,19 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
     switch (module) {
     case LIGHT_INDEX:
         switch (index) {
-        case 0:
+        case LIGHT_BACKICON:
             rect->xid = LIGHT_BACKICON;
             break;
-        case 1:
+        case LIGHT_HOMEICON:
             rect->xid = LIGHT_HOMEICON;
             break;
-        case 2:
+        case LIGHT_HOMETITLE:
             rect->xid = LIGHT_HOMETITLE;
             break;
-        case 3:
+        case LIGHT_MINUS:
             rect->xid = LIGHT_MINUS;
             break;
-        case 4:
+        case LIGHT_PLUS:
             rect->xid  = LIGHT_PLUS;
             break;
         default:
@@ -72,25 +72,25 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
         break;
     case USBTRANSFER_INDEX:
         switch (index) {
-        case 0:
+        case USB_BACKICON:
             rect->xid = USB_BACKICON;
             break;
-        case 1:
+        case USB_HOMEICON:
             rect->xid = USB_HOMEICON;
             break;
-        case 2:
+        case USB_TITLE:
             rect->xid = USB_TITLE;
             break;
-        case 3:
+        case USB_ICON:
             rect->xid = USB_ICON;
             break;
-        case 4:
+        case USB_STATE:
             rect->xid = USB_STATE;
             break;
-        case 5:
+        case USB_DATATRANSFER:
             rect->xid = USB_DATATRANSFER;
             break;
-        case 6:
+        case USB_CHRGE:
             rect->xid = USB_CHRGE;
             break;
         default:

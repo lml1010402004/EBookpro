@@ -35,39 +35,35 @@ void DrawUsbtransfer::drawBackIcon(QPainter *painter, myQRect *rect)
     }else{
         painter->drawPixmap(rect->rect,back_unpress);
     }
-
-
 }
 
 void DrawUsbtransfer::drawTitle(QPainter *painter, myQRect *rect,QString title)
 {
-  painter->drawText(rect->rect,title);
+    painter->drawText(rect->rect,title);
 }
 
 void DrawUsbtransfer::drawLogo(QPainter *painter, myQRect *rect)
 {
-  painter->drawPixmap(rect->rect,USB_LOGO);
+    painter->drawPixmap(rect->rect,USB_LOGO);
 }
 
 void DrawUsbtransfer::drawState(QPainter *painter, myQRect *rect,QString title)
 {
-  painter->drawText(rect->rect,title);
+    painter->drawText(rect->rect,title);
 }
 
-void DrawUsbtransfer::drawDataTransfer(QPainter *painter, myQRect *rect)
+void DrawUsbtransfer::drawDataTransferOrChargeOnly(QPainter *painter, myQRect *rect,QString str)
 {
-  if(rect->isPressed){
-     painter->drawRect(rect->rect);
-  }else{
-     painter->drawRect(rect->rect);
-  }
+    if(rect->isPressed){
+        painter->fillRect(rect->rect,Qt::black);
+    }
+    painter->drawRoundedRect(rect->rect,3,3);
+    QRect temprect;
+    temprect.setX(rect->rect.x()+25);
+    temprect.setY(rect->rect.y()+10);
+    temprect.setWidth(rect->rect.width());
+    temprect.setHeight(rect->rect.height());
+    painter->drawText(temprect,str);
 }
 
-void DrawUsbtransfer::drawChargeOnly(QPainter *painter, myQRect *rect)
-{
-  if(rect->isPressed){
-   painter->drawRect(rect->rect);
-  }else{
-   painter->drawRect(rect->rect);
-  }
-}
+
