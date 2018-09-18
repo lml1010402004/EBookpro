@@ -10,6 +10,7 @@ const int OTHERMODULE_HE[] = {48,48,24};
 extern int items_xywh[8][4];
 extern int item_text_xywh[8][4];
 extern int item_icon_xywh[8][4];
+const QString item_text_text[] = {QObject::tr("Sleep"),QObject::tr("Device")};
 
 OtherModule::OtherModule(QWidget *parent) : QMainWindow(parent)
 {
@@ -23,7 +24,13 @@ OtherModule::OtherModule(QWidget *parent) : QMainWindow(parent)
 
 OtherModule::~OtherModule()
 {
-
+    for(int i=0;i<rectlist->size();i++){
+         delete rectlist->at(i);
+    }
+    for(int j=0;j<systemitemlist->size();j++){
+        delete systemitemlist->at(j);
+    }
+  delete statusbar,drawothermodule,myqrect,rectlist,systemitemlist;
 }
 
 void OtherModule::paintEvent(QPaintEvent *event)
@@ -44,12 +51,10 @@ void OtherModule::paintEvent(QPaintEvent *event)
     drawothermodule->drawOtherSettingItems(painter,systemitemlist);
 
 
-
 }
 
 void OtherModule::mouseReleaseEvent(QMouseEvent *event)
 {
-    this->close();
 
 }
 
@@ -94,7 +99,7 @@ void OtherModule::initView()
         item->itemtextrect.setWidth(item_text_xywh[i][2]);
         item->itemtextrect.setHeight(item_text_xywh[i][3]);
 
-//        item->setItem_text_text(item_text_text[i]);
+        item->setItem_text_text(item_text_text[i]);
 
         item->itemiconrect.setX(item_icon_xywh[i][0]);
         item->itemiconrect.setY(item_icon_xywh[i][1]);

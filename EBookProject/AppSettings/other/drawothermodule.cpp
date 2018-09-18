@@ -5,6 +5,9 @@ extern const QString home_unpress;
 extern const QString back_unpress;
 extern const QString back_pressed;
 
+const QString item_pressed[] = {":/pic/pics/sleep_pressed.png",":/pic/pics/device_pressed.png"};
+const QString item_unpress[] ={":/pic/pics/sleep_unpress.png",":/pic/pics/device_unpress.png"};
+
 DrawOtherModule::DrawOtherModule()
 {
 
@@ -46,11 +49,11 @@ void DrawOtherModule::drawOtherSettingItems(QPainter *painter, QList<SystemItems
     for(int i=0;i<itemlist->size();i++){
         painter->drawRect(itemlist->at(i)->itemrect);
         painter->drawText(itemlist->at(i)->itemtextrect,itemlist->at(i)->getItem_text_text());
-//        if(itemlist->at(i)->ispressed){
-//            painter->drawPixmap(itemlist->at(i)->itemiconrect,item_pressed[i]);
-//        }else{
-//            painter->drawPixmap(itemlist->at(i)->itemiconrect,item_icon_paths[i]);
-//        }
+        if(itemlist->at(i)->ispressed){
+            painter->drawPixmap(itemlist->at(i)->itemiconrect,item_pressed[i]);
+        }else{
+            painter->drawPixmap(itemlist->at(i)->itemiconrect,item_unpress[i]);
+        }
     }
 
 }

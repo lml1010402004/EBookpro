@@ -4,7 +4,7 @@
 #include"utils/commonutils.h"
 #include<QApplication>
 const int RESTORE_X[] = {60,500,250,230};
-const int RESTORE_Y[] ={48,48,240,310};
+const int RESTORE_Y[] ={48,48,130,310};
 const int RESTORE_W[] ={48,48,140,140};
 const int RESTORE_HE[] ={48,48,30,60};
 
@@ -20,7 +20,6 @@ void formattingDisk()
     system("mkfs.vfat /dev/block/by-name/UDISK");
     sleep(1);
     system("reboot");
-
 }
 
 Restore::Restore(QWidget *parent) : QMainWindow(parent)
