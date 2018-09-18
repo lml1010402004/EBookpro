@@ -7,10 +7,10 @@
 #include"Application/pulldownwindow.h"
 
 
-const int mainapge_x[21] = {100,350,100,350,160,410,280,40,90,240,390,520,120,270,420,70,270,470,80,280,480};
+const int mainapge_x[21] = {100,350,100,350,160,410,270,40,90,240,390,520,120,270,420,70,270,470,80,280,480};
 const int mainpage_y[21] = {110,110,200,200,330,330,450,530,480,480,480,530,640,640,640,700,700,700,770,770,770};
-const int mainpage_w[21] = {150,150,150,150,60,60,40,40,120,120,120,40,80,80,80,64,64,64,60,60,60};
-const int mainpage_h[21] = {200,200,40,40,20,20,20,40,150,150,150,40,20,20,20,64,64,64,20,20,20};
+const int mainpage_w[21] = {150,150,150,150,60,60,60,40,120,120,120,40,80,80,80,64,64,64,60,60,60};
+const int mainpage_h[21] = {200,200,40,40,20,20,30,40,150,150,150,40,20,20,20,64,64,64,20,20,20};
 
 
 PulldownWindow *pulldownwindow;
@@ -108,7 +108,7 @@ void MainWindow::initView()
 {
 
     rectlist = new QList<myQRect*>;
-    for(int i=0;i<sizeof(mainapge_x);i++){
+    for(int i=0;i<21;i++){
         myrect = new myQRect;
         myrect->rect.setX(mainapge_x[i]);
         myrect->rect.setY(mainpage_y[i]);
@@ -124,7 +124,9 @@ void MainWindow::initView()
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
+
     targetWidgetIndex = commonUtils::getTheTargetWidget(event->x(),event->y(),rectlist);
+     qDebug()<<".........=="<<targetWidgetIndex;
     if(targetWidgetIndex>-1){
         rectlist->at(targetWidgetIndex)->isPressed = true;
         this->repaint();

@@ -1,6 +1,7 @@
 #include "thirdapplications.h"
 #include"application.h"
 #include"Utils/commonutils.h"
+#include"Application/pulldownwindow.h"
 
 const int HOME_XYWH[] ={500,48,48,48};
 const int APP_TITLE_XYWH[]={260,110,80,60};
@@ -32,6 +33,9 @@ const QString item_text_text[4] ={
     QObject::tr("Light"),QObject::tr("WallPaper"),QObject::tr("Network"),QObject::tr("USB Transfer")};
 
 
+extern int pulldownwindowrect[];
+
+extern PulldownWindow *pulldownwindow;
 
 ThirdApplications::ThirdApplications(QWidget *parent) : QMainWindow(parent)
 {
@@ -136,6 +140,14 @@ void ThirdApplications::mousePressEvent(QMouseEvent *event)
     if(targetwidgetindex>-1){
         systemitemlist->at(targetwidgetindex)->ispressed = true;
         this->repaint();
+    }
+
+    if(event->x()>pulldownwindowrect[0]&&event->x()<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
+            event->y()<pulldownwindowrect[3]){
+        if(pulldownwindow==NULL){
+            pulldownwindow = new PulldownWindow(this);
+        }
+        pulldownwindow->show();
     }
 
 
