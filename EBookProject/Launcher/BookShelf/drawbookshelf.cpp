@@ -20,9 +20,9 @@ const QString circle_pressed = ":/mypic/pics/circlesfilled.png";
 const QString circle_unpress = ":/mypic/pics/circlempty.png";
 QString path4= ":/mypic/pics/bg3.png";
 
-int position4[] = {66,180,165,180,110,140,66,180,300,180,150,25};
+int position4[] = {66,180,165,180,120,140,66,180,300,180,150,25};
 
-int position5[] = {66,180,165,180,110,140,66,180,300,180,150,25};
+//int position5[] = {66,180,165,180,120,140,66,180,300,180,150,25};
 int position3[10] = {120,120,120,12,12,140,120,110,110,60};
 
 DrawBookshelf::DrawBookshelf()
@@ -132,16 +132,16 @@ void DrawBookshelf::drawNineBooks(QPainter *painter, QList<localDirectoryItem> *
 
         }else{
             for(int k=0;k<columsoflastrow;k++){
-                rect.setX(position5[0]+position5[1]*k);
-                rect.setY(position5[2]+position5[3]*i);
-                rect.setWidth(position5[4]);
-                rect.setHeight(position5[5]);
+                rect.setX(position4[0]+position4[1]*k);
+                rect.setY(position4[2]+position4[3]*i);
+                rect.setWidth(position4[4]);
+                rect.setHeight(position4[5]);
                 painter->drawRect(rect);
 
-                rect.setX(position5[0]+position5[1]*k+1);
-                rect.setY(position5[2]+position5[3]*i+1);
-                rect.setWidth(position5[4]-1);
-                rect.setHeight(position5[5]-1);
+                rect.setX(position4[0]+position4[1]*k+1);
+                rect.setY(position4[2]+position4[3]*i+1);
+                rect.setWidth(position4[4]-1);
+                rect.setHeight(position4[5]-1);
 
                 QString cover_path = booklist->at(i*3+k).file_path+".jpg";
                 QFileInfo *info = new QFileInfo(cover_path);
@@ -150,10 +150,10 @@ void DrawBookshelf::drawNineBooks(QPainter *painter, QList<localDirectoryItem> *
                 }else{
                     painter->drawPixmap(rect,path4);
                 }
-                rect.setX(position5[6]+position5[7]*k-20);
-                rect.setY(position5[8]+position5[9]*i+3);
-                rect.setWidth(position5[10]);
-                rect.setHeight(position5[11]);
+                rect.setX(position4[6]+position4[7]*k-20);
+                rect.setY(position4[8]+position4[9]*i+3);
+                rect.setWidth(position4[10]);
+                rect.setHeight(position4[11]);
                 font.setPointSize(10);
                 painter->setFont(font);
                 QString str = booklist->at(i*3+k).file_name;

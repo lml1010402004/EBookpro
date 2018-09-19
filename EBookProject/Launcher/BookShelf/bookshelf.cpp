@@ -13,6 +13,9 @@ const int BOOKSHELF_W[12] = {48,48,60,100,100,100,100,40,40,80,40,40};
 const int BOOKSHELF_HE[12] = {48,48,40,40,40,40,40,40,40,40,40,40};
 
 
+
+
+
 extern int pulldownwindowrect[];
 
 extern PulldownWindow *pulldownwindow;
@@ -22,7 +25,6 @@ QString emptypath = ":/mypic/pics/circlempty";
 
 BookShelf::BookShelf(QWidget *parent) : QMainWindow(parent)
 {
-
     this->setWindowFlags(Qt::Dialog|Qt::FramelessWindowHint);
     this->setFixedHeight(GLOBAL_SCREEN_FIXED_HEIGHT);
     this->setFixedWidth(GLOBAL_SCREEN_FIXED_WIDTH);
@@ -50,6 +52,7 @@ void BookShelf::init(){
     conditonsItemlist = new QList<ConditionItem>;
     totalbookinfolist = new QList<localDirectoryItem>;
     currentpagebookinfolist = new QList<localDirectoryItem>;
+
 
 
 
@@ -204,8 +207,6 @@ void BookShelf::mouseReleaseEvent(QMouseEvent *event)
         }
         this->repaint();
         targetwidgetindex = -1;
-
-
     }
 
 }
@@ -215,9 +216,13 @@ void BookShelf::mouseMoveEvent(QMouseEvent *event)
 
 }
 
-int BookShelf::getTheTargetBookIndex(int x_pos, int y_pos)
+int BookShelf::getTheTargetBookIndex(int x, int y)
 {
     int temp = -1;
+    for(int i=0;i<currentpagebookinfolist->size();i++){
+
+    }
+
 
     return temp;
 

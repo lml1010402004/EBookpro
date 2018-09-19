@@ -44,7 +44,8 @@ private:
     QList<QString> list;
     QList<localDirectoryItem> *totalbookinfolist;
     QList<localDirectoryItem> *currentpagebookinfolist;
-//    PulldownWindow *pulldownwindow;
+
+
 
     void init();
     void initView();
