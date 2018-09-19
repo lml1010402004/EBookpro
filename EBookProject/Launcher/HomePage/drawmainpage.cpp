@@ -147,6 +147,12 @@ void DrawMainPage::drawThreeBooksArea(QPainter *painter, QList<myQRect*> *rectli
         rect.setHeight(rectlist->at(i)->rect.height()+1);
         painter->drawRect(rect);
 
+        rect.setX(rectlist->at(i)->rect.x());
+        rect.setY(rectlist->at(i)->rect.y());
+        rect.setWidth(rectlist->at(i)->rect.width());
+        rect.setHeight(rectlist->at(i)->rect.height());
+        painter->drawRect(rect);
+
 
         localDirectoryItem item = booklist->at(i);
         QString temppath ;
