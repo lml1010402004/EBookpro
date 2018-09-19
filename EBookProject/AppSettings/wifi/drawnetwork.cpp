@@ -70,3 +70,17 @@ void DrawNetwork::drawSwitchButton(QPainter *painter, QRect switchbutton, bool c
         painter->drawPixmap(switchbutton,wifi_closed);
     }
 }
+
+void DrawNetwork::drawCurrentWifiItems(QPainter *painter, QList<wifiItem *> *wifilistitem, int currentPage, int totalPages)
+{
+
+
+
+
+
+}
+
+void DrawNetwork::drawLastAndNextPage(QPainter *painter, int currentPage, int totalPages,QList<myQRect*> *rectlist)
+{
+
+}

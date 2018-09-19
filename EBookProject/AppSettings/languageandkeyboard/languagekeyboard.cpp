@@ -50,7 +50,7 @@ void LanguageKeyboard::paintEvent(QPaintEvent *event)
 
     drawlanguagekeyboard->drawBackIcon(painter,rectlist->at(LANGUAGEKEYBOARD_BACKICON));
     drawlanguagekeyboard->drawHomeIcon(painter,rectlist->at(LANGUAGKEYBODRD_HOMEICON));
-    drawlanguagekeyboard->drawLanguageTitle(painter,rectlist->at(LANGUAGEKEBOARD_TITLE),tr("Languagekeyboard"));
+    drawlanguagekeyboard->drawLanguageTitle(painter,rectlist->at(LANGUAGEKEBOARD_TITLE),tr("Languages"));
 
 
 }

@@ -32,6 +32,8 @@ Network::~Network()
 void Network::init()
 {
     targetwidgetIndex =-1;
+    wifiCurrentPage =1;
+    wifiTotalPages =1;
     wifi_flag = false;
     mywifiservice = WifiService::getInstance(this);
     connectwifidialog = new ConnectWifiDialog(this);
@@ -125,8 +127,6 @@ void Network::wifi_StatusChanged(QString wifiStatus)
 
     }
 
-
-
 }
 
 
@@ -134,9 +134,6 @@ void Network::wifi_StatusChanged(QString wifiStatus)
 wifiItem *tempitem;
 void Network::wifi_RefreshDone(QList<TWifi> wifi_Lists)
 {
-
-
-
 
     int size = wifi_Lists.length();
     if(size<0){
@@ -150,19 +147,14 @@ void Network::wifi_RefreshDone(QList<TWifi> wifi_Lists)
         tempitem->strength_class = wifi_Lists.at(i).ESSID_SIGNAL;
         tempitem->Encrypt = wifi_Lists.at(i).ESSID_ENCRYP;
         tempitem->WIFI_MAC = wifi_Lists.at(i).ESSID_BSSID;
-//        qDebug()<<"wifi_name=="<<tempitem->wifi_name;
         wifilist->append(tempitem);
     }
-
     if(wifilist->size()%4==0){
         wifiTotalPages = wifilist->size()/4;
     }else{
         wifiTotalPages = wifilist->size()/4+1;
     }
-
     this->repaint();
-
-
 }
 
 void Network::connectWifiSlot(QString password)
@@ -245,5 +237,6 @@ void Network::paintEvent(QPaintEvent *event)
     drawnetwork->drawNetworkWifiText(painter,rectlist->at(NETWORK_WIFITEXT),tr("Wifi"));
     drawnetwork->drawSearchResultTitle(painter,rectlist->at(NETWORK_SEARCHRESULT_TEXT),tr("Results"));
     drawnetwork->drawSwitchButton(painter,switch_button,wifi_flag);
+    drawnetwork->drawCurrentWifiItems(painter,wifilist,wifiCurrentPage,wifiTotalPages);
 
 }

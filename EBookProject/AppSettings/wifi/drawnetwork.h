@@ -2,6 +2,7 @@
 #define DRAWNETWORK_H
 #include<QPainter>
 #include"utils/redefineqrect.h"
+#include"wifiitem.h"
 
 
 class DrawNetwork
@@ -18,8 +19,9 @@ public:
     void drawSearchResultTitle(QPainter *painter, myQRect *rect,QString title);
     void drawSwitchButton(QPainter *painter,QRect switchbutton,bool checked);
 
+    void drawCurrentWifiItems(QPainter *painter,QList<wifiItem*> *wifilistitem,int currentPage,int totalPages);
 
-
+    void drawLastAndNextPage(QPainter *painter,int currentPage,int totalPages,QList<myQRect*> *rectlist);
 
 };
 

@@ -43,6 +43,7 @@ private:
     SysSettings *mysyssetting;
     QString targetWifiMac;
     QList<wifiItem*> *wifilist;
+    int wifiCurrentPage;
     int wifiTotalPages;
 
 
