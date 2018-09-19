@@ -166,10 +166,6 @@ void BookShelf::mousePressEvent(QMouseEvent *event)
         pulldownwindow->show();
     }
 
-
-
-
-
 }
 
 void BookShelf::mouseReleaseEvent(QMouseEvent *event)
@@ -231,7 +227,7 @@ void BookShelf::mouseReleaseEvent(QMouseEvent *event)
         targetwidgetindex = -1;
     }
 
-    QString bookname = getTheTargetBookNameforFBReader(event->x(),event->y(),currentpagebookinfolist);
+    QString bookname = getTheTargetBookPathforFBReader(event->x(),event->y(),currentpagebookinfolist);
     if(!bookname.isEmpty()){
        commonutils->openBookFromFBreader(myprocess,bookname);
     }
@@ -243,7 +239,7 @@ void BookShelf::mouseMoveEvent(QMouseEvent *event)
 
 }
 
-QString BookShelf::getTheTargetBookNameforFBReader(int x, int y, QList<localDirectoryItem> *currentpagebookinfolist)
+QString BookShelf::getTheTargetBookPathforFBReader(int x, int y, QList<localDirectoryItem> *currentpagebookinfolist)
 {
     QString bookname = "";
     int tempindex = -1;
@@ -254,7 +250,7 @@ QString BookShelf::getTheTargetBookNameforFBReader(int x, int y, QList<localDire
         }
     }
     if(tempindex>-1){
-        bookname = currentpagebookinfolist->at(tempindex).file_name;
+        bookname = currentpagebookinfolist->at(tempindex).file_path;
     }
     return bookname;
 }

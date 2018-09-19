@@ -35,5 +35,6 @@
         <file>pics/sleep_bg3.png</file>
         <file>pics/sleep_bg4.png</file>
         <file>pics/checkbox_true.png</file>
+        <file>pics/wifi1_icon.png</file>
     </qresource>
 </RCC>

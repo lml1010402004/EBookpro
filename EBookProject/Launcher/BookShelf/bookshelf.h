@@ -28,7 +28,7 @@ public:
     void mouseReleaseEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
 
-    QString getTheTargetBookNameforFBReader(int x_pos,int y_pos,QList<localDirectoryItem> *currentpagebookinfolist);
+    QString getTheTargetBookPathforFBReader(int x_pos,int y_pos,QList<localDirectoryItem> *currentpagebookinfolist);
 
 
 

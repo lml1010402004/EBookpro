@@ -3,6 +3,9 @@
 #include<QPainter>
 #include"utils/redefineqrect.h"
 #include"wifiitem.h"
+#include<QRect>
+#include<QFont>
+#include"application/syssettings.h"
 
 
 class DrawNetwork
@@ -22,6 +25,12 @@ public:
     void drawCurrentWifiItems(QPainter *painter,QList<wifiItem*> *wifilistitem,int currentPage,int totalPages);
 
     void drawLastAndNextPage(QPainter *painter,int currentPage,int totalPages,QList<myQRect*> *rectlist);
+    QList<wifiItem*> getCurrentPageWifiList(QList<wifiItem*> *list,int currentPage,int totalPages);
+
+private:
+        QRect rect;
+        SysSettings *mysyssetting;
+        QFont font;
 
 };
 

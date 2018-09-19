@@ -168,20 +168,20 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
             break;
         case HPM_FIRSTBOOK_RECT:          
             if(currentPagebooklist->size()>0){
-                  qDebug()<<"====="<<currentPagebooklist->at(0).file_name;
-             commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(0).file_name);
+                  qDebug()<<"====="<<currentPagebooklist->at(0).file_path;
+             commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(0).file_path);
             }
             break;
         case HPM_SECONDBOOK_RECT:
             if(currentPagebooklist->size()>1){
-                 qDebug()<<"====="<<currentPagebooklist->at(0).file_name;
-             commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(1).file_name);
+                 qDebug()<<"====="<<currentPagebooklist->at(0).file_path;
+             commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(1).file_path);
             }
             break;
         case HPM_THIRDBOOK_RECT:
             if(currentPagebooklist->size()>2){
-                  qDebug()<<"====="<<currentPagebooklist->at(2).file_name;
-             commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(2).file_name);
+                  qDebug()<<"====="<<currentPagebooklist->at(2).file_path;
+             commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(2).file_path);
             }
             break;
         case HPM_NEXTPAGE_BUTTON:
