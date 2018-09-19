@@ -29,6 +29,7 @@ private:
     void init();
     void initView();
     void initConnections();
+    QList<wifiItem*>* getCurrentPageWifiList(QList<wifiItem*> *list,int currentPage,int totalPages);
 
     DrawNetwork *drawnetwork;
     StatusBar *statusbar;
@@ -43,8 +44,10 @@ private:
     SysSettings *mysyssetting;
     QString targetWifiMac;
     QList<wifiItem*> *wifilist;
+    QList<wifiItem*> *currentpagewifilist;
     int wifiCurrentPage;
     int wifiTotalPages;
+    bool first_come_in;
 
 
 signals:

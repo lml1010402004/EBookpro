@@ -5,12 +5,14 @@
 #include<QApplication>
 #include<QDebug>
 
-const int NETWORK_X[] = {60,500,250,80,250};
-const int NETWORK_Y[] = {48,48,130,180,260};
-const int NETWORK_W[] = {48,48,100,80,120};
-const int NETWORK_HE[] ={48,48,40,30,40};
+const int NETWORK_X[] = {60,500,250,80,250,160,280,400};
+const int NETWORK_Y[] = {48,48,130,180,260,660,670,660};
+const int NETWORK_W[] = {48,48,100,80,120,40,80,40};
+const int NETWORK_HE[] ={48,48,40,30,40,40,40,40};
 
 const int SWITCH_POS[] = {480,180,60,30};
+
+const int MAXITEM_EACHPAGE = 4;
 
 
 Network::Network(QWidget *parent) : QMainWindow(parent)
@@ -24,13 +26,14 @@ Network::Network(QWidget *parent) : QMainWindow(parent)
 
 Network::~Network()
 {
-    delete drawnetwork,statusbar,myqrect,rectlist,mysyssetting;
+    delete drawnetwork,statusbar,myqrect,rectlist,mysyssetting,currentpagewifilist,connectwifidialog;
 }
 
 
 
 void Network::init()
 {
+    first_come_in = true;
     targetwidgetIndex =-1;
     wifiCurrentPage =1;
     wifiTotalPages =1;
@@ -38,8 +41,9 @@ void Network::init()
     mywifiservice = WifiService::getInstance(this);
     connectwifidialog = new ConnectWifiDialog(this);
     mysyssetting = new SysSettings;
-
+    currentpagewifilist = new QList<wifiItem*>;
     wifilist = new QList<wifiItem*>;
+
 
     initConnections();
     initView();
@@ -49,7 +53,7 @@ void Network::initView()
 {
     rectlist = new QList<myQRect*>;
 
-    for(int i=0;i<5;i++){
+    for(int i=0;i<8;i++){
         myqrect = new myQRect;
         myqrect->rect.setX(NETWORK_X[i]);
         myqrect->rect.setY(NETWORK_Y[i]);
@@ -74,7 +78,34 @@ void Network::initConnections()
 {
     mywifiservice->connect(mywifiservice,SIGNAL(sigStatusChanged(QString)),this,SLOT(wifi_StatusChanged(QString)));
     mywifiservice->connect(mywifiservice,SIGNAL(sigRefreshed(QList<TWifi>)),this,SLOT(wifi_RefreshDone(QList<TWifi>)));
-//    QObject::connect(connectwifidialog,SIGNAL())
+    //    QObject::connect(connectwifidialog,SIGNAL())
+
+}
+
+QList<wifiItem*>* Network::getCurrentPageWifiList(QList<wifiItem *> *list, int currentPage, int totalPages)
+{
+    QList<wifiItem*> *templist = new QList<wifiItem*> ;
+    if(currentPage<totalPages){//The data of middle page
+        int index =  (currentPage-1)*MAXITEM_EACHPAGE;
+        for(int i=0;i<MAXITEM_EACHPAGE;i++){
+            templist->append(list->at(index+i));
+        }
+    }else if(currentPage==1&&currentPage==totalPages){ //the data of last page
+        int tempsize = list->size();
+        for(int i=0;i<tempsize;i++){
+            templist->append(list->at(i));
+        }
+    }else if(currentPage>1&&currentPage==totalPages){
+        int tempindex = (totalPages-1)*MAXITEM_EACHPAGE;
+        int size = list->size()%MAXITEM_EACHPAGE;
+        if(size==0){
+            size = MAXITEM_EACHPAGE;
+        }
+        for(int i=0;i<size;i++){
+            templist->append(list->at(tempindex+i));
+        }
+    }
+    return templist;
 
 }
 
@@ -126,7 +157,6 @@ void Network::wifi_StatusChanged(QString wifiStatus)
     {
 
     }
-
 }
 
 
@@ -149,10 +179,14 @@ void Network::wifi_RefreshDone(QList<TWifi> wifi_Lists)
         tempitem->WIFI_MAC = wifi_Lists.at(i).ESSID_BSSID;
         wifilist->append(tempitem);
     }
-    if(wifilist->size()%4==0){
-        wifiTotalPages = wifilist->size()/4;
+    if(wifilist->size()%MAXITEM_EACHPAGE==0){
+        wifiTotalPages = wifilist->size()/MAXITEM_EACHPAGE;
     }else{
-        wifiTotalPages = wifilist->size()/4+1;
+        wifiTotalPages = wifilist->size()/MAXITEM_EACHPAGE+1;
+    }
+    if(first_come_in){
+        first_come_in = false;
+    currentpagewifilist = getCurrentPageWifiList(wifilist,wifiCurrentPage,wifiTotalPages);
     }
     this->repaint();
 }
@@ -182,9 +216,9 @@ void Network::mousePressEvent(QMouseEvent *event)
                 mywifiservice->setEnable(true);
             }
         }else{
-                mywifiservice->setEnable(false);
-                wifilist->clear();
-                mysyssetting->setConnectWifiMac("");
+            mywifiservice->setEnable(false);
+            wifilist->clear();
+            mysyssetting->setConnectWifiMac("");
 
         }
         this->repaint();
@@ -207,6 +241,19 @@ void Network::mouseReleaseEvent(QMouseEvent *event)
     case NETWORK_HOMEICON:
         this->close();
         qApp->exit(0);
+        break;
+    case NETWORK_LASTPAGE_BUTTON:
+           if(wifiCurrentPage>1){
+               wifiCurrentPage--;
+               currentpagewifilist = getCurrentPageWifiList(wifilist,wifiCurrentPage,wifiTotalPages);
+           }
+        break;
+    case NETWORK_PAGES_TEXT:
+        break;
+    case NETWORK_NEXTPAGE_BUTTON:
+        if(wifiCurrentPage<wifiTotalPages)
+             wifiCurrentPage++;
+         currentpagewifilist = getCurrentPageWifiList(wifilist,wifiCurrentPage,wifiTotalPages);
         break;
     default:
         break;
@@ -237,6 +284,6 @@ void Network::paintEvent(QPaintEvent *event)
     drawnetwork->drawNetworkWifiText(painter,rectlist->at(NETWORK_WIFITEXT),tr("Wifi"));
     drawnetwork->drawSearchResultTitle(painter,rectlist->at(NETWORK_SEARCHRESULT_TEXT),tr("Results"));
     drawnetwork->drawSwitchButton(painter,switch_button,wifi_flag);
-    drawnetwork->drawCurrentWifiItems(painter,wifilist,wifiCurrentPage,wifiTotalPages);
-
+    drawnetwork->drawCurrentWifiItems(painter,currentpagewifilist,wifiCurrentPage,wifiTotalPages);
+    drawnetwork->drawLastAndNextPage(painter,wifiCurrentPage,wifiTotalPages,rectlist->at(NETWORK_LASTPAGE_BUTTON),rectlist->at(NETWORK_PAGES_TEXT),rectlist->at(NETWORK_NEXTPAGE_BUTTON));
 }

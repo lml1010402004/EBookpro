@@ -318,9 +318,9 @@ void WifiService::restoreWifi()
     QString password = m_curWifi.ESSID_PASS;
     QString encryt = m_curWifi.ESSID_ENCRYP;
     QString type = m_curWifi.ESSID_TYPE;
-    qDebug()<<"PASSWORD_TYPE="<<type;
-    qDebug()<<"ESSID_NAME="<<name;
-    qDebug()<<"PASSWORD="<<password;
+//    qDebug()<<"PASSWORD_TYPE="<<type;
+//    qDebug()<<"ESSID_NAME="<<name;
+//    qDebug()<<"PASSWORD="<<password;
     FILE* fp = fopen("/etc/wpa_supplicant.conf", "wb");
     fprintf(fp, "update_config=1\nctrl_interface=/var/run/wpa_supplicant\nap_scan=1\n\n");
     if(encryt.indexOf(QString("NO")) != -1)
@@ -377,7 +377,6 @@ bool WifiService::restartWifi()
         }
     }
     pclose(pp);
-
     return ret;
 }
 
