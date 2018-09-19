@@ -33,13 +33,13 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
         break;
     case WALLPAPER_INDEX:
         switch (index) {
-        case 0:
+        case WALLPAPER_BACKICON:
            rect->xid = WALLPAPER_BACKICON;
             break;
-        case 1:
+        case WALLPAPER_HOMEICON:
             rect->xid = WALLPAPER_HOMEICON;
             break;
-        case 2:
+        case WALLPAPER_TITLE:
             rect->xid = WALLPAPER_TITLE;
             break;
         default:
@@ -48,24 +48,22 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
         break;
     case NETWORK_INDEX:
         switch (index) {
-        case 0:
+        case NETWORK_BACKICON:
             rect->xid = NETWORK_BACKICON;
             break;
-        case 1:
+        case NETWORK_HOMEICON:
             rect->xid = NETWORK_HOMEICON;
             break;
-        case 2:
+        case NETWORK_TITLE:
             rect->xid = NETWORK_TITLE;
             break;
-        case 3:
+        case NETWORK_WIFITEXT:
             rect->xid = NETWORK_WIFITEXT;
             break;
-        case 4:
-            rect->xid = NETWORK_WIFISWITCH;
+        case NETWORK_SEARCHRESULT_TEXT:
+             rect->xid = NETWORK_SEARCHRESULT_TEXT;
             break;
-        case 5:
-            rect->xid = NETWORK_SEARCHRESULT_TEXT;
-            break;
+
         default:
             break;
         }
@@ -100,13 +98,13 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
         break;
     case DATEANDTIME_INDEX:
         switch (index) {
-        case 0:
+        case DATEANDTIME_BACKICON:
             rect->xid = DATEANDTIME_BACKICON;
             break;
-        case 1:
+        case DATEANDTIME_HOMEICON:
             rect->xid = DATEANDTIME_HOMEICON;
             break;
-        case 2:
+        case DATEANDTIME_TITLE:
             rect->xid = DATEANDTIME_TITLE;
             break;
         default:
@@ -116,13 +114,13 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
         break;
     case LANGUAGE_INDEX:
         switch (index) {
-        case 0:
+        case LANGUAGEKEYBOARD_BACKICON:
             rect->xid = LANGUAGEKEYBOARD_BACKICON;
             break;
-        case 1:
+        case LANGUAGKEYBODRD_HOMEICON:
             rect->xid = LANGUAGKEYBODRD_HOMEICON;
             break;
-        case 2:
+        case LANGUAGEKEBOARD_TITLE:
             rect->xid = LANGUAGEKEBOARD_TITLE;
             break;
         default:
@@ -132,16 +130,16 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
         break;
     case RESTORE_INDEX:
         switch (index) {
-        case 0:
+        case RESTORE_BACKICON:
             rect->xid = RESTORE_BACKICON;
             break;
-        case 1:
+        case RESTORE_HOMEICON:
             rect->xid = RESTORE_HOMEICON;
             break;
-        case 2:
+        case RESTORE_TEXT:
             rect->xid = RESTORE_TEXT;
             break;
-        case 3:
+        case RESTORE_CONFIRM_BUTTON:
             rect->xid = RESTORE_CONFIRM_BUTTON;
             break;
         default:
@@ -150,13 +148,13 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
         break;
     case OTHER_INDEX:
         switch (index) {
-        case 0:
+        case OTHER_BACKICON:
             rect->xid = OTHER_BACKICON;
             break;
-        case 1:
+        case OTHER_HOMEICON:
             rect->xid = OTHER_HOMEICON;
             break;
-        case 2:
+        case OTHER_TITLE:
             rect->xid = OTHER_TITLE;
             break;
         default:

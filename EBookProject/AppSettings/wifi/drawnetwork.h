@@ -16,6 +16,7 @@ public:
     void drawNetworkWifiText(QPainter *painter,myQRect *rect,QString title);
     void drawNetworkSwitch(QPainter *painter,myQRect *rect);
     void drawSearchResultTitle(QPainter *painter, myQRect *rect,QString title);
+    void drawSwitchButton(QPainter *painter,QRect switchbutton,bool checked);
 
 
 

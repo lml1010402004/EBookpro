@@ -61,3 +61,12 @@ void DrawNetwork::drawSearchResultTitle(QPainter *painter, myQRect *rect,QString
 {
     painter->drawText(rect->rect,title);
 }
+
+void DrawNetwork::drawSwitchButton(QPainter *painter, QRect switchbutton, bool checked)
+{
+    if(checked){
+        painter->drawPixmap(switchbutton,wifi_open);
+    }else{
+        painter->drawPixmap(switchbutton,wifi_closed);
+    }
+}
