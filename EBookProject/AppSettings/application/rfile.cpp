@@ -63,6 +63,15 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
         case NETWORK_SEARCHRESULT_TEXT:
              rect->xid = NETWORK_SEARCHRESULT_TEXT;
             break;
+        case NETWORK_LASTPAGE_BUTTON:
+             rect->xid = NETWORK_LASTPAGE_BUTTON;
+            break;
+        case NETWORK_PAGES_TEXT:
+             rect->xid = NETWORK_PAGES_TEXT;
+            break;
+        case NETWORK_NEXTPAGE_BUTTON:
+             rect->xid = NETWORK_NEXTPAGE_BUTTON;
+            break;
 
         default:
             break;

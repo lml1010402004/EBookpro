@@ -29,6 +29,9 @@
 #define NETWORK_TITLE 2
 #define NETWORK_WIFITEXT 3
 #define NETWORK_SEARCHRESULT_TEXT 4
+#define NETWORK_LASTPAGE_BUTTON 5
+#define NETWORK_PAGES_TEXT 6
+#define NETWORK_NEXTPAGE_BUTTON 7
 
 //=========================USB TRANSFER==============================
 #define USB_BACKICON 0
