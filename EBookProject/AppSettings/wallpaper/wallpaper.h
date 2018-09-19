@@ -33,10 +33,12 @@ private:
     int index_wallpaper;//scope 0,1,2
     QList<myQRect*> *rectlist;
     QList<myQRect*> *wallpaperlist;
+    QList<myQRect*> *checkboxs;
     myQRect *rect;
      myQRect *myqrect;
     StatusBar *statusbar;
     int targetwidgetIndex;
+
 
 
 

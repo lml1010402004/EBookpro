@@ -20,6 +20,7 @@ public:
     void drawWallPapaerItem(QPainter *painter,int index);
     void drawTitle(QPainter *painter,myQRect *rect,QString title);
     void drawWallPapers(QPainter *painter,QList<myQRect*> *list);
+    void drawCheckbox(QPainter *painter,QList<myQRect*> *list,int checked_index);
 
 private:
     QLineF line;

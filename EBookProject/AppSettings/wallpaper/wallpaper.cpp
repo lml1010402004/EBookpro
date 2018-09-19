@@ -15,6 +15,10 @@ const int WALLPAPERS_Y = 190;
 const int WALLPAPERS_W=140;
 const int WALLPAPERS_HE = 180;
 
+const int CHECKBOXGROUP_X[] ={115,285,455};
+const int CHECKBOX_W_H = 30;
+const int CHECKBOX_Y=390;
+
 
 extern int pulldownwindowrect[];
 extern PulldownWindow *pulldownwindow;
@@ -25,10 +29,10 @@ extern PulldownWindow *pulldownwindow;
 WallPaper::WallPaper(QWidget *parent) : QMainWindow(parent)
 {
 
-   this->setWindowFlags(Qt::Dialog|Qt::FramelessWindowHint);
-   this->setFixedHeight(GLOBAL_FIXED_HEIGHT);
-   this->setFixedWidth(GLOBAL_FIXED_WIDTH);
-   init();
+    this->setWindowFlags(Qt::Dialog|Qt::FramelessWindowHint);
+    this->setFixedHeight(GLOBAL_FIXED_HEIGHT);
+    this->setFixedWidth(GLOBAL_FIXED_WIDTH);
+    init();
 
 }
 
@@ -53,8 +57,7 @@ void WallPaper::paintEvent(QPaintEvent *event)
     painter->drawLine(line);
 
     drawwallpaper->drawWallPapers(painter,wallpaperlist);
-
-
+    drawwallpaper->drawCheckbox(painter,checkboxs,index_wallpaper);
 
 }
 
@@ -74,6 +77,18 @@ void WallPaper::mousePressEvent(QMouseEvent *event)
         }
         pulldownwindow->show();
     }
+
+    if(y>CHECKBOX_Y&&y<CHECKBOX_Y+CHECKBOX_W_H){
+        if(x>CHECKBOXGROUP_X[0]&&x<CHECKBOXGROUP_X[0]+CHECKBOX_W_H){
+            index_wallpaper =0;
+        }else if(x>CHECKBOXGROUP_X[1]&&x<CHECKBOXGROUP_X[1]+CHECKBOX_W_H){
+            index_wallpaper =1;
+        }else if(x>CHECKBOXGROUP_X[2]&&x<CHECKBOXGROUP_X[2]+CHECKBOX_W_H){
+            index_wallpaper =2;
+        }
+        this->repaint();
+    }
+
 
 }
 
@@ -95,13 +110,18 @@ void WallPaper::mouseReleaseEvent(QMouseEvent *event)
     default:
         break;
     }
+    if(targetwidgetIndex>-1){
+        rectlist->at(targetwidgetIndex)->isPressed = false;
+        targetwidgetIndex = -1;
+        this->repaint();
+    }
 
 }
 
 void WallPaper::init()
 {
-  targetwidgetIndex = -1;
-  initView();
+    targetwidgetIndex = -1;
+    initView();
 }
 
 void WallPaper::initView()
@@ -111,14 +131,25 @@ void WallPaper::initView()
     statusbar = new StatusBar(this);
     index_wallpaper = mysysseting->getWallPaper();
     wallpaperlist = new QList<myQRect*>;
+    checkboxs = new QList<myQRect*>;
+
+    for(int k=0;k<3;k++){
+        rect = new myQRect;
+        rect->rect.setX(CHECKBOXGROUP_X[k]);
+        rect->rect.setY(CHECKBOX_Y);
+        rect->rect.setWidth(CHECKBOX_W_H);
+        rect->rect.setHeight(CHECKBOX_W_H);
+        rect->isPressed = false;
+        checkboxs->append(rect);
+    }
 
     for(int j=0;j<3;j++){
-      rect = new myQRect;
-      rect->rect.setX(WALLPAPERS_X[j]);
-      rect->rect.setY(WALLPAPERS_Y);
-      rect->rect.setWidth(WALLPAPERS_W);
-      rect->rect.setHeight(WALLPAPERS_HE);
-      wallpaperlist->append(rect);
+        rect = new myQRect;
+        rect->rect.setX(WALLPAPERS_X[j]);
+        rect->rect.setY(WALLPAPERS_Y);
+        rect->rect.setWidth(WALLPAPERS_W);
+        rect->rect.setHeight(WALLPAPERS_HE);
+        wallpaperlist->append(rect);
     }
 
 

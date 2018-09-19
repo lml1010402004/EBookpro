@@ -31,5 +31,9 @@
         <file>pics/device_unpress.png</file>
         <file>pics/sleep_pressed.png</file>
         <file>pics/sleep_unpress.png</file>
+        <file>pics/sleep_bg2.png</file>
+        <file>pics/sleep_bg3.png</file>
+        <file>pics/sleep_bg4.png</file>
+        <file>pics/checkbox_true.png</file>
     </qresource>
 </RCC>
