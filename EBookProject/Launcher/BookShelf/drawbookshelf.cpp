@@ -22,7 +22,7 @@ QString path4= ":/mypic/pics/bg3.png";
 
 int position4[] = {66,180,165,180,120,140,66,180,300,180,150,25};
 
-//int position5[] = {66,180,165,180,120,140,66,180,300,180,150,25};
+
 int position3[10] = {120,120,120,12,12,140,120,110,110,60};
 
 DrawBookshelf::DrawBookshelf()
@@ -47,10 +47,6 @@ void DrawBookshelf::drawHomeButton(QPainter *painter,myQRect *rect)
 
 void DrawBookshelf::drawArrangeTextView(QPainter *painter,myQRect *rect, QString str)
 {
-    qDebug()<<"rect.x"<<QString::number(rect->rect.x());
-    qDebug()<<"rect.y"<<QString::number(rect->rect.y());
-    qDebug()<<"rect.w"<<QString::number(rect->rect.width());
-    qDebug()<<"rect.he"<<QString::number(rect->rect.height());
 
     painter->drawText(rect->rect,str);
 }

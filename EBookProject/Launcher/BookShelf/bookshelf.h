@@ -13,6 +13,8 @@
 #include"drawbookshelf.h"
 #include"Utils/redefineqrect.h"
 //#include"Application/pulldownwindow.h"
+#include"commonutils.h"
+
 
 class BookShelf : public QMainWindow
 {
@@ -26,7 +28,7 @@ public:
     void mouseReleaseEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
 
-    int getTheTargetBookIndex(int x_pos,int y_pos);
+    QString getTheTargetBookNameforFBReader(int x_pos,int y_pos,QList<localDirectoryItem> *currentpagebookinfolist);
 
 
 
@@ -44,6 +46,10 @@ private:
     QList<QString> list;
     QList<localDirectoryItem> *totalbookinfolist;
     QList<localDirectoryItem> *currentpagebookinfolist;
+
+    QList<QRect*> *nineareas;
+    QRect *myqrect;
+    commonUtils *commonutils;
 
 
 
