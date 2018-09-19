@@ -41,7 +41,7 @@ private:
     BookShelf *bookshelf;
 
     ThirdApplications *thirdapplication;
-    QProcess *myprocess;
+
 
     commonUtils *commonutils;
 

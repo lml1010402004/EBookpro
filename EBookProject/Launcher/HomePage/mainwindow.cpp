@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include"Application/application.h"
-#include<QDebug>
+//#include<QDebug>
 #include"Utils/commonutils.h"
 #include<QBrush>
 #include"Application/rfile.h"
@@ -28,6 +28,7 @@ const QString bookcity = ":/mypic/pics/bookcity.png";
 const QString gamepath = ":/mypic/pics/game.png";
 
 QList<QMainWindow*> *mainwindowlist;
+QProcess *myprocess;
 
 
 const QString cover_group[3] = {":/mypic/pics/txt_cover.png",":/mypic/pics/pdf_cover.png",":/mypic/pics/epub_cover.png"};
@@ -47,13 +48,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-
     for(int n =0;n<currentbookcoverrect->size();n++){
         delete currentbookcoverrect->at(n);
 
     }
-
-
     for(int l=0;l<rectlist->size();l++){
         delete rectlist->at(l);
     }
@@ -168,16 +166,26 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
                 endpage = false;
             }
             break;
-        case HPM_FIRSTBOOK_RECT:
-
+        case HPM_FIRSTBOOK_RECT:          
+            if(currentPagebooklist->size()>0){
+                  qDebug()<<"====="<<currentPagebooklist->at(0).file_name;
+             commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(0).file_name);
+            }
             break;
         case HPM_SECONDBOOK_RECT:
+            if(currentPagebooklist->size()>1){
+                 qDebug()<<"====="<<currentPagebooklist->at(0).file_name;
+             commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(1).file_name);
+            }
             break;
         case HPM_THIRDBOOK_RECT:
+            if(currentPagebooklist->size()>2){
+                  qDebug()<<"====="<<currentPagebooklist->at(2).file_name;
+             commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(2).file_name);
+            }
             break;
         case HPM_NEXTPAGE_BUTTON:
             if(currentPageOfMainPage<totalPagesOfBooks-1){
-
                 currentPageOfMainPage++;
                 endpage = false;
                 firstpage = false;
@@ -212,7 +220,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
         }
         targetWidgetIndex = -1;
         this->repaint();
-
     }
 
 }
