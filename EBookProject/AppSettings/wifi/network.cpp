@@ -190,7 +190,7 @@ void Network::wifi_RefreshDone(QList<TWifi> wifi_Lists)
     if(first_come_in){
         first_come_in = false;
         wifiCurrentPage = 1;
-    currentpagewifilist = getCurrentPageWifiList(wifilist,wifiCurrentPage,wifiTotalPages);
+        currentpagewifilist = getCurrentPageWifiList(wifilist,wifiCurrentPage,wifiTotalPages);
     }
     this->repaint();
 }
@@ -250,17 +250,17 @@ void Network::mouseReleaseEvent(QMouseEvent *event)
         qApp->exit(0);
         break;
     case NETWORK_LASTPAGE_BUTTON:
-           if(wifiCurrentPage>1){
-               wifiCurrentPage--;
-               currentpagewifilist = getCurrentPageWifiList(wifilist,wifiCurrentPage,wifiTotalPages);
-           }
+        if(wifiCurrentPage>1){
+            wifiCurrentPage--;
+            currentpagewifilist = getCurrentPageWifiList(wifilist,wifiCurrentPage,wifiTotalPages);
+        }
         break;
     case NETWORK_PAGES_TEXT:
         break;
     case NETWORK_NEXTPAGE_BUTTON:
         if(wifiCurrentPage<wifiTotalPages)
-             wifiCurrentPage++;
-         currentpagewifilist = getCurrentPageWifiList(wifilist,wifiCurrentPage,wifiTotalPages);
+            wifiCurrentPage++;
+        currentpagewifilist = getCurrentPageWifiList(wifilist,wifiCurrentPage,wifiTotalPages);
         break;
     default:
         break;
