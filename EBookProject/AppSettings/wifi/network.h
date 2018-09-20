@@ -13,6 +13,7 @@
 #include"application/syssettings.h"
 
 
+
 class Network : public QMainWindow
 {
     Q_OBJECT

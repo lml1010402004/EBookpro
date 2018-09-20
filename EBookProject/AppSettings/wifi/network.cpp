@@ -46,6 +46,7 @@ void Network::init()
     mysyssetting = new SysSettings;
     currentpagewifilist = new QList<wifiItem*>;
     wifilist = new QList<wifiItem*>;
+    connectwifidialog = new ConnectWifiDialog(this);
 
 
     initConnections();
@@ -127,17 +128,13 @@ void Network::clickWifiListat(int x, int y, QList<wifiItem *> *list)
    int y5 = y4+ITEM_HEIGHT;
    if(x>draw_set_net5[0]-10&&x<draw_set_net5[0]+ITEM_WIDTH){
        if(y>y1&&y<y2&&size>0){
-           //第一个wifi可以点击
-           qDebug("the first one");
+connectwifidialog->show();
        }else if(y>y2&&y<y3&&size>1){
-            //点击第二个wifi
-           qDebug("the second one");
+connectwifidialog->show();
        }else if(y>y3&&y<y4&&size>2){
-             //点击第三个wifi
-           qDebug("the third one");
+connectwifidialog->show();
        }else if(y>y4&&y<y5&&size>3){
-         //点击第四个wifi
-           qDebug("the fourth one");
+connectwifidialog->show();
        }
    }
 
