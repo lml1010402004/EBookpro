@@ -1,6 +1,7 @@
 #include "othermodule.h"
 #include"application.h"
 #include"rfile.h"
+#include"commonutils.h"
 
 const int OTHERMODULE_X[] = {60,500,280};
 const int OTHERMODULE_Y[] = {48,48,130};
@@ -25,12 +26,12 @@ OtherModule::OtherModule(QWidget *parent) : QMainWindow(parent)
 OtherModule::~OtherModule()
 {
     for(int i=0;i<rectlist->size();i++){
-         delete rectlist->at(i);
+        delete rectlist->at(i);
     }
     for(int j=0;j<systemitemlist->size();j++){
         delete systemitemlist->at(j);
     }
-  delete statusbar,drawothermodule,myqrect,rectlist,systemitemlist;
+    delete statusbar,drawothermodule,myqrect,rectlist,systemitemlist;
 }
 
 void OtherModule::paintEvent(QPaintEvent *event)
@@ -63,9 +64,44 @@ void OtherModule::mouseMoveEvent(QMouseEvent *event)
 
 }
 
+void OtherModule::mousePressEvent(QMouseEvent *event)
+{
+    int x = event->x();
+    int y = event->y();
+
+    targetWidgetIndex = commonUtils::getTargetIndexInSettingModule(x,y,systemitemlist);
+    if(targetWidgetIndex>-1){
+        systemitemlist->at(targetWidgetIndex)->ispressed= true;
+        this->repaint();
+    }
+    switch (targetWidgetIndex) {
+    case 0:
+        if(settingsleeptime== NULL){
+            settingsleeptime->show();
+        }
+        break;
+    case 1:
+        if(deviceinfo==NULL){
+            deviceinfo->show();
+        }
+        break;
+    default:
+        break;
+    }
+
+
+
+
+
+}
+
 void OtherModule::init()
 {
-  initView();
+    targetWidgetIndex =-1;
+    settingsleeptime = new SettingSleepTime(this);
+    deviceinfo = new DeviceInfo(this);
+
+    initView();
 }
 
 void OtherModule::initView()
@@ -109,7 +145,5 @@ void OtherModule::initView()
         item->ispressed = false;
         systemitemlist->append(item);
     }
-
-
 
 }

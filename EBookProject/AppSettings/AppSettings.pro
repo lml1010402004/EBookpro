@@ -50,6 +50,12 @@ include(dataitem/dataitem.pri)
 INCLUDEPATH +=$$PWD other
 include(other/other.pri)
 
+INCLUDEPATH +=$$PWD sleep
+include(sleep/sleep.pri)
+
+INCLUDEPATH +=$$PWD device
+include(device/device.pri)
+
 
 
 

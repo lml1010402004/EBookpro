@@ -201,13 +201,13 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
         this->repaint();
     }
     switch (targetWidgetIndex) {//这里就是Setting item的顺序
-    case 0:
+    case 0://Brightness
         if(brightness==NULL){
             brightness = new Brightness(this);
         }
         brightness->show();
         break;
-    case 1:
+    case 1://
         if(wallpaper==NULL){
             wallpaper = new WallPaper(this);
         }

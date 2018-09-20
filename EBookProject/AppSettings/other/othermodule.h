@@ -9,6 +9,8 @@
 #include"statusbar_global.h"
 #include"drawothermodule.h"
 #include"utils/redefineqrect.h"
+#include"sleep/settingsleeptime.h"
+#include"device/deviceinfo.h"
 
 
 class OtherModule : public QMainWindow
@@ -20,6 +22,7 @@ public:
     void paintEvent(QPaintEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *event);
 
 private:
     void init();
@@ -31,6 +34,12 @@ private:
 
     QList<SystemItems*> *systemitemlist;
     SystemItems *item;
+    SettingSleepTime *settingsleeptime;
+    DeviceInfo *deviceinfo;
+
+
+    int targetWidgetIndex;
+
 
 signals:
 
