@@ -16,17 +16,15 @@ const QString nextpage_unpress = ":/pic/pics/forward_unpressed1.png";
 const QString nextpage_pressed = ":/pic/pics/forward_pressed1.png";
 
 
-int draw_set_net5[16] = {100,320,80,54,60,170,320,80,200,60,20,430,320,80,100,60};
+int draw_set_net5[16] = {100,320,80,40,50,170,320,80,200,60,20,430,320,80,100,60};
 DrawNetwork::DrawNetwork()
 {
     mysyssetting = new SysSettings;
-
 }
 
 DrawNetwork::~DrawNetwork()
 {
     delete mysyssetting;
-
 }
 
 void DrawNetwork::drawHomeIcon(QPainter *painter, myQRect *rect)
@@ -82,7 +80,7 @@ void DrawNetwork::drawSwitchButton(QPainter *painter, QRect switchbutton, bool c
 
 void DrawNetwork::drawCurrentWifiItems(QPainter *painter, QList<wifiItem *> *wifilistitem, int currentPage, int totalPages)
 {
-    if(wifilistitem->size()<1){
+    if(wifilistitem==NULL){
         return;
     }
     int size = wifilistitem->size();

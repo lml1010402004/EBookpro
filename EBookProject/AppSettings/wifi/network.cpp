@@ -5,7 +5,7 @@
 #include<QApplication>
 #include<QDebug>
 
-const int NETWORK_X[] = {60,500,250,80,250,160,280,400};
+const int NETWORK_X[] = {60,500,250,80,250,160,282,400};
 const int NETWORK_Y[] = {48,48,130,180,260,660,670,660};
 const int NETWORK_W[] = {48,48,100,80,120,40,80,40};
 const int NETWORK_HE[] ={48,48,40,30,40,40,40,40};
@@ -35,8 +35,8 @@ void Network::init()
 {
     first_come_in = true;
     targetwidgetIndex =-1;
-    wifiCurrentPage =1;
-    wifiTotalPages =1;
+    wifiCurrentPage =0;
+    wifiTotalPages =0;
     wifi_flag = false;
     mywifiservice = WifiService::getInstance(this);
     connectwifidialog = new ConnectWifiDialog(this);
@@ -84,6 +84,9 @@ void Network::initConnections()
 
 QList<wifiItem*>* Network::getCurrentPageWifiList(QList<wifiItem *> *list, int currentPage, int totalPages)
 {
+    if(list->size()==0){
+        return NULL;
+    }
     QList<wifiItem*> *templist = new QList<wifiItem*> ;
     if(currentPage<totalPages){//The data of middle page
         int index =  (currentPage-1)*MAXITEM_EACHPAGE;
@@ -186,6 +189,7 @@ void Network::wifi_RefreshDone(QList<TWifi> wifi_Lists)
     }
     if(first_come_in){
         first_come_in = false;
+        wifiCurrentPage = 1;
     currentpagewifilist = getCurrentPageWifiList(wifilist,wifiCurrentPage,wifiTotalPages);
     }
     this->repaint();
@@ -218,8 +222,11 @@ void Network::mousePressEvent(QMouseEvent *event)
         }else{
             mywifiservice->setEnable(false);
             wifilist->clear();
+            wifiCurrentPage = 0;
+            wifiTotalPages =0;
+            first_come_in = true;
             mysyssetting->setConnectWifiMac("");
-
+            currentpagewifilist = getCurrentPageWifiList(wifilist,wifiCurrentPage,wifiTotalPages);
         }
         this->repaint();
     }
