@@ -118,25 +118,25 @@ QList<wifiItem*>* Network::getCurrentPageWifiList(QList<wifiItem *> *list, int c
 
 void Network::clickWifiListat(int x, int y, QList<wifiItem *> *list)
 {
-   if(list==NULL||list->size()==0)
-       return ;
-   int size = list->size();
-   int y1 = draw_set_net5[1];
-   int y2 = y1+ITEM_HEIGHT;
-   int y3 = y2+ITEM_HEIGHT;
-   int y4 = y3+ITEM_HEIGHT;
-   int y5 = y4+ITEM_HEIGHT;
-   if(x>draw_set_net5[0]-10&&x<draw_set_net5[0]+ITEM_WIDTH){
-       if(y>y1&&y<y2&&size>0){
-connectwifidialog->show();
-       }else if(y>y2&&y<y3&&size>1){
-connectwifidialog->show();
-       }else if(y>y3&&y<y4&&size>2){
-connectwifidialog->show();
-       }else if(y>y4&&y<y5&&size>3){
-connectwifidialog->show();
-       }
-   }
+    if(list==NULL||list->size()==0)
+        return ;
+    int size = list->size();
+    int y1 = draw_set_net5[1];
+    int y2 = y1+ITEM_HEIGHT;
+    int y3 = y2+ITEM_HEIGHT;
+    int y4 = y3+ITEM_HEIGHT;
+    int y5 = y4+ITEM_HEIGHT;
+    if(x>draw_set_net5[0]-10&&x<draw_set_net5[0]+ITEM_WIDTH){
+        if(y>y1&&y<y2&&size>0){
+            connectwifidialog->show();
+        }else if(y>y2&&y<y3&&size>1){
+            connectwifidialog->show();
+        }else if(y>y3&&y<y4&&size>2){
+            connectwifidialog->show();
+        }else if(y>y4&&y<y5&&size>3){
+            connectwifidialog->show();
+        }
+    }
 
 }
 
@@ -258,7 +258,6 @@ void Network::mousePressEvent(QMouseEvent *event)
         }
         this->repaint();
     }
-
 
     clickWifiListat(x,y,currentpagewifilist);
 

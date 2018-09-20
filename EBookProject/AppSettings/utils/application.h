@@ -8,6 +8,7 @@
 #define LIGHT_INDEX   0
 #define WALLPAPER_INDEX 1
 #define NETWORK_INDEX 2
+#define NETWORK_CONN_WIFI 22
 #define USBTRANSFER_INDEX 3
 #define DATEANDTIME_INDEX 4
 #define LANGUAGE_INDEX 5
@@ -68,6 +69,13 @@
 #define WALLPAPER_BACKICON 0
 #define WALLPAPER_HOMEICON 1
 #define WALLPAPER_TITLE 2
+
+//=======================CONNECT WIFI DIALOG===================
+#define CONN_WIFI_TITLE 0
+#define CONN_WIFI_TEXT 1
+#define CONN_WIFI_EDIT 2
+#define CONN_WIFI_CONN_BUTTON 3
+#define CONN_WIFI_CANCLE_BUTTON 4
 
 
 static const QString home_pressed=":/pic/pics/home_pressed.png";

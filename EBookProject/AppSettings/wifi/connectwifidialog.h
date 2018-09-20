@@ -6,6 +6,9 @@
 #include<QPaintEvent>
 #include<QMouseEvent>
 #include<QLineEdit>
+#include"redefineqrect.h"
+#include<QList>
+#include"drawconnectwifidialog.h"
 
 class ConnectWifiDialog : public QDialog
 {
@@ -15,11 +18,16 @@ public:
     ~ConnectWifiDialog();
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
 private:
- QLineEdit *mylineedit;
+    QLineEdit *mylineedit;
     void init();
     void initView();
     void initConnections();
+    QList<myQRect*> *rectlist;
+    myQRect *myqrect;
+    int targetwidgetIndex;
+    DrawConnectWifiDialog *drawconnectwifidialog;
 
 
 signals:

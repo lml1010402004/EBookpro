@@ -5,7 +5,7 @@
 #include"application/pinyinim.h"
 #include"application/keyboardfilter.h"
 
-KeyBoardFilter *keyboardfilter;
+
 
 int main(int argc, char *argv[])
 {
@@ -18,14 +18,6 @@ int main(int argc, char *argv[])
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
     //设置支持汉字显示==结束==
-
-    PinyinIM   *pinyinIM = new PinyinIM();
-    //pinyinIM->connect(pinyinIM, SIGNAL(sigConfirmString(QString)), this, SLOT(pinyinIMConfirmStringS(QString)));
-    QWSServer::setCurrentInputMethod(pinyinIM);
-
-    keyboardfilter = new KeyBoardFilter;
-
-    QWSServer::addKeyboardFilter(keyboardfilter);
 
 
     MainWindow w;

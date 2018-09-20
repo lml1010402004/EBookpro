@@ -169,6 +169,25 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
         default:
             break;
         }
+        break;
+    case NETWORK_CONN_WIFI:
+        switch(index){
+          case CONN_WIFI_TITLE:
+            rect->xid = CONN_WIFI_TITLE;
+            break;
+        case CONN_WIFI_TEXT:
+            rect->xid = CONN_WIFI_TEXT;
+            break;
+        case CONN_WIFI_EDIT:
+            rect->xid = CONN_WIFI_EDIT;
+            break;
+        case CONN_WIFI_CONN_BUTTON:
+            rect->xid = CONN_WIFI_CONN_BUTTON;
+            break;
+        case CONN_WIFI_CANCLE_BUTTON:
+            rect->xid = CONN_WIFI_CANCLE_BUTTON;
+            break;
+        }
 
         break;
     default:
