@@ -14,6 +14,9 @@ const int SWITCH_POS[] = {480,180,60,30};
 
 const int MAXITEM_EACHPAGE = 4;
 
+extern int draw_set_net5[16];
+extern int ITEM_WIDTH;
+extern int ITEM_HEIGHT;
 
 Network::Network(QWidget *parent) : QMainWindow(parent)
 {
@@ -109,6 +112,34 @@ QList<wifiItem*>* Network::getCurrentPageWifiList(QList<wifiItem *> *list, int c
         }
     }
     return templist;
+
+}
+
+void Network::clickWifiListat(int x, int y, QList<wifiItem *> *list)
+{
+   if(list==NULL||list->size()==0)
+       return ;
+   int size = list->size();
+   int y1 = draw_set_net5[1];
+   int y2 = y1+ITEM_HEIGHT;
+   int y3 = y2+ITEM_HEIGHT;
+   int y4 = y3+ITEM_HEIGHT;
+   int y5 = y4+ITEM_HEIGHT;
+   if(x>draw_set_net5[0]-10&&x<draw_set_net5[0]+ITEM_WIDTH){
+       if(y>y1&&y<y2&&size>0){
+           //第一个wifi可以点击
+           qDebug("the first one");
+       }else if(y>y2&&y<y3&&size>1){
+            //点击第二个wifi
+           qDebug("the second one");
+       }else if(y>y3&&y<y4&&size>2){
+             //点击第三个wifi
+           qDebug("the third one");
+       }else if(y>y4&&y<y5&&size>3){
+         //点击第四个wifi
+           qDebug("the fourth one");
+       }
+   }
 
 }
 
@@ -230,6 +261,9 @@ void Network::mousePressEvent(QMouseEvent *event)
         }
         this->repaint();
     }
+
+
+    clickWifiListat(x,y,currentpagewifilist);
 
 }
 

@@ -30,6 +30,7 @@ private:
     void initView();
     void initConnections();
     QList<wifiItem*>* getCurrentPageWifiList(QList<wifiItem*> *list,int currentPage,int totalPages);
+    void clickWifiListat(int x,int y,QList<wifiItem*> *list);
 
     DrawNetwork *drawnetwork;
     StatusBar *statusbar;

@@ -17,6 +17,9 @@ const QString nextpage_pressed = ":/pic/pics/forward_pressed1.png";
 
 
 int draw_set_net5[16] = {100,320,80,40,50,170,320,80,200,60,20,430,320,80,100,60};
+int ITEM_WIDTH = 400;
+int ITEM_HEIGHT = 80;
+
 DrawNetwork::DrawNetwork()
 {
     mysyssetting = new SysSettings;
@@ -95,8 +98,8 @@ void DrawNetwork::drawCurrentWifiItems(QPainter *painter, QList<wifiItem *> *wif
 
         myrect.setX(draw_set_net5[0]-10);
         myrect.setY(draw_set_net5[1]+draw_set_net5[2]*i-5);
-        myrect.setWidth(400);
-        myrect.setHeight(80);
+        myrect.setWidth(ITEM_WIDTH);
+        myrect.setHeight(ITEM_HEIGHT);
         painter->drawRect(myrect);//画框
 
         rect.setX(draw_set_net5[0]);
