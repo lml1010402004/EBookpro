@@ -8,6 +8,7 @@ class DeviceInfo : public QMainWindow
     Q_OBJECT
 public:
     explicit DeviceInfo(QWidget *parent = 0);
+    ~DeviceInfo();
 
 signals:
 

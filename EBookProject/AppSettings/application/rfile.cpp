@@ -190,6 +190,22 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
         }
 
         break;
+
+    case SLEEPTIMESET:
+        switch (index) {
+        case SLEEP_TIME_BACK:
+            rect->xid = SLEEP_TIME_BACK;
+            break;
+        case SLEEP_TIME_HOMEICON:
+            rect->xid = SLEEP_TIME_HOMEICON;
+            break;
+        default:
+            break;
+        }
+        break;
+    case DEVICEINFO:
+        break;
+
     default:
         break;
     }

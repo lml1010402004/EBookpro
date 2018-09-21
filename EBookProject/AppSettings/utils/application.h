@@ -14,6 +14,8 @@
 #define LANGUAGE_INDEX 5
 #define RESTORE_INDEX 6
 #define OTHER_INDEX 7
+#define SLEEPTIMESET 8
+#define DEVICEINFO 9
 
 
 
@@ -76,6 +78,13 @@
 #define CONN_WIFI_EDIT 2
 #define CONN_WIFI_CONN_BUTTON 3
 #define CONN_WIFI_CANCLE_BUTTON 4
+
+//====================SLEEP TIME SET=====================
+#define SLEEP_TIME_BACK 0
+#define SLEEP_TIME_HOMEICON 1
+#define SLEEP_TIME_TITLE 2
+
+
 
 
 static const QString home_pressed=":/pic/pics/home_pressed.png";

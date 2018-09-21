@@ -4,3 +4,8 @@ DeviceInfo::DeviceInfo(QWidget *parent) : QMainWindow(parent)
 {
 
 }
+
+DeviceInfo::~DeviceInfo()
+{
+
+}

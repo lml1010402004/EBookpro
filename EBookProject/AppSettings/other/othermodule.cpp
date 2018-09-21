@@ -2,6 +2,7 @@
 #include"application.h"
 #include"rfile.h"
 #include"commonutils.h"
+#include<QApplication>
 
 const int OTHERMODULE_X[] = {60,500,280};
 const int OTHERMODULE_Y[] = {48,48,130};
@@ -56,6 +57,29 @@ void OtherModule::paintEvent(QPaintEvent *event)
 
 void OtherModule::mouseReleaseEvent(QMouseEvent *event)
 {
+    switch (targetWidgetIndex1) {
+    case OTHER_BACKICON:
+         this->close();
+        break;
+    case OTHER_HOMEICON:
+        this->close();
+        qApp->exit(0);
+        break;
+    default:
+        break;
+    }
+
+    if(targetWidgetIndex>-1){
+        systemitemlist->at(targetWidgetIndex)->ispressed = false;
+        targetWidgetIndex = -1;
+        this->repaint();
+    }
+
+    if(targetWidgetIndex1>-1){
+        rectlist->at(targetWidgetIndex1)->isPressed = false;
+        targetWidgetIndex1 = -1;
+        this->repaint();
+    }
 
 }
 
@@ -68,28 +92,33 @@ void OtherModule::mousePressEvent(QMouseEvent *event)
 {
     int x = event->x();
     int y = event->y();
-
     targetWidgetIndex = commonUtils::getTargetIndexInSettingModule(x,y,systemitemlist);
     if(targetWidgetIndex>-1){
         systemitemlist->at(targetWidgetIndex)->ispressed= true;
         this->repaint();
     }
-    switch (targetWidgetIndex) {
+
+    switch (targetWidgetIndex){
     case 0:
         if(settingsleeptime== NULL){
-            settingsleeptime->show();
+           settingsleeptime = new SettingSleepTime(this);
         }
+         settingsleeptime->show();
         break;
     case 1:
         if(deviceinfo==NULL){
-            deviceinfo->show();
+           deviceinfo = new DeviceInfo(this);
         }
+          deviceinfo->show();
         break;
     default:
         break;
     }
-
-
+    targetWidgetIndex1 = commonUtils::getTheTargetWidget(x,y,rectlist);
+    if(targetWidgetIndex1>-1){
+        rectlist->at(targetWidgetIndex1)->isPressed = true;
+        this->repaint();
+    }
 
 
 
@@ -97,6 +126,7 @@ void OtherModule::mousePressEvent(QMouseEvent *event)
 
 void OtherModule::init()
 {
+    targetWidgetIndex1 = -1;
     targetWidgetIndex =-1;
     settingsleeptime = new SettingSleepTime(this);
     deviceinfo = new DeviceInfo(this);
@@ -119,7 +149,6 @@ void OtherModule::initView()
         myqrect->isPressed = false;
         RFIle::assignMacroDefinition(OTHER_INDEX,myqrect,i);
         rectlist->append(myqrect);
-
     }
 
     systemitemlist = new QList<SystemItems*>;

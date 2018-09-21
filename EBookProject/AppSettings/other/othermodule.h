@@ -39,6 +39,7 @@ private:
 
 
     int targetWidgetIndex;
+    int targetWidgetIndex1;
 
 
 signals:

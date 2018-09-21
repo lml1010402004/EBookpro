@@ -47,16 +47,7 @@ int item_icon_xywh[8][4] = {
     {480,670,50,50}
 };
 
-//const QString item_icon_paths[] = {
-//    ":/pic/pics/network_icon.png",
-//    ":/pic/pics/network_icon.png",
-//    ":/pic/pics/network_icon.png",
-//    ":/pic/pics/network_icon.png",
-//    ":/pic/pics/network_icon.png",
-//    ":/pic/pics/network_icon.png",
-//    ":/pic/pics/network_icon.png",
-//    ":/pic/pics/network_icon.png"
-//};
+
 
 
 
