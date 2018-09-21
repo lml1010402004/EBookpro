@@ -204,6 +204,19 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
         }
         break;
     case DEVICEINFO:
+        switch (index) {
+        case DEVICE_INFO_BACKICON:
+            rect->xid = DEVICE_INFO_BACKICON;
+            break;
+        case DEVICE_INFO_HOMEICON:
+            rect->xid = DEVICE_INFO_HOMEICON;
+            break;
+        case DEVICE_INFO_TITLE:
+            rect->xid = DEVICE_INFO_TITLE;
+            break;
+        default:
+            break;
+        }
         break;
 
     default:

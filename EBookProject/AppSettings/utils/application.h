@@ -84,6 +84,11 @@
 #define SLEEP_TIME_HOMEICON 1
 #define SLEEP_TIME_TITLE 2
 
+//====================DEVICE INFO================
+#define DEVICE_INFO_BACKICON 0
+#define DEVICE_INFO_HOMEICON 1
+#define DEVICE_INFO_TITLE 2
+
 
 
 
