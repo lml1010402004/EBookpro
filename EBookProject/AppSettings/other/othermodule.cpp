@@ -3,6 +3,7 @@
 #include"rfile.h"
 #include"commonutils.h"
 #include<QApplication>
+#include"application/pulldownwindow.h"
 
 const int OTHERMODULE_X[] = {60,500,280};
 const int OTHERMODULE_Y[] = {48,48,130};
@@ -12,6 +13,11 @@ const int OTHERMODULE_HE[] = {48,48,24};
 extern int items_xywh[8][4];
 extern int item_text_xywh[8][4];
 extern int item_icon_xywh[8][4];
+
+
+extern PulldownWindow *pulldownwindow;
+extern int pulldownwindowrect[];
+
 const QString item_text_text[] = {QObject::tr("Sleep"),QObject::tr("Device")};
 
 OtherModule::OtherModule(QWidget *parent) : QMainWindow(parent)
@@ -81,6 +87,8 @@ void OtherModule::mouseReleaseEvent(QMouseEvent *event)
         this->repaint();
     }
 
+
+
 }
 
 void OtherModule::mouseMoveEvent(QMouseEvent *event)
@@ -118,6 +126,13 @@ void OtherModule::mousePressEvent(QMouseEvent *event)
     if(targetWidgetIndex1>-1){
         rectlist->at(targetWidgetIndex1)->isPressed = true;
         this->repaint();
+    }
+
+    if(x>pulldownwindowrect[0]&&x<(pulldownwindowrect[0]+pulldownwindowrect[2])&&y<pulldownwindowrect[3]){
+        if(pulldownwindow==NULL){
+            pulldownwindow = new PulldownWindow(this);
+        }
+        pulldownwindow->show();
     }
 
 

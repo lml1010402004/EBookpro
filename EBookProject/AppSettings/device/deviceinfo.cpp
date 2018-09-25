@@ -3,11 +3,15 @@
 #include"rfile.h"
 #include"commonutils.h"
 #include<QApplication>
+#include"application/pulldownwindow.h"
 
 const int DEVICE_X[] = {60,500,270};
 const int DEVICE_Y[] = {48,48,130};
 const int DEVICE_W[] ={48,48,60};
 const int DEVICE_HE[] ={48,48,30};
+
+extern PulldownWindow *pulldownwindow;
+extern int pulldownwindowrect[];
 
  QString KEY[] = {QObject::tr("SN"),QObject::tr("MAC"),QObject::tr("Memory"),QObject::tr("Version")};
  QString VALUE[] = {"","","8G","V1.0"};
@@ -51,6 +55,15 @@ void DeviceInfo::mousePressEvent(QMouseEvent *event)
   if(targetwidgetIndex>-1){
       rectlist->at(targetwidgetIndex)->isPressed = true;
       this->repaint();
+  }
+
+
+  if(x>pulldownwindowrect[0]&&x<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
+          y<pulldownwindowrect[3]){
+      if(pulldownwindow==NULL){
+          pulldownwindow = new PulldownWindow(this);
+      }
+      pulldownwindow->show();
   }
 
 }

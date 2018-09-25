@@ -4,6 +4,7 @@
 #include"utils/commonutils.h"
 #include<QApplication>
 #include<QDebug>
+#include"application/pulldownwindow.h"
 
 const int NETWORK_X[] = {60,500,250,80,250,160,282,400};
 const int NETWORK_Y[] = {48,48,130,180,260,660,670,660};
@@ -17,6 +18,9 @@ const int MAXITEM_EACHPAGE = 4;
 extern int draw_set_net5[16];
 extern int ITEM_WIDTH;
 extern int ITEM_HEIGHT;
+
+extern PulldownWindow *pulldownwindow;
+extern int pulldownwindowrect[];
 
 Network::Network(QWidget *parent) : QMainWindow(parent)
 {
@@ -260,6 +264,15 @@ void Network::mousePressEvent(QMouseEvent *event)
     }
 
     clickWifiListat(x,y,currentpagewifilist);
+
+
+    if(x>pulldownwindowrect[0]&&x<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
+            y<pulldownwindowrect[3]){
+        if(pulldownwindow==NULL){
+            pulldownwindow = new PulldownWindow(this);
+        }
+        pulldownwindow->show();
+    }
 
 }
 

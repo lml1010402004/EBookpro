@@ -5,6 +5,7 @@
 #include<QApplication>
 #include"database.h"
 #include"QDebug"
+#include"application/pulldownwindow.h"
 
 const int USB_X[] = {60,500,250,210,260,120,340};
 const int USB_Y[] = {48,48,130,210,380,460,460};
@@ -16,6 +17,10 @@ extern int homexywh[];
 const QString TARGETDIREC = "/user/";
 QString USBSTATEADDRESS = "/sys/class/android_usb/android0/state";
 int my_usb_connected;
+
+
+extern PulldownWindow *pulldownwindow;
+extern int pulldownwindowrect[];
 
 UsbTransfer::UsbTransfer(QWidget *parent) : QMainWindow(parent)
 {
@@ -42,6 +47,14 @@ void UsbTransfer::mousePressEvent(QMouseEvent *event)
     if(targetwidgetiIndex>-1){
         rectlist->at(targetwidgetiIndex)->isPressed = true;
         this->repaint();
+    }
+
+    if(x>pulldownwindowrect[0]&&x<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
+            y<pulldownwindowrect[3]){
+        if(pulldownwindow==NULL){
+            pulldownwindow = new PulldownWindow(this);
+        }
+        pulldownwindow->show();
     }
 
 }

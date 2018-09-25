@@ -3,6 +3,7 @@
 #include"rfile.h"
 #include"commonutils.h"
 #include<QApplication>
+#include"application/pulldownwindow.h"
 
 const int SLEEPTIME_X[]= {60,500,270};
 const int SLEEPTIME_Y[] ={48,48,130};
@@ -12,6 +13,10 @@ const int SLEEPTIME_HE[] = {48,48,30};
 extern int LISTVIEW_X[];
 extern int LISTVIEW_Y[];
 extern int LISTVIEW_ITEM_HEIGHT;
+
+
+extern PulldownWindow *pulldownwindow;
+extern int pulldownwindowrect[];
 
 SettingSleepTime::SettingSleepTime(QWidget *parent) : QMainWindow(parent)
 {
@@ -56,6 +61,14 @@ void SettingSleepTime::mousePressEvent(QMouseEvent *event)
             time_selected = 4;
         }
         this->repaint();
+    }
+
+    if(x>pulldownwindowrect[0]&&x<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
+            y<pulldownwindowrect[3]){
+        if(pulldownwindow==NULL){
+            pulldownwindow = new PulldownWindow(this);
+        }
+        pulldownwindow->show();
     }
 
 

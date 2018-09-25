@@ -20,6 +20,9 @@ extern int item_icon_xywh[8][4];
 int dateorTime;
 extern QString systemtime;
 
+extern PulldownWindow *pulldownwindow;
+extern int pulldownwindowrect[];
+
 
 QString item_text_text[] = {QObject::tr("Date"),QObject::tr("Hour")};
 
@@ -56,6 +59,14 @@ void DateAndTime::mousePressEvent(QMouseEvent *event)
     if(x>items_xywh[1][0]&&x<items_xywh[1][0]+items_xywh[1][2]&&y>items_xywh[1][1]&&y<items_xywh[1][1]+items_xywh[1][3]){
         dateorTime = 1;
         settimedialog->show();
+    }
+
+    if(x>pulldownwindowrect[0]&&x<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
+            y<pulldownwindowrect[3]){
+        if(pulldownwindow==NULL){
+            pulldownwindow = new PulldownWindow(this);
+        }
+        pulldownwindow->show();
     }
 
 }

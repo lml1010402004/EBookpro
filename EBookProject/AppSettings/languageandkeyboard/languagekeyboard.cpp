@@ -15,6 +15,9 @@ extern int items_xywh[8][4];
 extern int item_text_xywh[8][4];
 extern int item_icon_xywh[8][4];
 
+extern PulldownWindow *pulldownwindow;
+extern int pulldownwindowrect[];
+
 
 LanguageKeyboard::LanguageKeyboard(QWidget *parent) : QMainWindow(parent)
 {
@@ -43,6 +46,14 @@ void LanguageKeyboard::mousePressEvent(QMouseEvent *event)
     if(x>items_xywh[0][0]&&x<items_xywh[0][0]+items_xywh[0][2]&&y>items_xywh[0][1]&&y<items_xywh[0][1]+
             items_xywh[0][3]){
         switchlanguagedialog->show();
+    }
+
+    if(x>pulldownwindowrect[0]&&x<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
+            y<pulldownwindowrect[3]){
+        if(pulldownwindow==NULL){
+            pulldownwindow = new PulldownWindow(this);
+        }
+        pulldownwindow->show();
     }
 
 

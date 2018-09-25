@@ -3,12 +3,15 @@
 #include"rfile.h"
 #include"utils/commonutils.h"
 #include<QApplication>
+#include"application/pulldownwindow.h"
+
 const int RESTORE_X[] = {60,500,250,230};
 const int RESTORE_Y[] ={48,48,130,310};
 const int RESTORE_W[] ={48,48,140,140};
 const int RESTORE_HE[] ={48,48,30,60};
 
-
+extern PulldownWindow *pulldownwindow;
+extern int pulldownwindowrect[];
 /**
   格式化磁盘
  * @brief formattingDisk
@@ -67,6 +70,14 @@ void Restore::mousePressEvent(QMouseEvent *event)
     if(targetwidgetIndex>-1){
         rectlist->at(targetwidgetIndex)->isPressed = true;
         this->repaint();
+    }
+
+    if(x>pulldownwindowrect[0]&&x<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
+            y<pulldownwindowrect[3]){
+        if(pulldownwindow==NULL){
+            pulldownwindow = new PulldownWindow(this);
+        }
+        pulldownwindow->show();
     }
 
 }
