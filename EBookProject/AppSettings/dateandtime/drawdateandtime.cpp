@@ -49,9 +49,9 @@ void DrawDateAndTime::drawDateAndTimeItems(QPainter *painter, QList<SystemItems*
     for(int i=0;i<itemlist->size();i++){
         painter->drawRect(itemlist->at(i)->itemrect);
         painter->drawText(itemlist->at(i)->itemtextrect,itemlist->at(i)->getItem_text_text());
-        if(i==1)
-        painter->drawText(itemlist->at(i)->itemiconrect,date->getDate());
         if(i==0)
+        painter->drawText(itemlist->at(i)->itemiconrect,date->getDate());
+        if(i==1)
              painter->drawText(itemlist->at(i)->itemiconrect,date->getTimehour());
 
     }

@@ -10,6 +10,7 @@
 
 class SetTimeDialog:public QMainWindow
 {
+    Q_OBJECT
 public:
     SetTimeDialog(QWidget *parent = 0);
     ~SetTimeDialog();
@@ -21,7 +22,6 @@ public:
     void mouseReleaseEvent(QMouseEvent *event);
 
 
-
 private:
 
     void setDateandHourIntoSystem(QString time);
@@ -31,7 +31,12 @@ private:
     DrawSettimeDialog *drawsettimedialog;
     QList<myQRect*> *rectlist;
     myQRect *myqrect;
-  int targetwidgetIndex;
+    int targetwidgetIndex;
+
+
+signals:
+    void closeWindows();
+
 
 };
 

@@ -28,6 +28,7 @@ public:
 private:
     void initView();
     void init();
+    void initConnections();
     QList<myQRect*> *rectlist;
     myQRect *myqrect;
     StatusBar *statusbar;
@@ -39,11 +40,18 @@ private:
     int targetwidgetIndex;
     SetTimeDialog *settimedialog;
 
+    void setTime();
+
+
+
+
 
 
 signals:
 
 public slots:
+    void closeDialogSlot();
+
 };
 
 #endif // DATEANDTIME_H

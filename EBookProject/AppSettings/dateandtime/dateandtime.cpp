@@ -2,6 +2,9 @@
 #include"application.h"
 #include"rfile.h"
 #include<QApplication>
+#include<QDateTime>
+#include<QTime>
+#include"mainwindow.h"
 
 
 const int DATE_X[] = {60,500,270};
@@ -13,6 +16,9 @@ const int DATE_HE[] ={48,48,30};
 extern int items_xywh[8][4];
 extern int item_text_xywh[8][4];
 extern int item_icon_xywh[8][4];
+
+int dateorTime;
+extern QString systemtime;
 
 
 QString item_text_text[] = {QObject::tr("Date"),QObject::tr("Hour")};
@@ -43,10 +49,12 @@ void DateAndTime::mousePressEvent(QMouseEvent *event)
     }
 
     if(x>items_xywh[0][0]&&x<items_xywh[0][0]+items_xywh[0][2]&&y>items_xywh[0][1]&&y<items_xywh[0][1]+items_xywh[0][3]){
+        dateorTime = 0;
         settimedialog->show();
     }
 
     if(x>items_xywh[1][0]&&x<items_xywh[1][0]+items_xywh[1][2]&&y>items_xywh[1][1]&&y<items_xywh[1][1]+items_xywh[1][3]){
+        dateorTime = 1;
         settimedialog->show();
     }
 
@@ -58,7 +66,7 @@ void DateAndTime::paintEvent(QPaintEvent *event)
     QPainter *painter = new QPainter(this);
     statusbar->drawBattery(painter,30);
     statusbar->drawPullDownRectangle(painter);
-    statusbar->drawSystemTime(painter,"15:30");
+    statusbar->drawSystemTime(painter,mydatemodel->getTimehour());
     statusbar->drawWifiStatus(painter,true);
     QLineF line(0,100,600,100);
     painter->drawLine(line);
@@ -117,17 +125,19 @@ void DateAndTime::initView()
 void DateAndTime::init()
 {
     initView();
-
-    statusbar = new StatusBar(this);
-    drawdateandtime = new DrawDateAndTime;
+    initConnections();
     mydatemodel = new dateModel;
 
     mydatemodel->setTimezone(tr("China"));
     mydatemodel->setAutotime(true);
-    QString systemtime="15:30 25/9";
-    QStringList list = systemtime.split(" ");
-    mydatemodel->setDate(list.at(0));
-    mydatemodel->setTimehour(list.at(1));
+    setTime();
+
+    statusbar = new StatusBar(this);
+    drawdateandtime = new DrawDateAndTime;
+
+   // QStringList list = systemtime.split(" ");
+   // mydatemodel->setDate(list.at(0));
+   // mydatemodel->setTimehour(list.at(1));
 
     systemitemlist = new QList<SystemItems*>;
 
@@ -156,4 +166,24 @@ void DateAndTime::init()
     }
 
 
+}
+
+void DateAndTime::initConnections()
+{
+    QObject::connect(settimedialog,SIGNAL(closeWindows()),this,SLOT(closeDialogSlot()));
+
+}
+
+void DateAndTime::setTime()
+{
+    systemtime = QDateTime::currentDateTime().toString("MM-dd hh:mm");
+    mydatemodel->setDate(systemtime.split(" ").at(0));
+    mydatemodel->setTimehour(systemtime.split(" ").at(1));
+
+}
+
+void DateAndTime::closeDialogSlot()
+{
+    setTime();
+    this->repaint();
 }

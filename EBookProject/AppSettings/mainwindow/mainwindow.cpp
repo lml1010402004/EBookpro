@@ -4,6 +4,8 @@
 #include<QDebug>
 #include<QApplication>
 #include"application/pulldownwindow.h"
+#include<QDateTime>
+#include<QTime>
 
 const int homexywh[] = {500,48,48,48};
 const int setting[] = {260,110,80,60};
@@ -12,7 +14,7 @@ const int setting[] = {260,110,80,60};
 PulldownWindow *pulldownwindow;
 int pulldownwindowrect[] = {250,0,100,60};
 
-
+ QString systemtime;
 
 int items_xywh[8][4] = {
     {50,170,500,70},
@@ -81,6 +83,8 @@ MainWindow::~MainWindow(){
 
 void MainWindow::init(){
     targetWidgetIndex = -1;
+
+    systemtime= QDateTime::currentDateTime().toString("MM-dd hh:mm");
     initView();
 }
 

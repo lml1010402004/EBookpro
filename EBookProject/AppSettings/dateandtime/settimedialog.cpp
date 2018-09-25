@@ -15,6 +15,7 @@ const int TIMEDIALOG_HE[] = {40,40,40};
 
 extern int dateorTime;
 
+
 SetTimeDialog::SetTimeDialog(QWidget *parent):QMainWindow(parent)
 {
     this->setWindowFlags(Qt::Dialog|Qt::FramelessWindowHint);
@@ -80,10 +81,12 @@ void SetTimeDialog::paintEvent(QPaintEvent *event)
     QRect rect(0,0,399,300);
     painter->drawRect(rect);
 
-    drawsettimedialog->drawSettimeDialogTitle(painter,rectlist->at(TIMEDIALOG_TITLE),tr("Time"));
+    if(dateorTime==0){
+        drawsettimedialog->drawSettimeDialogTitle(painter,rectlist->at(TIMEDIALOG_TITLE),tr("Date"));
+    }else if(dateorTime==1){
+        drawsettimedialog->drawSettimeDialogTitle(painter,rectlist->at(TIMEDIALOG_TITLE),tr("Time"));
+    }
     drawsettimedialog->drawYesAndNoButtons(painter,rectlist->at(TIMEDIALOG_YES),tr("Yes"),rectlist->at(TIMEDIALOG_NO),tr("No"));
-
-
 }
 
 void SetTimeDialog::mousePressEvent(QMouseEvent *event)
@@ -95,8 +98,6 @@ void SetTimeDialog::mousePressEvent(QMouseEvent *event)
         rectlist->at(targetwidgetIndex)->isPressed = true;
         this->repaint();
     }
-
-
 }
 
 void SetTimeDialog::mouseMoveEvent(QMouseEvent *event)
@@ -111,15 +112,14 @@ void SetTimeDialog::mouseReleaseEvent(QMouseEvent *event)
     case TIMEDIALOG_TITLE:
         break;
     case TIMEDIALOG_YES:
-        if(dateorTime==0){
+        if(dateorTime==0){//date
             QString str1 = mylineedit1->text();
             QString str2 = mylineedit2->text();
-            QStringList s = systemtime.split(" ");
-            str = "2018-"+str1+"-"+str2+" "+s.at(1);
-        }else if(dateorTime==1){
+//            QStringList s = systemtime.split(" ");
+//            str = "2018-"+str1+"-"+str2+" "+s.at(1);
+        }else if(dateorTime==1){//time
             QString str1 = mylineedit1->text();
             QString str2 = mylineedit2->text();
-
             str = str1+":"+str2;
         }
         setDateandHourIntoSystem(str);
@@ -143,5 +143,7 @@ void SetTimeDialog::setDateandHourIntoSystem(QString time)
         QProcess::startDetached(m);
         QProcess::startDetached("hwclock -w");
         QProcess::startDetached("sync");
+        emit closeWindows();
+        this->close();
     }
 }
