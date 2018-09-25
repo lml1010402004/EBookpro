@@ -25,6 +25,7 @@ private:
     QList<myQRect*> *rectlist;
     myQRect *myqrect;
     DrawSwitchLanguagesDialog *drawswitchdialog;
+    int targetwidgetIndex;
 
 
 

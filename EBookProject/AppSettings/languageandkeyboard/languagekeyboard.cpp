@@ -38,15 +38,11 @@ void LanguageKeyboard::mousePressEvent(QMouseEvent *event)
         rectlist->at(targetWidgetIndex)->isPressed = true;
         this->repaint();
     }
-    //    item->itemrect.setX(items_xywh[0][0]);
-    //    item->itemrect.setY(items_xywh[0][1]);
-    //    item->itemrect.setWidth(items_xywh[0][2]);
-    //    item->itemrect.setHeight(items_xywh[0][3]);
+
 
     if(x>items_xywh[0][0]&&x<items_xywh[0][0]+items_xywh[0][2]&&y>items_xywh[0][1]&&y<items_xywh[0][1]+
             items_xywh[0][3]){
         switchlanguagedialog->show();
-
     }
 
 
@@ -62,9 +58,15 @@ void LanguageKeyboard::mouseReleaseEvent(QMouseEvent *event)
 {
     switch (targetWidgetIndex) {
     case LANGUAGEKEYBOARD_BACKICON:
+        if(switchlanguagedialog!=NULL)
+        switchlanguagedialog->close();
         this->close();
+
         break;
     case LANGUAGKEYBODRD_HOMEICON:
+        if(switchlanguagedialog!=NULL){
+            switchlanguagedialog->close();
+        }
         this->close();
         qApp->exit(0);
         break;

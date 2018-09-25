@@ -1,4 +1,5 @@
 #include "switchlanguagedialog.h"
+#include"commonutils.h"
 
 QString languagesgroup[] = {QObject::tr("English"),QObject::tr("Chinese")};
 
@@ -37,7 +38,13 @@ void SwitchLanguageDialog::mousePressEvent(QMouseEvent *event)
 
 void SwitchLanguageDialog::mouseReleaseEvent(QMouseEvent *event)
 {
-
+    int x= event->x();
+    int y = event->y();
+   targetwidgetIndex = commonUtils::getTheTargetWidget(x,y,rectlist);
+   if(targetwidgetIndex>-1){
+       targetwidgetIndex = -1;
+       this->close();
+   }
 }
 
 void SwitchLanguageDialog::init()

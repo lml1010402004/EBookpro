@@ -36,6 +36,12 @@ const QString cover_group[3] = {":/mypic/pics/txt_cover.png",":/mypic/pics/pdf_c
 const QString SETTING = "/usr/local/app/AppSettings";
 const QString APP_WORKING_DIR = "/usr/local/app";
 
+const QString MAINPAGE_BOOKSHELF = QObject::tr("Library");
+const QString MAINPAGE_APPS = QObject::tr("Apps");
+const QString MAINPAGE_SETTING = QObject::tr("Setting");
+
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
@@ -58,20 +64,9 @@ MainWindow::~MainWindow()
 
     delete drawmainpage,statusbar,currentbookcoverrect,threebookrect,myprocess,commonutils,
             currentbookcoverlist,bookshelf,totaltemp,currentPagebooklist,thirdapplication,rectlist;
-    drawmainpage = NULL;
-    statusbar = NULL;
-    currentbookcoverrect = NULL;
-    threebookrect = NULL;
-    myprocess = NULL;
-    bookshelf = NULL;
-    totaltemp = NULL;
-    currentPagebooklist = NULL;
-    thirdapplication = NULL;
-    rectlist = NULL;
-    commonutils = NULL;
 
     delete pulldownwindow;
-    pulldownwindow = NULL;
+
 
 }
 
@@ -180,7 +175,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
             break;
         case HPM_THIRDBOOK_RECT:
             if(currentPagebooklist->size()>2){
-
              commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(2).file_path);
             }
             break;
@@ -241,7 +235,7 @@ void MainWindow::paintEvent(QPaintEvent *event)
     currentbookcoverrect->append(rectlist->at(HPM_LEFTBOOK_RECT));
     currentbookcoverrect->append(rectlist->at(HPM_RIGHTBOOK_RECT));
     drawmainpage->drawCurrentBookCover(painter,currentbookcoverlist,currentbookcovertitle,currentbookcoverrect);
-    drawmainpage->drawTextView(painter,rectlist->at(HPM_NEW_BOOK),tr("NewB"));
+    drawmainpage->drawTextView(painter,rectlist->at(HPM_NEW_BOOK),tr("NewBook"));
     drawmainpage->drawNextPage(painter,rectlist->at(HPM_NEXTPAGE_BUTTON),endpage);
 
     drawmainpage->drawLastPage(painter,rectlist->at(HPM_LASTPAGE_BUTTON),firstpage);
@@ -249,9 +243,9 @@ void MainWindow::paintEvent(QPaintEvent *event)
 
     drawmainpage->drawThreeBooksArea(painter,threebookrect,currentPagebooklist);
 
-    drawmainpage->drawThreeModulesBottom1(painter,rectlist->at(HPM_BOOKSHELF_BUTTON));
-    drawmainpage->drawThreeModulesBottom2(painter,rectlist->at(HPM_APP_BUTTON));
-    drawmainpage->drawThreeModulesBottom3(painter,rectlist->at(HPM_SETTING_BUTTON));
+    drawmainpage->drawThreeModulesBottom1(painter,rectlist->at(HPM_BOOKSHELF_BUTTON),MAINPAGE_BOOKSHELF);
+    drawmainpage->drawThreeModulesBottom2(painter,rectlist->at(HPM_APP_BUTTON),MAINPAGE_APPS);
+    drawmainpage->drawThreeModulesBottom3(painter,rectlist->at(HPM_SETTING_BUTTON),MAINPAGE_SETTING);
 
 }
 

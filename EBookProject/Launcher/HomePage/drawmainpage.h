@@ -29,9 +29,9 @@ public:
     void drawLastPage(QPainter *painter,myQRect* rect,bool firstpage);
     void drawNextPage(QPainter *painter,myQRect* rect,bool endpage);
     void drawTextView(QPainter *painter,myQRect* rect,QString title);
-    void drawThreeModulesBottom1(QPainter *painter,myQRect* rect);
-    void drawThreeModulesBottom2(QPainter *painter,myQRect* rect);
-    void drawThreeModulesBottom3(QPainter *painter,myQRect* rect);
+    void drawThreeModulesBottom1(QPainter *painter,myQRect* rect,QString title);
+    void drawThreeModulesBottom2(QPainter *painter,myQRect* rect,QString title);
+    void drawThreeModulesBottom3(QPainter *painter,myQRect* rect,QString title);
     void drawThreeBooksArea(QPainter *painter,QList<myQRect*> *rectlist,QList<localDirectoryItem> *booklist);
 
 

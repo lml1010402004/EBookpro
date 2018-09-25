@@ -106,33 +106,54 @@ void DrawMainPage::drawTextView(QPainter *painter,myQRect* rect,QString title)
 
 }
 
-void DrawMainPage::drawThreeModulesBottom1(QPainter *painter, myQRect* rect)
+void DrawMainPage::drawThreeModulesBottom1(QPainter *painter, myQRect* rect,QString title)
 {
     if(rect->isPressed){
         painter->drawPixmap(rect->rect,bookshelf_pressed);
     }else{
         painter->drawPixmap(rect->rect,bookshelf);
     }
+    QRect temprect;
+    temprect.setX(rect->rect.x());
+    temprect.setY(rect->rect.y()+60);
+    temprect.setWidth(rect->rect.width()+10);
+    temprect.setHeight(rect->rect.height()-30);
+    painter->drawText(temprect,title);
+
+
 
 }
 
-void DrawMainPage::drawThreeModulesBottom2(QPainter *painter, myQRect* rect)
+void DrawMainPage::drawThreeModulesBottom2(QPainter *painter, myQRect* rect,QString title)
 {
     if(rect->isPressed){
         painter->drawPixmap(rect->rect,application_pressed);
     }else{
         painter->drawPixmap(rect->rect,application);
     }
+    QRect temprect;
+    temprect.setX(rect->rect.x());
+    temprect.setY(rect->rect.y()+60);
+    temprect.setWidth(rect->rect.width()+10);
+    temprect.setHeight(rect->rect.height()-30);
+    painter->drawText(temprect,title);
+
 
 }
 
-void DrawMainPage::drawThreeModulesBottom3(QPainter *painter, myQRect* rect)
+void DrawMainPage::drawThreeModulesBottom3(QPainter *painter, myQRect* rect,QString title)
 {
     if(rect->isPressed){
         painter->drawPixmap(rect->rect,setting_pressed);
     }else{
         painter->drawPixmap(rect->rect,setting);
     }
+    QRect temprect;
+    temprect.setX(rect->rect.x());
+    temprect.setY(rect->rect.y()+60);
+    temprect.setWidth(rect->rect.width()+10);
+    temprect.setHeight(rect->rect.height()-30);
+    painter->drawText(temprect,title);
 
 }
 
