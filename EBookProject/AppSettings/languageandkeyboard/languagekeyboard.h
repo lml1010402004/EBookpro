@@ -11,6 +11,7 @@
 #include"utils/redefineqrect.h"
 #include<QList>
 #include"systemitems.h"
+#include"switchlanguagedialog.h"
 
 class LanguageKeyboard : public QMainWindow
 {
@@ -37,6 +38,7 @@ private:
 
     QList<SystemItems*> *systemitemlist;
     SystemItems *item;
+    SwitchLanguageDialog *switchlanguagedialog;
 
 
 signals:

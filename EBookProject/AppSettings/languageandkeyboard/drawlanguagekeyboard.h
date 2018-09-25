@@ -14,7 +14,7 @@ public:
     void drawHomeIcon(QPainter *painter,myQRect *rect);
     void drawBackIcon(QPainter *painter,myQRect *rect);
      void drawLanguageTitle(QPainter *painter,myQRect *rect,QString title);
-      void drawItems(QPainter *painter,QList<SystemItems*> *itemlist);
+      void drawItems(QPainter *painter,QList<SystemItems*> *itemlist,QString targetlanguage);
 private:
       QFont font;
 

@@ -41,14 +41,14 @@ void DrawLanguagekeyboard::drawLanguageTitle(QPainter *painter, myQRect *rect, Q
     painter->drawText(rect->rect,title);
 }
 
-void DrawLanguagekeyboard::drawItems(QPainter *painter, QList<SystemItems *> *itemlist)
+void DrawLanguagekeyboard::drawItems(QPainter *painter, QList<SystemItems *> *itemlist,QString targetlanguage)
 {
     font.setPixelSize(20);
     painter->setFont(font);
     for(int i=0;i<itemlist->size();i++){
         painter->drawRect(itemlist->at(i)->itemrect);
         painter->drawText(itemlist->at(i)->itemtextrect,itemlist->at(i)->getItem_text_text());
-
+        painter->drawText(itemlist->at(i)->itemiconrect,targetlanguage);
     }
 
 }

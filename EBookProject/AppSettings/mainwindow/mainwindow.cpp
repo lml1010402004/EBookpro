@@ -55,7 +55,7 @@ int item_icon_xywh[8][4] = {
 
 const QString item_text_text[8] ={
     QObject::tr("Light"),QObject::tr("WallPaper"),QObject::tr("Network"),QObject::tr("USB Transfer"),QObject::tr("DateAndTime"),
-    QObject::tr("Language Keyboard"),QObject::tr("Restore"),QObject::tr("Other")
+    QObject::tr("Languages"),QObject::tr("Restore"),QObject::tr("Other")
 };
 
 const QString system_text = QObject::tr("Setting");

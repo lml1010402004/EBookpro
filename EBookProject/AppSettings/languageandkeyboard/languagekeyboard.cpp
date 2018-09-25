@@ -38,6 +38,19 @@ void LanguageKeyboard::mousePressEvent(QMouseEvent *event)
         rectlist->at(targetWidgetIndex)->isPressed = true;
         this->repaint();
     }
+    //    item->itemrect.setX(items_xywh[0][0]);
+    //    item->itemrect.setY(items_xywh[0][1]);
+    //    item->itemrect.setWidth(items_xywh[0][2]);
+    //    item->itemrect.setHeight(items_xywh[0][3]);
+
+    if(x>items_xywh[0][0]&&x<items_xywh[0][0]+items_xywh[0][2]&&y>items_xywh[0][1]&&y<items_xywh[0][1]+
+            items_xywh[0][3]){
+        switchlanguagedialog->show();
+
+    }
+
+
+
 }
 
 void LanguageKeyboard::mouseMoveEvent(QMouseEvent *event)
@@ -82,7 +95,7 @@ void LanguageKeyboard::paintEvent(QPaintEvent *event)
     drawlanguagekeyboard->drawHomeIcon(painter,rectlist->at(LANGUAGKEYBODRD_HOMEICON));
     drawlanguagekeyboard->drawLanguageTitle(painter,rectlist->at(LANGUAGEKEBOARD_TITLE),tr("Languages"));
 
-    drawlanguagekeyboard->drawItems(painter,systemitemlist);
+    drawlanguagekeyboard->drawItems(painter,systemitemlist,"English");
 
 
 }
@@ -104,9 +117,9 @@ void LanguageKeyboard::init()
 
     item->setItem_text_text(tr("Language"));
 
-    item->itemiconrect.setX(item_icon_xywh[0][0]);
+    item->itemiconrect.setX(item_icon_xywh[0][0]-20);
     item->itemiconrect.setY(item_icon_xywh[0][1]);
-    item->itemiconrect.setWidth(item_icon_xywh[0][2]);
+    item->itemiconrect.setWidth(item_icon_xywh[0][2]+20);
     item->itemiconrect.setHeight(item_icon_xywh[0][3]);
     //        item->item_icon_path = item_icon_paths[i];
     item->ispressed = false;
@@ -126,6 +139,8 @@ void LanguageKeyboard::init()
         RFIle::assignMacroDefinition(LANGUAGE_INDEX,myqrect,i);
         rectlist->append(myqrect);
     }
+
+    switchlanguagedialog = new SwitchLanguageDialog;
 
 
 }
