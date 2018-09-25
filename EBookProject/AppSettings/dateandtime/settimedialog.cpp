@@ -15,7 +15,7 @@ const int TIMEDIALOG_HE[] = {40,40,40};
 
 extern int dateorTime;
 
-
+extern QString systemtime;
 SetTimeDialog::SetTimeDialog(QWidget *parent):QMainWindow(parent)
 {
     this->setWindowFlags(Qt::Dialog|Qt::FramelessWindowHint);
@@ -115,8 +115,8 @@ void SetTimeDialog::mouseReleaseEvent(QMouseEvent *event)
         if(dateorTime==0){//date
             QString str1 = mylineedit1->text();
             QString str2 = mylineedit2->text();
-//            QStringList s = systemtime.split(" ");
-//            str = "2018-"+str1+"-"+str2+" "+s.at(1);
+            QStringList s = systemtime.split(" ");
+            str ="2018-"+str1+"-"+str2+" "+s.at(1);
         }else if(dateorTime==1){//time
             QString str1 = mylineedit1->text();
             QString str2 = mylineedit2->text();

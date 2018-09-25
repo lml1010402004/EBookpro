@@ -76,10 +76,6 @@ void DateAndTime::paintEvent(QPaintEvent *event)
     drawdateandtime->drawTitle(painter,rectlist->at(DATEANDTIME_TITLE),"Date");
     drawdateandtime->drawDateAndTimeItems(painter,systemitemlist,mydatemodel);
 
-
-
-
-
 }
 
 void DateAndTime::mouseReleaseEvent(QMouseEvent *event)
