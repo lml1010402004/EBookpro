@@ -10,6 +10,8 @@
 #include<statusbar.h>
 #include"statusbar_global.h"
 #include"drawdateandtime.h"
+#include"systemitems.h"
+#include"commonutils.h"
 
 class DateAndTime : public QMainWindow
 {
@@ -28,6 +30,12 @@ private:
     myQRect *myqrect;
     StatusBar *statusbar;
     DrawDateAndTime *drawdateandtime;
+
+    dateModel *mydatemodel;
+    QList<SystemItems*> *systemitemlist;
+    SystemItems *item;
+    int targetwidgetIndex;
+
 
 signals:
 

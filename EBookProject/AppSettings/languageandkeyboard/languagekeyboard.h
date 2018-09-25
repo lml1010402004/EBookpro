@@ -10,6 +10,7 @@
 #include"drawlanguagekeyboard.h"
 #include"utils/redefineqrect.h"
 #include<QList>
+#include"systemitems.h"
 
 class LanguageKeyboard : public QMainWindow
 {
@@ -32,7 +33,10 @@ private:
      DrawLanguagekeyboard *drawlanguagekeyboard;
      QList<myQRect*> *rectlist;
      myQRect *myqrect;
+     int targetWidgetIndex;
 
+    QList<SystemItems*> *systemitemlist;
+    SystemItems *item;
 
 
 signals:

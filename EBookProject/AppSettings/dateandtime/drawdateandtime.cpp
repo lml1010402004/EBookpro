@@ -42,7 +42,18 @@ void DrawDateAndTime::drawTitle(QPainter *painter, myQRect *rect, QString title)
     painter->drawText(rect->rect,title);
 }
 
-void DrawDateAndTime::drawDateAndTimeItems(QPainter *painter, dateModel *date)
+void DrawDateAndTime::drawDateAndTimeItems(QPainter *painter, QList<SystemItems*> *itemlist,dateModel *date)
 {
+    font.setPixelSize(20);
+    painter->setFont(font);
+    for(int i=0;i<itemlist->size();i++){
+        painter->drawRect(itemlist->at(i)->itemrect);
+        painter->drawText(itemlist->at(i)->itemtextrect,itemlist->at(i)->getItem_text_text());
+        if(i==1)
+        painter->drawText(itemlist->at(i)->itemiconrect,date->getDate());
+        if(i==0)
+             painter->drawText(itemlist->at(i)->itemiconrect,date->getTimehour());
+
+    }
 
 }

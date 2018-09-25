@@ -2,6 +2,8 @@
 #define DRAWLANGUAGEKEYBOARD_H
 #include"utils/redefineqrect.h"
 #include<QPainter>
+#include"systemitems.h"
+#include<QFont>
 
 class DrawLanguagekeyboard
 {
@@ -12,6 +14,9 @@ public:
     void drawHomeIcon(QPainter *painter,myQRect *rect);
     void drawBackIcon(QPainter *painter,myQRect *rect);
      void drawLanguageTitle(QPainter *painter,myQRect *rect,QString title);
+      void drawItems(QPainter *painter,QList<SystemItems*> *itemlist);
+private:
+      QFont font;
 
 };
 
