@@ -17,6 +17,8 @@
 #define SLEEPTIMESET 8
 #define DEVICEINFO 9
 
+#define TIMEDIALOG 10
+
 
 
 //=========================LIGHT_INDEX==============================
@@ -88,6 +90,11 @@
 #define DEVICE_INFO_BACKICON 0
 #define DEVICE_INFO_HOMEICON 1
 #define DEVICE_INFO_TITLE 2
+
+//===================TIME DIALOG=========================
+#define TIMEDIALOG_TITLE 0
+#define TIMEDIALOG_YES 1
+#define TIMEDIALOG_NO 2
 
 
 

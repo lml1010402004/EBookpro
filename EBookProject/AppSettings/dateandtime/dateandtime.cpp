@@ -36,13 +36,22 @@ void DateAndTime::mousePressEvent(QMouseEvent *event)
 {
     int x= event->x();
     int y = event->y();
-   targetwidgetIndex = commonUtils::getTheTargetWidget(x,y,rectlist);
-   if(targetwidgetIndex>-1){
-       rectlist->at(targetwidgetIndex)->isPressed = true;
-       this->repaint();
-   }
+    targetwidgetIndex = commonUtils::getTheTargetWidget(x,y,rectlist);
+    if(targetwidgetIndex>-1){
+        rectlist->at(targetwidgetIndex)->isPressed = true;
+        this->repaint();
+    }
+
+    if(x>items_xywh[0][0]&&x<items_xywh[0][0]+items_xywh[0][2]&&y>items_xywh[0][1]&&y<items_xywh[0][1]+items_xywh[0][3]){
+        settimedialog->show();
+    }
+
+    if(x>items_xywh[1][0]&&x<items_xywh[1][0]+items_xywh[1][2]&&y>items_xywh[1][1]&&y<items_xywh[1][1]+items_xywh[1][3]){
+        settimedialog->show();
+    }
 
 }
+
 
 void DateAndTime::paintEvent(QPaintEvent *event)
 {
@@ -61,13 +70,15 @@ void DateAndTime::paintEvent(QPaintEvent *event)
 
 
 
+
+
 }
 
 void DateAndTime::mouseReleaseEvent(QMouseEvent *event)
 {
     switch (targetwidgetIndex) {
     case DATEANDTIME_BACKICON:
-            this->close();
+        this->close();
         break;
     case DATEANDTIME_HOMEICON:
         this->close();
@@ -100,7 +111,7 @@ void DateAndTime::initView()
         RFIle::assignMacroDefinition(DATEANDTIME_INDEX,myqrect,i);
         rectlist->append(myqrect);
     }
-
+    settimedialog = new SetTimeDialog(this);
 }
 
 void DateAndTime::init()
@@ -121,26 +132,26 @@ void DateAndTime::init()
     systemitemlist = new QList<SystemItems*>;
 
     for(int i=0;i<2;i++){
- item = new SystemItems;
- item->itemrect.setX(items_xywh[i][0]);
- item->itemrect.setY(items_xywh[i][1]);
- item->itemrect.setWidth(items_xywh[i][2]);
- item->itemrect.setHeight(items_xywh[i][3]);
+        item = new SystemItems;
+        item->itemrect.setX(items_xywh[i][0]);
+        item->itemrect.setY(items_xywh[i][1]);
+        item->itemrect.setWidth(items_xywh[i][2]);
+        item->itemrect.setHeight(items_xywh[i][3]);
 
- item->itemtextrect.setX(item_text_xywh[i][0]);
- item->itemtextrect.setY(item_text_xywh[i][1]);
- item->itemtextrect.setWidth(item_text_xywh[i][2]);
- item->itemtextrect.setHeight(item_text_xywh[i][3]);
+        item->itemtextrect.setX(item_text_xywh[i][0]);
+        item->itemtextrect.setY(item_text_xywh[i][1]);
+        item->itemtextrect.setWidth(item_text_xywh[i][2]);
+        item->itemtextrect.setHeight(item_text_xywh[i][3]);
 
- item->setItem_text_text(item_text_text[i]);
+        item->setItem_text_text(item_text_text[i]);
 
- item->itemiconrect.setX(item_icon_xywh[i][0]);
- item->itemiconrect.setY(item_icon_xywh[i][1]);
- item->itemiconrect.setWidth(item_icon_xywh[i][2]+5);
- item->itemiconrect.setHeight(item_icon_xywh[i][3]);
- //        item->item_icon_path = item_icon_paths[i];
- item->ispressed = false;
- systemitemlist->append(item);
+        item->itemiconrect.setX(item_icon_xywh[i][0]);
+        item->itemiconrect.setY(item_icon_xywh[i][1]);
+        item->itemiconrect.setWidth(item_icon_xywh[i][2]+5);
+        item->itemiconrect.setHeight(item_icon_xywh[i][3]);
+        //        item->item_icon_path = item_icon_paths[i];
+        item->ispressed = false;
+        systemitemlist->append(item);
 
     }
 

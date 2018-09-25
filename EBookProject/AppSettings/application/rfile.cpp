@@ -34,7 +34,7 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
     case WALLPAPER_INDEX:
         switch (index) {
         case WALLPAPER_BACKICON:
-           rect->xid = WALLPAPER_BACKICON;
+            rect->xid = WALLPAPER_BACKICON;
             break;
         case WALLPAPER_HOMEICON:
             rect->xid = WALLPAPER_HOMEICON;
@@ -61,16 +61,16 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
             rect->xid = NETWORK_WIFITEXT;
             break;
         case NETWORK_SEARCHRESULT_TEXT:
-             rect->xid = NETWORK_SEARCHRESULT_TEXT;
+            rect->xid = NETWORK_SEARCHRESULT_TEXT;
             break;
         case NETWORK_LASTPAGE_BUTTON:
-             rect->xid = NETWORK_LASTPAGE_BUTTON;
+            rect->xid = NETWORK_LASTPAGE_BUTTON;
             break;
         case NETWORK_PAGES_TEXT:
-             rect->xid = NETWORK_PAGES_TEXT;
+            rect->xid = NETWORK_PAGES_TEXT;
             break;
         case NETWORK_NEXTPAGE_BUTTON:
-             rect->xid = NETWORK_NEXTPAGE_BUTTON;
+            rect->xid = NETWORK_NEXTPAGE_BUTTON;
             break;
 
         default:
@@ -172,7 +172,7 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
         break;
     case NETWORK_CONN_WIFI:
         switch(index){
-          case CONN_WIFI_TITLE:
+        case CONN_WIFI_TITLE:
             rect->xid = CONN_WIFI_TITLE;
             break;
         case CONN_WIFI_TEXT:
@@ -219,8 +219,24 @@ void RFIle::assignMacroDefinition(int module, myQRect *rect, int index)
         }
         break;
 
-    default:
+    case TIMEDIALOG:
+        switch (index) {
+
+        case TIMEDIALOG_TITLE:
+            rect->xid =TIMEDIALOG_TITLE;
+            break;
+        case TIMEDIALOG_YES:
+            rect->xid = TIMEDIALOG_YES;
+            break;
+        case TIMEDIALOG_NO:
+            rect->xid = TIMEDIALOG_NO;
+            break;
+
+        default:
+            break;
+        }
         break;
+
     }
 
 }

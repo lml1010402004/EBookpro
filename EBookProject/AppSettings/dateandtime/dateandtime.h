@@ -12,6 +12,8 @@
 #include"drawdateandtime.h"
 #include"systemitems.h"
 #include"commonutils.h"
+#include"settimedialog.h"
+
 
 class DateAndTime : public QMainWindow
 {
@@ -35,6 +37,8 @@ private:
     QList<SystemItems*> *systemitemlist;
     SystemItems *item;
     int targetwidgetIndex;
+    SetTimeDialog *settimedialog;
+
 
 
 signals:
