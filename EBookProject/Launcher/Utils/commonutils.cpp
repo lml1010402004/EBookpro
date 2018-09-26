@@ -319,6 +319,14 @@ int commonUtils::getTargetIndexInSettingModule(int x, int y, QList<SystemItems *
     return tmp;
 }
 
+void commonUtils::deleteAndInsertBooktoTable(localDirectoryItem item)
+{
+
+    if(Database::getInstance()->deleteADataFromUntouchedTable(item)){
+        Database::getInstance()->insertADataToTouchedTable(item);
+    }
+}
+
 
 
 

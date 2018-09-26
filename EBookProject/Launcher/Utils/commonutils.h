@@ -13,6 +13,7 @@
 #include<QMainWindow>
 #include"Utils/redefineqrect.h"
 #include"DataItem/systemitems.h"
+#include"database.h"
 
 
 
@@ -42,6 +43,8 @@ public:
     static int returnLightValue(int progress);
 
     static  int getTargetIndexInSettingModule(int x,int y ,QList<SystemItems*> *list);
+
+    void deleteAndInsertBooktoTable(localDirectoryItem itme);
 
 
 

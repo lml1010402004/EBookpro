@@ -50,6 +50,7 @@ private:
     QList<QRect*> *nineareas;
     QRect *myqrect;
     commonUtils *commonutils;
+    int targetbookindex;
 
 
 

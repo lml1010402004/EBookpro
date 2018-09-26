@@ -15,7 +15,6 @@ const int BOOKSHELF_HE[12] = {48,48,40,40,40,40,40,40,40,40,40,40};
 
 
 
-
 extern int position4[];//for figure out the book clicked.
 extern int pulldownwindowrect[];
 
@@ -38,12 +37,6 @@ BookShelf::~BookShelf()
 {
     delete drawbookshelf,statusbar,conditonsItemlist,totalbookinfolist,currentpagebookinfolist,
             list,conditionitem,commonutils;
-    drawbookshelf = NULL;
-    statusbar = NULL;
-    conditonsItemlist = NULL;
-    totalbookinfolist = NULL;
-    currentpagebookinfolist = NULL;
-
 }
 
 void BookShelf::init(){
@@ -53,6 +46,7 @@ void BookShelf::init(){
     commonutils = new commonUtils;
 
     condition_selected_index = 3;
+    targetbookindex = -1;
 
 
 
@@ -135,7 +129,7 @@ void BookShelf::paintEvent(QPaintEvent *event)
     drawbookshelf->drawNineBooks(painter,currentpagebookinfolist);
     drawbookshelf->drawCurrentPageandTotalPages(painter,current_page,total_pages,rectlist->at(BSM_PAGES_CONTENT));
     drawbookshelf->drawArrangeTextView(painter,rectlist->at(BSM_TEXT),tr("Sort"));
-    drawbookshelf->drawHomeButton(painter,rectlist->at(1));
+    drawbookshelf->drawHomeButton(painter,rectlist->at(BSM_HOME_BUTTON));
 
     drawbookshelf->drawTheFirstandLastPageIcon(painter,rectlist->at(BSM_FIRST_PAGE),rectlist->at(BSM_LAST_PAGE));
 
@@ -175,7 +169,6 @@ void BookShelf::mouseReleaseEvent(QMouseEvent *event)
         rectlist->at(targetwidgetindex)->isPressed = false;
         switch (targetwidgetindex){
         case BSM_SEARCH_BUTTON:
-
             break;
         case BSM_HOME_BUTTON:
             this->close();
@@ -229,7 +222,13 @@ void BookShelf::mouseReleaseEvent(QMouseEvent *event)
 
     QString bookname = getTheTargetBookPathforFBReader(event->x(),event->y(),currentpagebookinfolist);
     if(!bookname.isEmpty()){
-       commonutils->openBookFromFBreader(myprocess,bookname);
+        if(targetbookindex>-1&&targetbookindex<9){
+            commonutils->deleteAndInsertBooktoTable(currentpagebookinfolist->at(targetbookindex));
+            targetbookindex = -1;
+        }else{
+            return;
+        }
+        commonutils->openBookFromFBreader(myprocess,bookname);
     }
 
 }
@@ -242,15 +241,15 @@ void BookShelf::mouseMoveEvent(QMouseEvent *event)
 QString BookShelf::getTheTargetBookPathforFBReader(int x, int y, QList<localDirectoryItem> *currentpagebookinfolist)
 {
     QString bookname = "";
-    int tempindex = -1;
+
     for(int i=0;i<9;i++){
         if(x>nineareas->at(i)->x()&&x<nineareas->at(i)->x()+nineareas->at(i)->width()
                 &&y>nineareas->at(i)->y()&&y<nineareas->at(i)->y()+nineareas->at(i)->height()){
-            tempindex = i;
+            targetbookindex = i;
         }
     }
-    if(tempindex>-1){
-        bookname = currentpagebookinfolist->at(tempindex).file_path;
+    if(targetbookindex>-1){
+        bookname = currentpagebookinfolist->at(targetbookindex).file_path;
     }
     return bookname;
 }
@@ -274,7 +273,7 @@ int BookShelf::getTotalPagesForEachCondition(QList<localDirectoryItem> *list){
 
 QList<localDirectoryItem>* BookShelf::getCurrentPageBooklist(QList<localDirectoryItem> *list, int currentpage){
     QList<localDirectoryItem> *temp = new QList<localDirectoryItem>;
-    temp = commonUtils::getCurrentPageBooks(list,currentpage,9);
+    temp = commonUtils::getCurrentPageBooks(list,currentpage,9);//9 means max books number on each page.
     return temp;
 }
 

@@ -183,7 +183,19 @@ void DrawMainPage::drawThreeBooksArea(QPainter *painter, QList<myQRect*> *rectli
         }else{
             temppath = item.file_path+".jpg";
         }
+
         painter->drawPixmap(rect,temppath);
+        QRect tempremp;
+        tempremp.setX(rect.x()-8);
+        tempremp.setY(rect.y()+rect.height()+2);
+        tempremp.setWidth(rect.width()+10);
+        tempremp.setHeight(30);
+        QString str = booklist->at(i).file_name;
+        if(str.length()>20){
+            str = str.mid(0,14)+"..";
+
+        }
+        painter->drawText(tempremp,str);
 
     }
 }

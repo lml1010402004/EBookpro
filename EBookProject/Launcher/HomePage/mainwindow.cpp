@@ -119,7 +119,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 {
 
     targetWidgetIndex = commonUtils::getTheTargetWidget(event->x(),event->y(),rectlist);
-     qDebug()<<".........=="<<targetWidgetIndex;
+    qDebug()<<".........=="<<targetWidgetIndex;
     if(targetWidgetIndex>-1){
         rectlist->at(targetWidgetIndex)->isPressed = true;
         this->repaint();
@@ -141,82 +141,88 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 {
+
+    switch (targetWidgetIndex) {
+    case HPM_LEFTBOOK_RECT:
+
+        break;
+    case HPM_RIGHTBOOK_RECT:
+        break;
+    case HPM_LASTPAGE_BUTTON:
+        if(currentPageOfMainPage>1){
+            endpage = false;
+            firstpage = false;
+            currentPageOfMainPage--;
+            currentPagebooklist = commonUtils::getCurrentPageBooks(totaltemp,currentPageOfMainPage,3);
+
+        }else{
+            firstpage = true;
+            endpage = false;
+        }
+        break;
+    case HPM_FIRSTBOOK_RECT:
+        if(currentPagebooklist->size()>0){
+            if(currentPagebooklist->size()>0){
+                commonutils->deleteAndInsertBooktoTable(currentPagebooklist->at(0));
+                commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(0).file_path);
+            }
+            break;
+    case HPM_SECONDBOOK_RECT:
+                if(currentPagebooklist->size()>1){
+                    commonutils->deleteAndInsertBooktoTable(currentPagebooklist->at(1));
+                    commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(1).file_path);
+                }
+                break;
+            case HPM_THIRDBOOK_RECT:
+                if(currentPagebooklist->size()>2){
+                    commonutils->deleteAndInsertBooktoTable(currentPagebooklist->at(2));
+                    commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(2).file_path);
+                }
+                break;
+            case HPM_NEXTPAGE_BUTTON:
+                if(currentPageOfMainPage<totalPagesOfBooks-1){
+                    currentPageOfMainPage++;
+                    endpage = false;
+                    firstpage = false;
+                    currentPagebooklist = commonUtils::getCurrentPageBooks(totaltemp,currentPageOfMainPage,3);
+                }else{
+                    unable_next = 1;
+                    unable_last =0;
+                    endpage = true;
+                    firstpage = false;
+                }
+                threebookrect->clear();
+                assignDynamicRectstoThreerect(currentPagebooklist->size());
+                break;
+            case HPM_BOOKSHELF_BUTTON:
+                if(bookshelf==NULL){
+                    bookshelf = new BookShelf(this);
+                }
+                bookshelf->show();
+
+                break;
+            case HPM_APP_BUTTON:
+                if(thirdapplication==NULL){
+                    thirdapplication = new ThirdApplications(this);
+                }
+                thirdapplication->show();
+                break;
+            case HPM_SETTING_BUTTON:
+                commonutils->openSettingApp(myprocess,"/usr/local/app/AppSettings");
+                break;
+            default:
+                break;
+        }
+
+    }
     if(targetWidgetIndex>-1){
         rectlist->at(targetWidgetIndex)->isPressed = false;
-        switch (targetWidgetIndex) {
-        case HPM_LEFTBOOK_RECT:
-
-            break;
-        case HPM_RIGHTBOOK_RECT:
-            break;
-        case HPM_LASTPAGE_BUTTON:
-            if(currentPageOfMainPage>1){
-                endpage = false;
-                firstpage = false;
-                currentPageOfMainPage--;
-                currentPagebooklist = commonUtils::getCurrentPageBooks(totaltemp,currentPageOfMainPage,3);
-
-            }else{
-                firstpage = true;
-                endpage = false;
-            }
-            break;
-        case HPM_FIRSTBOOK_RECT:          
-            if(currentPagebooklist->size()>0){
-
-             commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(0).file_path);
-            }
-            break;
-        case HPM_SECONDBOOK_RECT:
-            if(currentPagebooklist->size()>1){
-
-             commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(1).file_path);
-            }
-            break;
-        case HPM_THIRDBOOK_RECT:
-            if(currentPagebooklist->size()>2){
-             commonutils->openBookFromFBreader(myprocess,currentPagebooklist->at(2).file_path);
-            }
-            break;
-        case HPM_NEXTPAGE_BUTTON:
-            if(currentPageOfMainPage<totalPagesOfBooks-1){
-                currentPageOfMainPage++;
-                endpage = false;
-                firstpage = false;
-                currentPagebooklist = commonUtils::getCurrentPageBooks(totaltemp,currentPageOfMainPage,3);
-            }else{
-                unable_next = 1;
-                unable_last =0;
-                endpage = true;
-                firstpage = false;
-            }
-            threebookrect->clear();
-            assignDynamicRectstoThreerect(currentPagebooklist->size());
-            break;
-        case HPM_BOOKSHELF_BUTTON:
-            if(bookshelf==NULL){
-                bookshelf = new BookShelf(this);
-            }
-            bookshelf->show();
-
-            break;
-        case HPM_APP_BUTTON:
-            if(thirdapplication==NULL){
-                thirdapplication = new ThirdApplications(this);
-            }
-            thirdapplication->show();
-            break;
-        case HPM_SETTING_BUTTON:
-            commonutils->openSettingApp(myprocess,"/usr/local/app/AppSettings");
-            break;
-        default:
-            break;
-        }
         targetWidgetIndex = -1;
         this->repaint();
     }
 
 }
+
 
 void MainWindow::paintEvent(QPaintEvent *event)
 {
@@ -251,7 +257,7 @@ void MainWindow::paintEvent(QPaintEvent *event)
 
 void MainWindow::initConnection()
 {
- QObject::connect(myprocess,SIGNAL(finished(int ,QProcess::ExitStatus)),this,SLOT(processFinished(int)));
+    QObject::connect(myprocess,SIGNAL(finished(int ,QProcess::ExitStatus)),this,SLOT(processFinished(int)));
 }
 
 
@@ -282,9 +288,9 @@ void MainWindow::assignDynamicRectstoThreerect(int i)
 
 void MainWindow::processFinished(int value)
 {
-  if(value==0){
-      qDebug()<<"hello Setting quit successfully!!!";
-  }
+    if(value==0){
+        qDebug()<<"hello Setting quit successfully!!!";
+    }
 
 
 
