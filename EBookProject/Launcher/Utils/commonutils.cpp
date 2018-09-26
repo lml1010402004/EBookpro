@@ -15,7 +15,8 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include<QString>
-
+#include<QTime>
+#include<QDateTime>
 
 
 
@@ -327,7 +328,12 @@ void commonUtils::deleteAndInsertBooktoTable(localDirectoryItem item)
     }
 }
 
-
+QString commonUtils::getCurrentTime()
+{
+   QString systemtime;
+   systemtime = QDateTime::currentDateTime().toString("MM-dd hh:mm");
+  return systemtime;
+}
 
 
 

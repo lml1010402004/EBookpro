@@ -1,5 +1,6 @@
 #include "commonutils.h"
-
+#include<QDateTime>
+#include<QTime>
 commonUtils::commonUtils()
 {
 
@@ -28,6 +29,12 @@ int commonUtils::getTheTargetWidget(int pos_x, int pos_y, QList<myQRect *> *rect
         }
     }
     return targetwidgetindex;
+}
+
+QString commonUtils::getCurrentTime(){
+    QString systemtime;
+    systemtime = QDateTime::currentDateTime().toString("MM-dd hh:mm");
+   return systemtime;
 }
 
 

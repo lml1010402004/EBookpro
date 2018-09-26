@@ -117,7 +117,7 @@ void BookShelf::paintEvent(QPaintEvent *event)
     QPainter *painter = new QPainter(this);
     statusbar->drawBattery(painter,100);
     statusbar->drawWifiStatus(painter,true);
-    statusbar->drawSystemTime(painter,QString("15:30"));
+    statusbar->drawSystemTime(painter,commonUtils::getCurrentTime());
     statusbar->drawPullDownRectangle(painter);
 
     drawbookshelf->drawHomeButton(painter,rectlist->at(BSM_HOME_BUTTON));

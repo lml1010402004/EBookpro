@@ -31,9 +31,7 @@ DateAndTime::DateAndTime(QWidget *parent) : QMainWindow(parent)
     this->setWindowFlags(Qt::Dialog|Qt::FramelessWindowHint);
     this->setFixedHeight(GLOBAL_FIXED_HEIGHT);
     this->setFixedWidth(GLOBAL_FIXED_WIDTH);
-
     init();
-
 }
 
 DateAndTime::~DateAndTime()
@@ -77,21 +75,21 @@ void DateAndTime::paintEvent(QPaintEvent *event)
     QPainter *painter = new QPainter(this);
     statusbar->drawBattery(painter,30);
     statusbar->drawPullDownRectangle(painter);
-    statusbar->drawSystemTime(painter,mydatemodel->getTimehour());
+    statusbar->drawSystemTime(painter,commonUtils::getCurrentTime());
     statusbar->drawWifiStatus(painter,true);
     QLineF line(0,100,600,100);
     painter->drawLine(line);
 
     drawdateandtime->drawBackIcon(painter,rectlist->at(DATEANDTIME_BACKICON));
     drawdateandtime->drawHomeIcon(painter,rectlist->at(DATEANDTIME_HOMEICON));
-    drawdateandtime->drawTitle(painter,rectlist->at(DATEANDTIME_TITLE),"Date");
+    drawdateandtime->drawTitle(painter,rectlist->at(DATEANDTIME_TITLE),tr("Date"));
     drawdateandtime->drawDateAndTimeItems(painter,systemitemlist,mydatemodel);
 
 }
 
 void DateAndTime::mouseReleaseEvent(QMouseEvent *event)
 {
-    switch (targetwidgetIndex) {
+    switch (targetwidgetIndex){
     case DATEANDTIME_BACKICON:
         this->close();
         break;

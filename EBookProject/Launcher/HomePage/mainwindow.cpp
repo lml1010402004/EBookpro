@@ -7,7 +7,7 @@
 #include"Application/pulldownwindow.h"
 
 
-const int mainapge_x[21] = {100,350,100,350,160,410,270,40,90,240,390,520,120,270,420,70,270,470,80,280,480};
+const int mainapge_x[21] = {100,350,100,350,160,410,250,40,90,240,390,520,120,270,420,70,270,470,80,280,480};
 const int mainpage_y[21] = {110,110,200,200,330,330,450,530,480,480,480,530,640,640,640,700,700,700,770,770,770};
 const int mainpage_w[21] = {150,150,150,150,60,60,100,40,120,120,120,40,80,80,80,64,64,64,60,60,60};
 const int mainpage_h[21] = {200,200,40,40,20,20,30,40,150,150,150,40,20,20,20,64,64,64,20,20,20};
@@ -119,10 +119,15 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 {
 
     targetWidgetIndex = commonUtils::getTheTargetWidget(event->x(),event->y(),rectlist);
-    qDebug()<<".........=="<<targetWidgetIndex;
+
     if(targetWidgetIndex>-1){
+        if(targetWidgetIndex==HPM_FIRSTBOOK_RECT||targetWidgetIndex==HPM_SECONDBOOK_RECT||
+                targetWidgetIndex==HPM_THIRDBOOK_NAME||targetWidgetIndex==HPM_LEFTBOOK_RECT||targetWidgetIndex==HPM_RIGHTBOOK_RECT){
+
+        }else{
         rectlist->at(targetWidgetIndex)->isPressed = true;
         this->repaint();
+        }
     }else{
         if(event->x()>pulldownwindowrect[0]&&event->x()<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
                 event->y()<pulldownwindowrect[3]){
@@ -227,7 +232,7 @@ void MainWindow::paintEvent(QPaintEvent *event)
 {
 
     QPainter *painter = new QPainter(this);
-    statusbar->drawSystemTime(painter,QString("15:30"));
+    statusbar->drawSystemTime(painter,commonUtils::getCurrentTime());
     statusbar->drawWifiStatus(painter,true);
     statusbar->drawPullDownRectangle(painter);
     statusbar->drawBattery(painter,80);
@@ -254,6 +259,8 @@ void MainWindow::paintEvent(QPaintEvent *event)
 void MainWindow::initConnection()
 {
     QObject::connect(myprocess,SIGNAL(finished(int ,QProcess::ExitStatus)),this,SLOT(processFinished(int)));
+
+
 }
 
 void MainWindow::operateMainPagetwobooks()
@@ -276,6 +283,10 @@ void MainWindow::operateMainPagetwobooks()
             currentbookcoverlist.append(cover_group[0]);
         }
         currentbookcoverlist.append(cover_group[1]);
+        currentbookcovertitle.removeAt(0);
+        currentbookcovertitle.removeAt(1);
+        currentbookcovertitle.append(twobookslist->at(0).file_name);
+        currentbookcovertitle.append("");
 
 
     }
@@ -300,6 +311,11 @@ void MainWindow::operateMainPagetwobooks()
             currentbookcoverlist.append(cover_group[1]);
 
         }
+        currentbookcovertitle.removeAt(0);
+        currentbookcovertitle.removeAt(1);
+
+        currentbookcovertitle.append(twobookslist->at(0).file_name);
+        currentbookcovertitle.append(twobookslist->at(1).file_name);
 
     }
 
@@ -336,9 +352,9 @@ void MainWindow::processFinished(int value)
     if(value==0){
         qDebug()<<"hello Setting quit successfully!!!";
     }
-    twobookslist = Database::getInstance()->getLastTwoRecordsFromTouchedTable();
+   // twobookslist = Database::getInstance()->getLastTwoRecordsFromTouchedTable();
+    getBookDataFromDataBase();
     this->repaint();
-
 }
 
 void MainWindow::getBookDataFromDataBase()

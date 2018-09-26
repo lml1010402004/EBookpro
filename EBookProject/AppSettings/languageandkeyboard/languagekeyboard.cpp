@@ -98,7 +98,7 @@ void LanguageKeyboard::paintEvent(QPaintEvent *event)
     QPainter *painter = new QPainter(this);
     statusbar->drawBattery(painter,30);
     statusbar->drawPullDownRectangle(painter);
-    statusbar->drawSystemTime(painter,"15:30");
+    statusbar->drawSystemTime(painter,commonUtils::getCurrentTime());
     statusbar->drawWifiStatus(painter,true);
 
     QLineF line(0,100,600,100);

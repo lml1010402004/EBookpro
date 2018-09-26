@@ -16,9 +16,6 @@
 #include"database.h"
 
 
-
-
-
 class commonUtils
 {
 
@@ -46,7 +43,7 @@ public:
 
     void deleteAndInsertBooktoTable(localDirectoryItem itme);
 
-
+    static QString getCurrentTime();
 
 private:
 

@@ -48,7 +48,12 @@ void DrawMainPage::drawCurrentBookCover(QPainter *painter,QStringList bookCoverP
     painter->drawRect(temprect);
     painter->drawPixmap(rect->at(0)->rect,bookCoverPath.at(0));
     if(booktitle.at(0).length()>0){
-
+        QRect temprect;
+        temprect.setX(rect->at(0)->rect.x());
+        temprect.setY(rect->at(0)->rect.y()+200);
+        temprect.setWidth(rect->at(0)->rect.width());
+        temprect.setHeight(rect->at(0)->rect.height()-170);
+       painter->drawText(temprect,booktitle.at(0).split(".").at(0)+"..");
     }
 
     temprect.setX(rect->at(1)->rect.x()-1);
@@ -58,7 +63,12 @@ void DrawMainPage::drawCurrentBookCover(QPainter *painter,QStringList bookCoverP
     painter->drawRect(temprect);
     painter->drawPixmap(rect->at(1)->rect,bookCoverPath.at(1));
     if(booktitle.at(1).length()>0){
-
+      QRect temprect;
+      temprect.setX(rect->at(1)->rect.x());
+      temprect.setY(rect->at(1)->rect.y()+200);
+      temprect.setWidth(rect->at(1)->rect.width());
+      temprect.setHeight(rect->at(1)->rect.height()-170);
+     painter->drawText(temprect,booktitle.at(1).split(".").at(0)+"..");
     }
 
 
@@ -195,7 +205,7 @@ void DrawMainPage::drawThreeBooksArea(QPainter *painter, QList<myQRect*> *rectli
             str = str.mid(0,14)+"..";
 
         }
-        painter->drawText(tempremp,str);
+        painter->drawText(tempremp,str+"..");
 
     }
 }

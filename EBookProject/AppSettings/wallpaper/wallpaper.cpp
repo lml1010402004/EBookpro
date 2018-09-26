@@ -47,7 +47,7 @@ void WallPaper::paintEvent(QPaintEvent *event)
 
     statusbar->drawBattery(painter,30);
     statusbar->drawPullDownRectangle(painter);
-    statusbar->drawSystemTime(painter,"15:30");
+    statusbar->drawSystemTime(painter,commonUtils::getCurrentTime());
     statusbar->drawWifiStatus(painter,true);
 
     drawwallpaper->drawBackIcon(painter,rectlist->at(WALLPAPER_BACKICON));
