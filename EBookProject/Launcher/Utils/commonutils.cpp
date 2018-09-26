@@ -332,7 +332,19 @@ QString commonUtils::getCurrentTime()
 {
    QString systemtime;
    systemtime = QDateTime::currentDateTime().toString("MM-dd hh:mm");
-  return systemtime;
+   return systemtime;
+}
+
+void commonUtils::drawProgressofAbook(QPainter *paitner, QRect rect, int progress)
+{
+     int width = rect.width()*progress/100;
+     QRect temprect;
+     temprect.setX(rect.x());
+     temprect.setY(rect.y()-5);
+     temprect.setWidth(width);
+     temprect.setHeight(4);
+     paitner->fillRect(temprect,Qt::black);
+     paitner->drawRect(temprect);
 }
 
 

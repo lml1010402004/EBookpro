@@ -14,6 +14,7 @@
 #include"Utils/redefineqrect.h"
 #include"DataItem/systemitems.h"
 #include"database.h"
+#include<QPainter>
 
 
 class commonUtils
@@ -44,6 +45,8 @@ public:
     void deleteAndInsertBooktoTable(localDirectoryItem itme);
 
     static QString getCurrentTime();
+
+ static   void drawProgressofAbook(QPainter *paitner,QRect rect,int progress);
 
 private:
 

@@ -31,7 +31,7 @@ QList<QMainWindow*> *mainwindowlist;
 QProcess *myprocess;
 
 QList<localDirectoryItem> *twobookslist;
-const QString cover_group[3] = {":/mypic/pics/pdf_cover.png",":/mypic/pics/pdf_cover.png",":/mypic/pics/epub_cover.png"};
+const QString cover_group[3] = {":/mypic/pics/sleep_bg2.png",":/mypic/pics/sleep_bg2.png",":/mypic/pics/sleep_bg2.png"};
 
 const QString SETTING = "/usr/local/app/AppSettings";
 const QString APP_WORKING_DIR = "/usr/local/app";
@@ -235,7 +235,7 @@ void MainWindow::paintEvent(QPaintEvent *event)
     statusbar->drawSystemTime(painter,commonUtils::getCurrentTime());
     statusbar->drawWifiStatus(painter,true);
     statusbar->drawPullDownRectangle(painter);
-    statusbar->drawBattery(painter,80);
+    statusbar->drawBattery(painter,80);//电池值在库里面设置了,这边填写值是无效de
 
     operateMainPagetwobooks();
 

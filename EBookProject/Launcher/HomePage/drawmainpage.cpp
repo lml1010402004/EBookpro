@@ -2,6 +2,7 @@
 #include<QDebug>
 #include<QFileInfo>
 #include<QFile>
+#include"commonutils.h"
 
 
 
@@ -47,13 +48,15 @@ void DrawMainPage::drawCurrentBookCover(QPainter *painter,QStringList bookCoverP
     temprect.setHeight(rect->at(0)->rect.height()+1);
     painter->drawRect(temprect);
     painter->drawPixmap(rect->at(0)->rect,bookCoverPath.at(0));
+
     if(booktitle.at(0).length()>0){
         QRect temprect;
         temprect.setX(rect->at(0)->rect.x());
         temprect.setY(rect->at(0)->rect.y()+200);
         temprect.setWidth(rect->at(0)->rect.width());
         temprect.setHeight(rect->at(0)->rect.height()-170);
-       painter->drawText(temprect,booktitle.at(0).split(".").at(0)+"..");
+        commonUtils::drawProgressofAbook(painter,temprect,50);
+        painter->drawText(temprect,booktitle.at(0).split(".").at(0)+"..");
     }
 
     temprect.setX(rect->at(1)->rect.x()-1);
@@ -68,7 +71,8 @@ void DrawMainPage::drawCurrentBookCover(QPainter *painter,QStringList bookCoverP
       temprect.setY(rect->at(1)->rect.y()+200);
       temprect.setWidth(rect->at(1)->rect.width());
       temprect.setHeight(rect->at(1)->rect.height()-170);
-     painter->drawText(temprect,booktitle.at(1).split(".").at(0)+"..");
+      commonUtils::drawProgressofAbook(painter,temprect,50);
+      painter->drawText(temprect,booktitle.at(1).split(".").at(0)+"..");
     }
 
 
@@ -203,9 +207,13 @@ void DrawMainPage::drawThreeBooksArea(QPainter *painter, QList<myQRect*> *rectli
         QString str = booklist->at(i).file_name;
         if(str.length()>20){
             str = str.mid(0,14)+"..";
-
         }
         painter->drawText(tempremp,str+"..");
-
+        QRect temp;
+        temp.setX(tempremp.x()+8);
+        temp.setY(tempremp.y());
+        temp.setWidth(tempremp.width());
+        temp.setHeight(tempremp.height());
+        commonUtils::drawProgressofAbook(painter,temp,30);
     }
 }
