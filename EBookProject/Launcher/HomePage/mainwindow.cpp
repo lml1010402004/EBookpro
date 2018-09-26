@@ -30,8 +30,8 @@ const QString gamepath = ":/mypic/pics/game.png";
 QList<QMainWindow*> *mainwindowlist;
 QProcess *myprocess;
 
-
-const QString cover_group[3] = {":/mypic/pics/txt_cover.png",":/mypic/pics/pdf_cover.png",":/mypic/pics/epub_cover.png"};
+QList<localDirectoryItem> *twobookslist;
+const QString cover_group[3] = {":/mypic/pics/pdf_cover.png",":/mypic/pics/pdf_cover.png",":/mypic/pics/epub_cover.png"};
 
 const QString SETTING = "/usr/local/app/AppSettings";
 const QString APP_WORKING_DIR = "/usr/local/app";
@@ -199,7 +199,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
                     bookshelf = new BookShelf(this);
                 }
                 bookshelf->show();
-
                 break;
             case HPM_APP_BUTTON:
                 if(thirdapplication==NULL){
@@ -233,11 +232,8 @@ void MainWindow::paintEvent(QPaintEvent *event)
     statusbar->drawPullDownRectangle(painter);
     statusbar->drawBattery(painter,80);
 
-    //    QPainter *painter,QStringList bookCoverPath,QStringList booktitle,QList<QRect> rect)
-    currentbookcoverlist.append(cover_group[0]);
-    currentbookcoverlist.append(cover_group[1]);
-    currentbookcovertitle.append("");
-    currentbookcovertitle.append("");
+    operateMainPagetwobooks();
+
     currentbookcoverrect->append(rectlist->at(HPM_LEFTBOOK_RECT));
     currentbookcoverrect->append(rectlist->at(HPM_RIGHTBOOK_RECT));
     drawmainpage->drawCurrentBookCover(painter,currentbookcoverlist,currentbookcovertitle,currentbookcoverrect);
@@ -258,6 +254,55 @@ void MainWindow::paintEvent(QPaintEvent *event)
 void MainWindow::initConnection()
 {
     QObject::connect(myprocess,SIGNAL(finished(int ,QProcess::ExitStatus)),this,SLOT(processFinished(int)));
+}
+
+void MainWindow::operateMainPagetwobooks()
+{
+    if(twobookslist->size()==0){
+
+        currentbookcoverlist.append(cover_group[0]);
+        currentbookcoverlist.append(cover_group[1]);
+        currentbookcovertitle.append("");
+        currentbookcovertitle.append("");
+    }
+    if(twobookslist->size()==1){
+
+        QString str = twobookslist->at(0).file_path+".jpg";
+        QFileInfo *tempFile = new QFileInfo(str);
+        if(tempFile->exists()){
+            currentbookcoverlist.removeAt(0);
+            currentbookcoverlist.append(str);
+        }else{
+            currentbookcoverlist.append(cover_group[0]);
+        }
+        currentbookcoverlist.append(cover_group[1]);
+
+
+    }
+    if(twobookslist->size()==2){
+
+        QString str = twobookslist->at(0).file_path+".jpg";
+        QFileInfo *tempFile1 = new QFileInfo(str);
+        if(tempFile1->exists()){
+            currentbookcoverlist.removeAt(0);
+            currentbookcoverlist.append(str);
+        }else{
+            currentbookcoverlist.append(cover_group[0]);
+
+        }
+
+        QString str1 = twobookslist->at(1).file_path+".jpg";
+        QFileInfo *tempFile2 = new QFileInfo(str1);
+        if(tempFile2->exists()){
+            currentbookcoverlist.removeAt(1);
+            currentbookcoverlist.append(str1);
+        }else{
+            currentbookcoverlist.append(cover_group[1]);
+
+        }
+
+    }
+
 }
 
 
@@ -291,8 +336,8 @@ void MainWindow::processFinished(int value)
     if(value==0){
         qDebug()<<"hello Setting quit successfully!!!";
     }
-
-
+    twobookslist = Database::getInstance()->getLastTwoRecordsFromTouchedTable();
+    this->repaint();
 
 }
 
@@ -315,13 +360,11 @@ void MainWindow::getBookDataFromDataBase()
         }else{
             endpage = true;
         }
-
         currentPagebooklist = commonUtils::getCurrentPageBooks(totaltemp,currentPageOfMainPage,3);
         threebookrect->clear();
         assignDynamicRectstoThreerect(currentPagebooklist->size());
-
     }
-
+    twobookslist = Database::getInstance()->getLastTwoRecordsFromTouchedTable();
 
 }
 

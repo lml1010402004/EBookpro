@@ -62,6 +62,8 @@ public:
 
 
     QList<localDirectoryItem>* getAllDataFromTouchedTable();
+    QList<localDirectoryItem>* getLastTwoRecordsFromTouchedTable();
+
     QList<localDirectoryItem>* getAllDataFromTotalBooklistTable(QString filter);
     QList<localDirectoryItem>* getSearchResultBookList(QString str);
 

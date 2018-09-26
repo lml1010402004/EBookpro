@@ -20,9 +20,9 @@ extern int pulldownwindowrect[];
 
 extern PulldownWindow *pulldownwindow;
 extern QProcess *myprocess;
+extern QList<localDirectoryItem> *twobookslist;
 
 QString emptypath = ":/mypic/pics/circlempty";
-
 
 BookShelf::BookShelf(QWidget *parent) : QMainWindow(parent)
 {
@@ -278,10 +278,7 @@ QList<localDirectoryItem>* BookShelf::getCurrentPageBooklist(QList<localDirector
 }
 
 void BookShelf::processFinisheds(){
-    QApplication::setScreenUpdateMode(QApplication::EINK_GC16_LOCAL_MODE);//刷新
-    this->repaint();
-    QApplication::setScreenUpdateMode(QApplication::EINK_GC16_LOCAL_MODE);//刷新
-    repaint();
+    twobookslist = Database::getInstance()->getLastTwoRecordsFromTouchedTable();
 }
 
 void BookShelf::updateDataSlot(){

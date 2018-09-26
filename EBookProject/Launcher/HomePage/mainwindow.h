@@ -68,6 +68,9 @@ private:
     void initConnection();
 
 
+    void operateMainPagetwobooks();
+
+
 
     void getBookDataFromDataBase();
     void assignDynamicRectstoThreerect(int size);
@@ -76,6 +79,7 @@ private:
     int targetWidgetIndex;
     int totalPagesOfBooks;
     QList<localDirectoryItem>  *currentPagebooklist;
+
 
 
 
