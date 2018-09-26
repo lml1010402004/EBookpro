@@ -50,6 +50,7 @@ private:
     int wifiCurrentPage;
     int wifiTotalPages;
     bool first_come_in;
+    QString wifi_mac;
 
 
 signals:

@@ -55,19 +55,18 @@ void ConnectWifiDialog::mousePressEvent(QMouseEvent *event)
         this->repaint();
     }
 
-
-
-
 }
 
 void ConnectWifiDialog::mouseReleaseEvent(QMouseEvent *event)
 {
     switch(targetwidgetIndex){
     case CONN_WIFI_CONN_BUTTON:
-
+        if( !mylineedit->text().isEmpty()){
+            emit closeWindows1(mylineedit->text());
+            mylineedit->clear();
+        }
         break;
     case CONN_WIFI_CANCLE_BUTTON:
-        this->close();
         break;
     default:
         break;
@@ -100,7 +99,6 @@ void ConnectWifiDialog::initView()
         RFIle::assignMacroDefinition(NETWORK_CONN_WIFI,myqrect,i);
         rectlist->append(myqrect);
     }
-
 }
 
 void ConnectWifiDialog::initConnections()

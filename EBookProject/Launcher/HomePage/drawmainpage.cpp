@@ -210,7 +210,7 @@ void DrawMainPage::drawThreeBooksArea(QPainter *painter, QList<myQRect*> *rectli
         }
         painter->drawText(tempremp,str+"..");
         QRect temp;
-        temp.setX(tempremp.x()+8);
+        temp.setX(tempremp.x()+5);
         temp.setY(tempremp.y());
         temp.setWidth(tempremp.width());
         temp.setHeight(tempremp.height());

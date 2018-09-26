@@ -41,6 +41,8 @@ Network::~Network()
 void Network::init()
 {
     first_come_in = true;
+
+    wifi_mac = "";
     targetwidgetIndex =-1;
     wifiCurrentPage =0;
     wifiTotalPages =0;
@@ -86,8 +88,7 @@ void Network::initConnections()
 {
     mywifiservice->connect(mywifiservice,SIGNAL(sigStatusChanged(QString)),this,SLOT(wifi_StatusChanged(QString)));
     mywifiservice->connect(mywifiservice,SIGNAL(sigRefreshed(QList<TWifi>)),this,SLOT(wifi_RefreshDone(QList<TWifi>)));
-    //    QObject::connect(connectwifidialog,SIGNAL())
-
+   QObject::connect(connectwifidialog,SIGNAL(closeWindows1(QString)),this,SLOT(connectWifiSlot(QString)));
 }
 
 QList<wifiItem*>* Network::getCurrentPageWifiList(QList<wifiItem *> *list, int currentPage, int totalPages)
@@ -132,12 +133,16 @@ void Network::clickWifiListat(int x, int y, QList<wifiItem *> *list)
     int y5 = y4+ITEM_HEIGHT;
     if(x>draw_set_net5[0]-10&&x<draw_set_net5[0]+ITEM_WIDTH){
         if(y>y1&&y<y2&&size>0){
+            wifi_mac = list->at(0)->WIFI_MAC;
             connectwifidialog->show();
         }else if(y>y2&&y<y3&&size>1){
+            wifi_mac = list->at(0)->WIFI_MAC;
             connectwifidialog->show();
         }else if(y>y3&&y<y4&&size>2){
+            wifi_mac = list->at(0)->WIFI_MAC;
             connectwifidialog->show();
         }else if(y>y4&&y<y5&&size>3){
+            wifi_mac = list->at(0)->WIFI_MAC;
             connectwifidialog->show();
         }
     }
@@ -229,7 +234,10 @@ void Network::wifi_RefreshDone(QList<TWifi> wifi_Lists)
 
 void Network::connectWifiSlot(QString password)
 {
-
+    connectwifidialog->close();
+    qDebug()<<"password======="<<password;
+ bool flag = WifiService::getInstance(this)->setCurrentWifi(wifi_mac,password);
+//         setCurrentWifi(wifi_mac,password);
 }
 
 void Network::mousePressEvent(QMouseEvent *event)
@@ -264,8 +272,6 @@ void Network::mousePressEvent(QMouseEvent *event)
     }
 
     clickWifiListat(x,y,currentpagewifilist);
-
-
     if(x>pulldownwindowrect[0]&&x<(pulldownwindowrect[0]+pulldownwindowrect[2])&&
             y<pulldownwindowrect[3]){
         if(pulldownwindow==NULL){

@@ -31,6 +31,7 @@ private:
 
 
 signals:
+    void closeWindows1(QString pass);
 
 public slots:
 };

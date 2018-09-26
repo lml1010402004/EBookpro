@@ -34,7 +34,7 @@ void DrawConnectWifiDialog::drawConnOrCancleButton(QPainter *painter, myQRect *r
     painter->fillRect(rect->rect,Qt::black);
   }
   QRect temp;
-  temp.setX(rect->rect.x()+20);
+  temp.setX(rect->rect.x()+25);
   temp.setY(rect->rect.y()+5);
   temp.setWidth(rect->rect.width());
   temp.setHeight(rect->rect.height());
