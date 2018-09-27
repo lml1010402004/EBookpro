@@ -154,9 +154,12 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 
     switch (targetWidgetIndex) {
     case HPM_LEFTBOOK_RECT:
-
+        if(twobookslist->size()>0)
+commonutils->openBookFromFBreader(myprocess,twobookslist->at(0).file_path);
         break;
     case HPM_RIGHTBOOK_RECT:
+        if(twobookslist->size()>1)
+ commonutils->openBookFromFBreader(myprocess,twobookslist->at(0).file_path);
         break;
     case HPM_LASTPAGE_BUTTON:
         if(currentPageOfMainPage>1){

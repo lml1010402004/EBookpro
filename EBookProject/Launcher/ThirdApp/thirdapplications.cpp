@@ -30,7 +30,7 @@ int item_icon_xywh[4][4] = {
 };
 
 const QString item_text_text[4] ={
-    QObject::tr("Light"),QObject::tr("WallPaper"),QObject::tr("Network"),QObject::tr("USB Transfer")};
+    QObject::tr("App1"),QObject::tr("App2"),QObject::tr("App3"),QObject::tr("App4")};
 
 
 extern int pulldownwindowrect[];
