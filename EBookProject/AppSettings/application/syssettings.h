@@ -23,7 +23,6 @@
 #define SET_WALLPAPER       "set_wallpaper"
 #define SET_SHUTDOWN_WALLPAPER "set_shutdown_wallpaper"
 #define CONNECTEDWIFIMAC "connected_wifi_mac"
-#define SYSTEM_LANGUAGE "system_language"
 
 
 
@@ -96,9 +95,6 @@ public:
 
     void setConnectWifiMac(QString mac);
     QString getConnectWifiMac();
-
-    void setLanguage(QString str);
-    QString getLanguage();
 
 private:
     QSettings *syssettings;

@@ -13,7 +13,7 @@
 #include <fcntl.h>
 #include<string.h>
 #include<QFont>
-
+#include"syssettings.h"
 
 
 
@@ -38,9 +38,11 @@ public:
 
 
 
+
 private:
     QRect rect;
     QFont font;
+    SysSettings *syssetting;
 
 signals:
     void broadcastTimeAndBattery(QString time,int battery);

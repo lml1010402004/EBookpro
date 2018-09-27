@@ -27,7 +27,6 @@ Network::Network(QWidget *parent) : QMainWindow(parent)
     this->setWindowFlags(Qt::Dialog|Qt::FramelessWindowHint);
     this->setFixedHeight(GLOBAL_FIXED_HEIGHT);
     this->setFixedWidth(GLOBAL_FIXED_WIDTH);
-
     init();
 }
 
@@ -237,7 +236,9 @@ void Network::connectWifiSlot(QString password)
     connectwifidialog->close();
     qDebug()<<"password======="<<password;
  bool flag = WifiService::getInstance(this)->setCurrentWifi(wifi_mac,password);
-//         setCurrentWifi(wifi_mac,password);
+ if(flag){
+     this->repaint();
+ }
 }
 
 void Network::mousePressEvent(QMouseEvent *event)
