@@ -60,7 +60,6 @@ void SwitchLanguageDialog::mouseReleaseEvent(QMouseEvent *event)
        }
 
        targetwidgetIndex = -1;
-
        this->close();
    }
 

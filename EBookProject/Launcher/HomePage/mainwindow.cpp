@@ -4,7 +4,7 @@
 #include"Utils/commonutils.h"
 #include<QBrush>
 #include"Application/rfile.h"
-#include"Application/pulldownwindow.h"
+
 #include<QTranslator>
 #include<QApplication>
 
@@ -15,7 +15,7 @@ const int mainpage_w[21] = {150,150,150,150,60,60,100,40,120,120,120,40,80,80,80
 const int mainpage_h[21] = {200,200,40,40,20,20,30,40,150,150,150,40,20,20,20,64,64,64,20,20,20};
 
 
-PulldownWindow *pulldownwindow;
+
 int pulldownwindowrect[] = {250,0,100,60};
 
 const QString homeiconpath = ":/mypic/pics/homeicon.png";

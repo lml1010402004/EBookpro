@@ -1,7 +1,7 @@
 #include "thirdapplications.h"
 #include"application.h"
 #include"Utils/commonutils.h"
-#include"Application/pulldownwindow.h"
+
 
 const int HOME_XYWH[] ={500,48,48,48};
 const int APP_TITLE_XYWH[]={260,110,80,60};
@@ -35,7 +35,6 @@ const QString item_text_text[4] ={
 
 extern int pulldownwindowrect[];
 
-extern PulldownWindow *pulldownwindow;
 
 ThirdApplications::ThirdApplications(QWidget *parent) : QMainWindow(parent)
 {
@@ -48,12 +47,13 @@ ThirdApplications::ThirdApplications(QWidget *parent) : QMainWindow(parent)
 
 ThirdApplications::~ThirdApplications()
 {
-    delete statusbar,rectlist,mydrawapplication,myhomerect,apptext,item,systemitemlist;
+    delete statusbar,rectlist,mydrawapplication,myhomerect,apptext,item,systemitemlist,pulldownwindow;
 }
 
 void ThirdApplications::init()
 {
     initView();
+      pulldownwindow = new PulldownWindow(this);
     mydrawapplication = new DrawThirdApplication;
     targetwidgetindex = -1;
 }

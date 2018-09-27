@@ -18,6 +18,7 @@
 #include<QProcess>
 #include"Utils/commonutils.h"
 #include"syssettings.h"
+#include"Application/pulldownwindow.h"
 
 
 
@@ -46,6 +47,7 @@ private:
 
     commonUtils *commonutils;
     SysSettings *mysyssettings;
+    PulldownWindow *pulldownwindow;
 
 
 

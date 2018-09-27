@@ -10,6 +10,7 @@
 #include"statusbar.h"
 #include"statusbar_global.h"
 #include"Utils/redefineqrect.h"
+#include"Application/pulldownwindow.h"
 
 class ThirdApplications : public QMainWindow
 {
@@ -38,6 +39,7 @@ private:
     SystemItems *item;
 
     QList<SystemItems*> *systemitemlist;
+     PulldownWindow *pulldownwindow;
 
 
 signals:

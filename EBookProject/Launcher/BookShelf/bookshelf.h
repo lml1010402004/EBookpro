@@ -14,6 +14,7 @@
 #include"Utils/redefineqrect.h"
 //#include"Application/pulldownwindow.h"
 #include"commonutils.h"
+#include"Application/pulldownwindow.h"
 
 
 class BookShelf : public QMainWindow
@@ -51,6 +52,7 @@ private:
     QRect *myqrect;
     commonUtils *commonutils;
     int targetbookindex;
+     PulldownWindow *pulldownwindow;
 
 
 

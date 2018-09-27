@@ -127,7 +127,7 @@ void DrawBookshelf::drawNineBooks(QPainter *painter, QList<localDirectoryItem> *
                 painter->drawText(rect,str);
                 QRect temprect;
                 temprect.setX(rect.x()+20);
-                temprect.setY(rect.y()+rect.height()-18);
+                temprect.setY(rect.y()+rect.height()-20);
                 temprect.setWidth(rect.width());
                 temprect.setHeight(5);
                 commonUtils::drawProgressofAbook(painter,temprect,60);
@@ -165,7 +165,7 @@ void DrawBookshelf::drawNineBooks(QPainter *painter, QList<localDirectoryItem> *
                 painter->drawText(rect,str);
                 QRect temprect;
                 temprect.setX(rect.x()+20);
-                temprect.setY(rect.y()+rect.height()-18);
+                temprect.setY(rect.y()+rect.height()-20);
                 temprect.setWidth(rect.width());
                 temprect.setHeight(5);
                 commonUtils::drawProgressofAbook(painter,temprect,60);

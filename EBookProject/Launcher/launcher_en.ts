@@ -34,7 +34,7 @@
     <message>
         <location filename="HomePage/mainwindow.cpp" line="249"/>
         <source>NewBook</source>
-        <translation type="unfinished">new book</translation>
+        <translation type="unfinished">newbook</translation>
     </message>
 </context>
 <context>

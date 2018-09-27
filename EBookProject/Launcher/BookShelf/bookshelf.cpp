@@ -3,7 +3,7 @@
 #include"Utils/commonutils.h"
 #include<QApplication>
 #include"Application/rfile.h"
-#include"Application/pulldownwindow.h"
+
 
 
 
@@ -17,7 +17,7 @@ const int BOOKSHELF_HE[12] = {48,48,40,40,40,40,40,40,40,40,40,40};
 extern int position4[];//for figure out the book clicked.
 extern int pulldownwindowrect[];
 
-extern PulldownWindow *pulldownwindow;
+
 extern QProcess *myprocess;
 extern QList<localDirectoryItem> *twobookslist;
 
@@ -35,11 +35,11 @@ BookShelf::BookShelf(QWidget *parent) : QMainWindow(parent)
 BookShelf::~BookShelf()
 {
     delete drawbookshelf,statusbar,conditonsItemlist,totalbookinfolist,currentpagebookinfolist,
-            list,conditionitem,commonutils;
+            list,conditionitem,commonutils,pulldownwindow;
 }
 
 void BookShelf::init(){
-
+ pulldownwindow = new PulldownWindow(this);
     drawbookshelf = new DrawBookshelf;
     statusbar = new StatusBar(this);
     commonutils = new commonUtils;
