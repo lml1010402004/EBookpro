@@ -37,8 +37,10 @@ private:
     void init();
     void initView();
     void initsettingsModules();
+    void initConnections();
+    void assignQStringTo(SystemItems *item,int index);
 
-    StatusBar *statusbar;
+//    StatusBar *statusbar;
     DrawMainWindow *drawmainwindow;
     myQRect *myrect;
 
@@ -62,6 +64,7 @@ private:
 signals:
 
 public slots:
+    void updateUI();
 };
 
 #endif // MAINWINDOW_H

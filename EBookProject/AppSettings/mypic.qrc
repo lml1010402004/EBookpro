@@ -40,5 +40,7 @@
         <file>pics/back_unpressed1.png</file>
         <file>pics/forward_pressed1.png</file>
         <file>pics/forward_unpressed1.png</file>
+        <file>setting_cn.qm</file>
+        <file>setting_en.qm</file>
     </qresource>
 </RCC>

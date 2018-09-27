@@ -26,7 +26,7 @@ Brightness::Brightness(QWidget *parent) : QMainWindow(parent)
 
 Brightness::~Brightness()
 {
-    delete drawbrightness,statusbar;
+    delete drawbrightness,statusbar,syssettings;
 }
 
 void Brightness::mousePressEvent(QMouseEvent *event)
@@ -109,13 +109,15 @@ void Brightness::mouseReleaseEvent(QMouseEvent *event)
 
 void Brightness::init()
 {
+    syssettings = new SysSettings;
     targetwidgetIndex =-1;
-    lightvalue = 0;
     myutils = new MyUtils();
     lightrect.setX(LIGHT_X_START);
     lightrect.setY(RECT_Y);
     lightrect.setWidth(360);//滑动条的x轴范围
     lightrect.setHeight(70);//滑动条的Y范围
+
+    lightvalue = syssettings->getBackLight();
     initView();
 }
 
@@ -147,6 +149,7 @@ void Brightness::refreshLightUI(int x, int y, QRect lightrect)
     if(x>lightrect.x()&&x<lightrect.x()+lightrect.width()&&y>lightrect.y()&&y<lightrect.y()+lightrect.height()){
         lightvalue = myutils->getTheLightValueFromXY(x,y,lightrect);
         if(lightvalue>0){
+            syssettings->setBackLight(lightvalue);
             this->repaint();
         }
     }

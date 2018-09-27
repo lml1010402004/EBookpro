@@ -7,6 +7,7 @@
 #include<QDateTime>
 #include<QTime>
 
+
 const int homexywh[] = {500,48,48,48};
 const int setting[] = {260,110,80,60};
 
@@ -14,7 +15,7 @@ const int setting[] = {260,110,80,60};
 PulldownWindow *pulldownwindow;
 int pulldownwindowrect[] = {250,0,100,60};
 
- QString systemtime;
+QString systemtime;
 
 int items_xywh[8][4] = {
     {50,170,500,70},
@@ -53,11 +54,6 @@ int item_icon_xywh[8][4] = {
 
 
 
-const QString item_text_text[8] ={
-    QObject::tr("Light"),QObject::tr("WallPaper"),QObject::tr("Network"),QObject::tr("USB Transfer"),QObject::tr("DateAndTime"),
-    QObject::tr("Languages"),QObject::tr("Restore"),QObject::tr("Other")
-};
-
 const QString system_text = QObject::tr("Setting");
 
 
@@ -78,7 +74,7 @@ MainWindow::~MainWindow(){
     for(int i=0;i<systemitemlist->size();i++){
         delete systemitemlist->at(i);
     }
-    delete drawmainwindow,pulldownwindow,statusbar,systemitemlist;
+    delete drawmainwindow,pulldownwindow,systemitemlist;
 }
 
 void MainWindow::init(){
@@ -98,11 +94,12 @@ void MainWindow::initView(){
     myrect->isPressed = false;//home button
 
     pulldownwindow = new PulldownWindow(this);
-    statusbar = new StatusBar(this);
+
     drawmainwindow = new DrawMainWindow;
 
 
     initsettingsModules();
+    initConnections();
 
 }
 
@@ -121,7 +118,8 @@ void MainWindow::initsettingsModules()
         item->itemtextrect.setWidth(item_text_xywh[i][2]);
         item->itemtextrect.setHeight(item_text_xywh[i][3]);
 
-        item->setItem_text_text(item_text_text[i]);
+        assignQStringTo(item,i);
+
 
         item->itemiconrect.setX(item_icon_xywh[i][0]);
         item->itemiconrect.setY(item_icon_xywh[i][1]);
@@ -147,6 +145,56 @@ void MainWindow::initsettingsModules()
 
 }
 
+void MainWindow::initConnections()
+{
+    QObject::connect(wifinetwork,SIGNAL(closeWindows()),this,SLOT(updateUI()));
+
+}
+
+void MainWindow::assignQStringTo(SystemItems *item,int index)
+{
+
+
+    //    const QString item_text_text[8] ={
+    //        tr("Light"),tr("WallPaper"),tr("Network"),tr("USB Transfer"),tr("DateAndTime"),
+    //        tr("Languages"),tr("Restore"),tr("Other")
+    //    };
+    switch (index) {
+    case 0:
+        item->setItem_text_text(tr("Light"));
+        break;
+    case 1:
+        item->setItem_text_text(tr("WallPaper"));
+        break;
+    case 2:
+        item->setItem_text_text(tr("Network"));
+        break;
+    case 3:
+        item->setItem_text_text(tr("USB Transfer"));
+        break;
+    case 4:
+        item->setItem_text_text(tr("DateAndTime"));
+        break;
+    case 5:
+        item->setItem_text_text(tr("Languages"));
+        break;
+    case 6:
+        item->setItem_text_text(tr("Restore"));
+        break;
+    case 7:
+        item->setItem_text_text(tr("Other"));
+        break;
+    default:
+        break;
+    }
+
+}
+
+void MainWindow::updateUI()
+{
+    this->repaint();
+}
+
 
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
@@ -156,6 +204,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
 
 void MainWindow::paintEvent(QPaintEvent *event){
     QPainter *painter = new QPainter(this);
+    StatusBar *statusbar = new StatusBar(this);
     statusbar->drawBattery(painter,30);
     statusbar->drawPullDownRectangle(painter);
     statusbar->drawSystemTime(painter,commonUtils::getCurrentTime());
@@ -168,7 +217,7 @@ void MainWindow::paintEvent(QPaintEvent *event){
     rect.setY(setting[1]);
     rect.setWidth(setting[2]);
     rect.setHeight(setting[3]);
-    painter->drawText(rect,system_text);
+    painter->drawText(rect,tr("Setting"));
     drawmainwindow->drawSettingItems(painter,systemitemlist);
 
 }
@@ -225,7 +274,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
         if(dateandtime==NULL){
             dateandtime = new DateAndTime(this);
         }
-          dateandtime->show();
+        dateandtime->show();
         break;
     case 5:
         if(languagekeyboard==NULL){
@@ -243,7 +292,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
         if(othermodule==NULL){
             othermodule = new OtherModule(this);
         }
-         othermodule->show();
+        othermodule->show();
         break;
     default:
         break;

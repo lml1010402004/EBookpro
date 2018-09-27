@@ -54,7 +54,7 @@ private:
 
 
 signals:
-
+     void closeWindows();
 public slots:
     void wifi_StatusChanged(QString wifistatus);
     void wifi_RefreshDone(QList<TWifi> wifi_Lists);

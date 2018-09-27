@@ -23,6 +23,9 @@
 #define SET_WALLPAPER       "set_wallpaper"
 #define SET_SHUTDOWN_WALLPAPER "set_shutdown_wallpaper"
 #define CONNECTEDWIFIMAC "connected_wifi_mac"
+#define SYSTEM_LANGUAGE "system_language"
+
+#define REFRESH_COUNT "refresh_count"
 
 
 
@@ -95,6 +98,13 @@ public:
 
     void setConnectWifiMac(QString mac);
     QString getConnectWifiMac();
+
+    void setLanguage(QString str);
+    QString getLanguage();
+
+    void setRefreshCount(int value);
+    int getRefreshCount();
+
 
 private:
     QSettings *syssettings;

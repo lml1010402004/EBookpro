@@ -8,6 +8,7 @@
 #include<utils/redefineqrect.h>
 #include<QString>
 #include"drawswitchlanguagesdialog.h"
+#include"syssettings.h"
 
 class SwitchLanguageDialog:public QDialog
 {Q_OBJECT
@@ -26,6 +27,7 @@ private:
     myQRect *myqrect;
     DrawSwitchLanguagesDialog *drawswitchdialog;
     int targetwidgetIndex;
+    SysSettings *mysetting;
 
 
 

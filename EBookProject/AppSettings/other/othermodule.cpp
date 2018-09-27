@@ -8,7 +8,7 @@
 const int OTHERMODULE_X[] = {60,500,280};
 const int OTHERMODULE_Y[] = {48,48,130};
 const int OTHERMODULE_w[] ={48,48,80};
-const int OTHERMODULE_HE[] = {48,48,24};
+const int OTHERMODULE_HE[] = {48,48,30};
 
 extern int items_xywh[8][4];
 extern int item_text_xywh[8][4];

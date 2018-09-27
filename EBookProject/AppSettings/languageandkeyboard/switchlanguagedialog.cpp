@@ -1,5 +1,7 @@
 #include "switchlanguagedialog.h"
 #include"commonutils.h"
+#include<QTranslator>
+#include<QApplication>
 
 QString languagesgroup[] = {QObject::tr("English"),QObject::tr("Chinese")};
 
@@ -8,6 +10,7 @@ const int items_y = 10;
 const int items_w = 100;
 const int items_he = 60;
 
+QTranslator qtTranslator;
 SwitchLanguageDialog::SwitchLanguageDialog()
 {
     this->setWindowFlags(Qt::Dialog|Qt::FramelessWindowHint);
@@ -21,7 +24,10 @@ SwitchLanguageDialog::SwitchLanguageDialog()
 
 SwitchLanguageDialog::~SwitchLanguageDialog()
 {
-
+    for(int i=0;i<rectlist->size();i++){
+        delete rectlist->at(i);
+    }
+  delete mysetting,myqrect;
 }
 
 void SwitchLanguageDialog::paintEvent(QPaintEvent *event)
@@ -42,13 +48,29 @@ void SwitchLanguageDialog::mouseReleaseEvent(QMouseEvent *event)
     int y = event->y();
    targetwidgetIndex = commonUtils::getTheTargetWidget(x,y,rectlist);
    if(targetwidgetIndex>-1){
+
+       if(targetwidgetIndex==0){
+           qtTranslator.load(":/pic/setting_en.qm");
+           QApplication::installTranslator(&qtTranslator);
+           mysetting->setLanguage("English");
+       }else if(targetwidgetIndex ==1){
+           qtTranslator.load(":/pic/setting_cn.qm");
+           QApplication::installTranslator(&qtTranslator);
+           mysetting->setLanguage("Chinese");
+       }
+
        targetwidgetIndex = -1;
+
        this->close();
    }
+
+
 }
 
 void SwitchLanguageDialog::init()
 {
+
+    mysetting = new SysSettings;
     rectlist = new QList<myQRect*>;
   for(int i=0;i<2;i++){
       myqrect = new myQRect;

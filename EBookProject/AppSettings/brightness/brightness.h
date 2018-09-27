@@ -11,6 +11,7 @@
 #include<QList>
 #include"utils/redefineqrect.h"
 #include"myutils.h"
+#include"syssettings.h"
 
 class Brightness : public QMainWindow
 {
@@ -38,6 +39,7 @@ private:
     MyUtils *myutils;
     QRect lightrect;
     int targetwidgetIndex;
+    SysSettings *syssettings;
 
 
 signals:

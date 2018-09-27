@@ -86,6 +86,7 @@ void WallPaper::mousePressEvent(QMouseEvent *event)
         }else if(x>CHECKBOXGROUP_X[2]&&x<CHECKBOXGROUP_X[2]+CHECKBOX_W_H){
             index_wallpaper =2;
         }
+        mysysseting->setWallPaper(index_wallpaper);
         this->repaint();
     }
 

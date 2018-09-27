@@ -1,5 +1,6 @@
 #include "drawbookshelf.h"
 #include<QFont>
+#include"commonutils.h"
 
 
 const QString bookcity = ":/mypic/pics/bookcity.png";
@@ -124,6 +125,12 @@ void DrawBookshelf::drawNineBooks(QPainter *painter, QList<localDirectoryItem> *
                     str = str.mid(0,17).trimmed();
                 }
                 painter->drawText(rect,str);
+                QRect temprect;
+                temprect.setX(rect.x()+20);
+                temprect.setY(rect.y()+rect.height()-18);
+                temprect.setWidth(rect.width());
+                temprect.setHeight(5);
+                commonUtils::drawProgressofAbook(painter,temprect,60);
             }
 
         }else{
@@ -138,7 +145,6 @@ void DrawBookshelf::drawNineBooks(QPainter *painter, QList<localDirectoryItem> *
                 rect.setY(position4[2]+position4[3]*i+1);
                 rect.setWidth(position4[4]-1);
                 rect.setHeight(position4[5]-1);
-
                 QString cover_path = booklist->at(i*3+k).file_path+".jpg";
                 QFileInfo *info = new QFileInfo(cover_path);
                 if(info->exists()){
@@ -157,6 +163,12 @@ void DrawBookshelf::drawNineBooks(QPainter *painter, QList<localDirectoryItem> *
                     str = str.mid(0,17).trimmed();
                 }
                 painter->drawText(rect,str);
+                QRect temprect;
+                temprect.setX(rect.x()+20);
+                temprect.setY(rect.y()+rect.height()-18);
+                temprect.setWidth(rect.width());
+                temprect.setHeight(5);
+                commonUtils::drawProgressofAbook(painter,temprect,60);
                 //            painter->drawText(rect,booklist->at(i*3+k).file_name);
             }
         }

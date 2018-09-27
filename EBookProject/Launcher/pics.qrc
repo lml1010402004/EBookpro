@@ -69,5 +69,7 @@
         <file>pics/usb_transfer.png</file>
         <file>pics/wifi.png</file>
         <file>pics/wifi_pressed.png</file>
+        <file>launcher_cn.qm</file>
+        <file>launcher_en.qm</file>
     </qresource>
 </RCC>

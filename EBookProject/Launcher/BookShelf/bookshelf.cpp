@@ -14,7 +14,6 @@ const int BOOKSHELF_W[12] = {48,48,60,100,100,100,100,40,40,80,40,40};
 const int BOOKSHELF_HE[12] = {48,48,40,40,40,40,40,40,40,40,40,40};
 
 
-
 extern int position4[];//for figure out the book clicked.
 extern int pulldownwindowrect[];
 

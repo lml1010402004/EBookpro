@@ -11,7 +11,7 @@ MyUtils::MyUtils()
 
 MyUtils::~MyUtils()
 {
-
+  delete mysyssettings;
 }
 
 void MyUtils::drawProgressBarForLight(QPainter *painter, int value)

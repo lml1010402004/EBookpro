@@ -5,6 +5,8 @@
 #include<QBrush>
 #include"Application/rfile.h"
 #include"Application/pulldownwindow.h"
+#include<QTranslator>
+#include<QApplication>
 
 
 const int mainapge_x[21] = {100,350,100,350,160,410,250,40,90,240,390,520,120,270,420,70,270,470,80,280,480};
@@ -42,6 +44,7 @@ const QString MAINPAGE_SETTING = QObject::tr("Setting");
 
 
 
+QTranslator qtTranslator;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
@@ -73,7 +76,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::init()
 {
-
+   mysyssettings = new SysSettings;
     commonutils = new commonUtils;
     myprocess = new QProcess(this);
     drawmainpage = new DrawMainPage;
@@ -92,6 +95,8 @@ void MainWindow::init()
     unable_last =0;
     unable_next =0;
     initConnection();
+
+    twobookslist = Database::getInstance()->getLastTwoRecordsFromTouchedTable();
 
     getBookDataFromDataBase();
 }
@@ -259,8 +264,6 @@ void MainWindow::paintEvent(QPaintEvent *event)
 void MainWindow::initConnection()
 {
     QObject::connect(myprocess,SIGNAL(finished(int ,QProcess::ExitStatus)),this,SLOT(processFinished(int)));
-
-
 }
 
 void MainWindow::operateMainPagetwobooks()
@@ -272,52 +275,59 @@ void MainWindow::operateMainPagetwobooks()
         currentbookcovertitle.append("");
         currentbookcovertitle.append("");
     }
-    if(twobookslist->size()==1){
 
-        QString str = twobookslist->at(0).file_path+".jpg";
-        QFileInfo *tempFile = new QFileInfo(str);
-        if(tempFile->exists()){
-            currentbookcoverlist.removeAt(0);
-            currentbookcoverlist.append(str);
-        }else{
-            currentbookcoverlist.append(cover_group[0]);
-        }
-        currentbookcoverlist.append(cover_group[1]);
-        currentbookcovertitle.removeAt(0);
-        currentbookcovertitle.removeAt(1);
-        currentbookcovertitle.append(twobookslist->at(0).file_name);
-        currentbookcovertitle.append("");
-
-
+    for(int i=0;i<twobookslist->size();i++){
+        currentbookcoverlist.append(cover_group[i]);
+        currentbookcovertitle.append(twobookslist->at(i).file_name);
+//        currentbookcovertitle.append("");
     }
-    if(twobookslist->size()==2){
 
-        QString str = twobookslist->at(0).file_path+".jpg";
-        QFileInfo *tempFile1 = new QFileInfo(str);
-        if(tempFile1->exists()){
-            currentbookcoverlist.removeAt(0);
-            currentbookcoverlist.append(str);
-        }else{
-            currentbookcoverlist.append(cover_group[0]);
+//    if(twobookslist->size()==1){
 
-        }
+//        QString str = twobookslist->at(0).file_path+".jpg";
+//        QFileInfo *tempFile = new QFileInfo(str);
+//        if(tempFile->exists()){
+//            currentbookcoverlist.removeAt(0);
+//            currentbookcoverlist.append(str);
+//        }else{
+//            currentbookcoverlist.append(cover_group[0]);
+//        }
+//        currentbookcoverlist.append(cover_group[1]);
+//        currentbookcovertitle.removeAt(0);
+//        currentbookcovertitle.removeAt(1);
+//        currentbookcovertitle.append(twobookslist->at(0).file_name);
+//        currentbookcovertitle.append("");
 
-        QString str1 = twobookslist->at(1).file_path+".jpg";
-        QFileInfo *tempFile2 = new QFileInfo(str1);
-        if(tempFile2->exists()){
-            currentbookcoverlist.removeAt(1);
-            currentbookcoverlist.append(str1);
-        }else{
-            currentbookcoverlist.append(cover_group[1]);
 
-        }
-        currentbookcovertitle.removeAt(0);
-        currentbookcovertitle.removeAt(1);
+//    }
+//    if(twobookslist->size()==2){
 
-        currentbookcovertitle.append(twobookslist->at(0).file_name);
-        currentbookcovertitle.append(twobookslist->at(1).file_name);
+//        QString str = twobookslist->at(0).file_path+".jpg";
+//        QFileInfo *tempFile1 = new QFileInfo(str);
+//        if(tempFile1->exists()){
+//            currentbookcoverlist.removeAt(0);
+//            currentbookcoverlist.append(str);
+//        }else{
+//            currentbookcoverlist.append(cover_group[0]);
 
-    }
+//        }
+
+//        QString str1 = twobookslist->at(1).file_path+".jpg";
+//        QFileInfo *tempFile2 = new QFileInfo(str1);
+//        if(tempFile2->exists()){
+//            currentbookcoverlist.removeAt(1);
+//            currentbookcoverlist.append(str1);
+//        }else{
+//            currentbookcoverlist.append(cover_group[1]);
+
+//        }
+//        currentbookcovertitle.removeAt(0);
+//        currentbookcovertitle.removeAt(1);
+
+//        currentbookcovertitle.append(twobookslist->at(0).file_name);
+//        currentbookcovertitle.append(twobookslist->at(1).file_name);
+
+//    }
 
 }
 
@@ -354,6 +364,15 @@ void MainWindow::processFinished(int value)
     }
    // twobookslist = Database::getInstance()->getLastTwoRecordsFromTouchedTable();
     getBookDataFromDataBase();
+
+    if(mysyssettings->getLanguage().contains("Chinese")){
+     qtTranslator.load(":/mypic/launcher_cn.qm");
+     QApplication::installTranslator(&qtTranslator);
+    }else{
+     qtTranslator.load(":/mypic/launcher_en.qm");
+     QApplication::installTranslator(&qtTranslator);
+    }
+    this->repaint();
     this->repaint();
 }
 
@@ -380,7 +399,7 @@ void MainWindow::getBookDataFromDataBase()
         threebookrect->clear();
         assignDynamicRectstoThreerect(currentPagebooklist->size());
     }
-    twobookslist = Database::getInstance()->getLastTwoRecordsFromTouchedTable();
+//    twobookslist = Database::getInstance()->getLastTwoRecordsFromTouchedTable();
 
 }
 

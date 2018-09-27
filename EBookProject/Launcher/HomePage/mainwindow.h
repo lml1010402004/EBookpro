@@ -17,6 +17,7 @@
 #include"ThirdApp/thirdapplications.h"
 #include<QProcess>
 #include"Utils/commonutils.h"
+#include"syssettings.h"
 
 
 
@@ -44,6 +45,7 @@ private:
 
 
     commonUtils *commonutils;
+    SysSettings *mysyssettings;
 
 
 

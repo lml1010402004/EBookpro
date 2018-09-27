@@ -57,6 +57,8 @@ INCLUDEPATH +=$$PWD device
 include(device/device.pri)
 
 
+TRANSLATIONS +=setting_cn   \
+               setting_en
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/release/ -lPinyinIM

@@ -41,11 +41,10 @@ void Network::init()
 {
     first_come_in = true;
 
-    wifi_mac = "";
+
     targetwidgetIndex =-1;
     wifiCurrentPage =0;
     wifiTotalPages =0;
-    wifi_flag = false;
     mywifiservice = WifiService::getInstance(this);
     connectwifidialog = new ConnectWifiDialog(this);
     mysyssetting = new SysSettings;
@@ -53,9 +52,21 @@ void Network::init()
     wifilist = new QList<wifiItem*>;
     connectwifidialog = new ConnectWifiDialog(this);
 
-
     initConnections();
     initView();
+    wifi_mac = mysyssetting->getConnectWifiMac();
+    if(wifi_mac.length()>1){
+        wifi_flag = true;
+        if(mywifiservice->isEnabled()){
+            mywifiservice->doScan();
+            mywifiservice->refreshWifiList();
+        }else{
+            mywifiservice->setEnable(true);
+        }
+
+    }else{
+        wifi_flag = false;
+    }
 }
 
 void Network::initView()
@@ -177,14 +188,15 @@ void Network::wifi_StatusChanged(QString wifiStatus)
     else if(wifiStatus.indexOf(QString("CONNECTED")) != -1)
     {
         qDebug()<<"wifi connect successfully!!!";
-        mysyssetting->setConnectWifiMac(targetWifiMac);
+        mysyssetting->setConnectWifiMac(wifi_mac);
         this->repaint();
 
     }
     else if(wifiStatus.indexOf(QString("DISCONNECTED")) != -1)
     {
         qDebug()<<"wifi disconnect successfully!!!";
-        mysyssetting->setConnectWifiMac("");
+        wifi_mac = "";
+        mysyssetting->setConnectWifiMac(wifi_mac);
         this->repaint();
 
     }
@@ -234,9 +246,10 @@ void Network::wifi_RefreshDone(QList<TWifi> wifi_Lists)
 void Network::connectWifiSlot(QString password)
 {
     connectwifidialog->close();
-    qDebug()<<"password======="<<password;
  bool flag = WifiService::getInstance(this)->setCurrentWifi(wifi_mac,password);
+
  if(flag){
+     mysyssetting->setConnectWifiMac(wifi_mac);
      this->repaint();
  }
 }
@@ -293,6 +306,7 @@ void Network::mouseReleaseEvent(QMouseEvent *event)
     switch (targetwidgetIndex) {
 
     case NETWORK_BACKICON:
+        emit closeWindows();
         this->close();
         break;
     case NETWORK_HOMEICON:
@@ -340,6 +354,7 @@ void Network::paintEvent(QPaintEvent *event)
     drawnetwork->drawNetworkTitle(painter,rectlist->at(NETWORK_TITLE),tr("Network"));
     drawnetwork->drawNetworkWifiText(painter,rectlist->at(NETWORK_WIFITEXT),tr("Wifi"));
     drawnetwork->drawSearchResultTitle(painter,rectlist->at(NETWORK_SEARCHRESULT_TEXT),tr("Results"));
+
     drawnetwork->drawSwitchButton(painter,switch_button,wifi_flag);
     drawnetwork->drawCurrentWifiItems(painter,currentpagewifilist,wifiCurrentPage,wifiTotalPages);
     drawnetwork->drawLastAndNextPage(painter,wifiCurrentPage,wifiTotalPages,rectlist->at(NETWORK_LASTPAGE_BUTTON),rectlist->at(NETWORK_PAGES_TEXT),rectlist->at(NETWORK_NEXTPAGE_BUTTON));
