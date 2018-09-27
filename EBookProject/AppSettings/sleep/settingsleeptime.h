@@ -9,6 +9,7 @@
 #include"statusbar_global.h"
 #include"drawsettingsleep.h"
 #include"utils/redefineqrect.h"
+#include"syssettings.h"
 
 class SettingSleepTime : public QMainWindow
 {
@@ -32,6 +33,7 @@ private:
 
     int targetwidgetIndex;
     int time_selected;
+    SysSettings *mysyssetting;
 
 
 

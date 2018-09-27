@@ -36,6 +36,9 @@ include(Application/Application.pri)
 INCLUDEPATH+=$$PWD DataItem
 include(DataItem/DataItem.pri)
 
+INCLUDEPATH+=$$PWD SleepDetect
+include(SleepDetect/SleepDetect.pri)
+
 
 
 
@@ -45,7 +48,7 @@ else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/debug/ -lPinyinIM
 else:unix: LIBS += -L$$PWD/libs/ -lPinyinIM
 
 INCLUDEPATH += $$PWD/libs
-DEPENDPATH += $$PWD/libs
+DEPENDPATH += $$PWD/libs    
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/release/ -lSysSettings

@@ -51,14 +51,19 @@ void SettingSleepTime::mousePressEvent(QMouseEvent *event)
         int y5 = y4+LISTVIEW_ITEM_HEIGHT;
         if(y>y0&&y<y1){
             time_selected = 0;
+            mysyssetting->setAutoSleepTime(60);
         }else if(y>y1&&y<y2){
             time_selected = 1;
+            mysyssetting->setAutoSleepTime(180);
         }else if(y>y2&&y<y3){
             time_selected =2;
+            mysyssetting->setAutoSleepTime(300);
         }else if(y>y3&&y<y4){
             time_selected = 3;
+            mysyssetting->setAutoSleepTime(900);
         }else if(y>y4&&y<y5){
             time_selected = 4;
+            mysyssetting->setAutoSleepTime(1800);
         }
         this->repaint();
     }
@@ -121,6 +126,20 @@ void SettingSleepTime::init()
     targetwidgetIndex = -1;
     statusbar = new StatusBar(this);
     drawsettingsleep = new drawSettingSleep;
+    mysyssetting = new SysSettings;
+    int time_index = mysyssetting->getAutoSleepTime();
+    if(time_index==60){
+        time_selected =0;
+    }else if(time_index==180){
+        time_selected =1;
+    }else if(time_index==300){
+        time_selected =2;
+    }else if(time_index==900){
+        time_selected =3;
+    }else if(time_index==1800){
+        time_selected =4;
+    }
+
     rectlist = new QList<myQRect*>;
     initView();
 }
