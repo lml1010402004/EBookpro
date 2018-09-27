@@ -32,7 +32,7 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="HomePage/mainwindow.cpp" line="249"/>
+        <location filename="HomePage/mainwindow.cpp" line="253"/>
         <source>NewBook</source>
         <translation type="unfinished">newbook</translation>
     </message>
@@ -40,39 +40,55 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="HomePage/mainwindow.cpp" line="40"/>
+        <location filename="HomePage/mainwindow.cpp" line="41"/>
         <source>Library</source>
         <translation type="unfinished">Library</translation>
     </message>
     <message>
-        <location filename="HomePage/mainwindow.cpp" line="41"/>
+        <location filename="HomePage/mainwindow.cpp" line="42"/>
         <source>Apps</source>
         <translation type="unfinished">Apps</translation>
     </message>
     <message>
-        <location filename="HomePage/mainwindow.cpp" line="42"/>
+        <location filename="HomePage/mainwindow.cpp" line="43"/>
         <source>Setting</source>
         <translation type="unfinished">Setting</translation>
     </message>
     <message>
-        <location filename="ThirdApp/thirdapplications.cpp" line="33"/>
         <source>Light</source>
-        <translation type="unfinished">Light</translation>
+        <translation type="obsolete">Light</translation>
     </message>
     <message>
-        <location filename="ThirdApp/thirdapplications.cpp" line="33"/>
         <source>WallPaper</source>
-        <translation type="unfinished">Wallpaper</translation>
+        <translation type="obsolete">Wallpaper</translation>
     </message>
     <message>
-        <location filename="ThirdApp/thirdapplications.cpp" line="33"/>
         <source>Network</source>
-        <translation type="unfinished">Network</translation>
+        <translation type="obsolete">Network</translation>
+    </message>
+    <message>
+        <source>USB Transfer</source>
+        <translation type="obsolete">USB Transfer</translation>
     </message>
     <message>
         <location filename="ThirdApp/thirdapplications.cpp" line="33"/>
-        <source>USB Transfer</source>
-        <translation type="unfinished">USB Transfer</translation>
+        <source>App1</source>
+        <translation type="unfinished">App1</translation>
+    </message>
+    <message>
+        <location filename="ThirdApp/thirdapplications.cpp" line="33"/>
+        <source>App2</source>
+        <translation type="unfinished">App2</translation>
+    </message>
+    <message>
+        <location filename="ThirdApp/thirdapplications.cpp" line="33"/>
+        <source>App3</source>
+        <translation type="unfinished">App3</translation>
+    </message>
+    <message>
+        <location filename="ThirdApp/thirdapplications.cpp" line="33"/>
+        <source>App4</source>
+        <translation type="unfinished">App4</translation>
     </message>
 </context>
 </TS>
