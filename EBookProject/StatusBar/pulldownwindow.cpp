@@ -26,7 +26,7 @@ PulldownWindow::PulldownWindow(QWidget *parent) : QMainWindow(parent)
     this->setWindowFlags(Qt::Dialog|Qt::FramelessWindowHint);
     this->setFixedHeight(800);
     this->setFixedWidth(600);
-
+    this->setAttribute(Qt::WA_TranslucentBackground,true);
     init();
 }
 
@@ -118,21 +118,18 @@ void PulldownWindow::paintEvent(QPaintEvent *event)
 {
 
     QPainter *painter = new QPainter(this);
+
+
+    drawShortcutIcons(painter,rectlist->at(PULLDOWN_WIFI),rectlist->at(PULLDOWN_SETTING),rectlist->at(PULLDOWN_SEARCH));
     statusbar->drawBattery(painter,30);
     statusbar->drawSystemTime(painter,"15:30");
     statusbar->drawWifiStatus(painter,true);
     QLineF line(0,40,600,40);
     painter->drawLine(line);
-
-
-
     drawLightMinus(painter,rectlist->at(PULLDOWN_MINUS));
     drawLightPlus(painter,rectlist->at(PULLDOWN_PLUS));
 
     drawCloseIcon(painter,rectlist->at(PULLDOWN_RECTANGLE));
-    drawShortcutIcons(painter,rectlist->at(PULLDOWN_WIFI),rectlist->at(PULLDOWN_SETTING),rectlist->at(PULLDOWN_SEARCH));
-
-
     drawProgressBarForLight(painter,mysyssetting->getBackLight());
 
     drawGrayArea(painter,100,rectlist->at(PULLDOWN_DOWN));
@@ -147,12 +144,14 @@ void PulldownWindow::drawCloseIcon(QPainter *painter, myQRect* rect)
 
 void PulldownWindow::drawShortcutArea(QPainter *painter, myQRect* rect)
 {
+    QBrush brush(QColor(100,100,100,255));
+    painter->setBrush(brush);
     painter->drawRect(rect->rect);
 }
 
 void PulldownWindow::drawGrayArea(QPainter *painter, int al, myQRect* rect)
 {
-    QBrush brush(QColor(100,100,100,180));
+    QBrush brush(QColor(100,100,100,100));
     painter->setBrush(brush);
     painter->drawRoundedRect(rect->rect,0,0);
 }
@@ -164,6 +163,8 @@ void PulldownWindow::drawShortcutIcons(QPainter *painter, myQRect* rect1, myQRec
     rect.setY(0);
     rect.setWidth(600);
     rect.setHeight(300);
+    QBrush brush(Qt::white);
+    painter->setBrush(brush);
     painter->drawRoundedRect(rect,0,0);
 
     if(rect1->isPressed){

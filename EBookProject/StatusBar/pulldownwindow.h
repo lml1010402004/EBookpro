@@ -13,6 +13,7 @@
 #include"redefineqrect.h"
 #include"r.h"
 #include"syssettings.h"
+#include<QRect>
 
 const QString wifi_unpress=":/pic/pic/wifi.png";
 const QString wifi_press=":/pic/pic/wifi_pressed.png";

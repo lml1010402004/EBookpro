@@ -17,6 +17,7 @@ QString line = ":/pic/pic/line.png";
 
 
 
+const int COUNTS = 12;
 
 StatusBar::StatusBar(QWidget *widget):QMainWindow(widget)
 {
@@ -72,6 +73,7 @@ int StatusBar::getTheBatteryPercentage()
  */
 void StatusBar::drawSystemTime(QPainter *painter,QString time)
 {
+    controlTheRefreshFrquency();
     font.setPixelSize(22);
     rect.setX(26);
     rect.setY(10);
@@ -110,7 +112,6 @@ void StatusBar::drawWifiStatus(QPainter *painter,bool flag)
 void StatusBar::drawBattery(QPainter *painter,int percentage)
 {
 
-
     int per = getTheBatteryPercentage();
     rect.setX(470);
     rect.setY(10);
@@ -137,7 +138,7 @@ void StatusBar::drawBattery(QPainter *painter,int percentage)
  */
 void StatusBar::drawPullDownRectangle(QPainter *painter)
 {
-    controlTheRefreshFrquency();
+
     rect.setX(280);
     rect.setY(10);
     rect.setWidth(40);
@@ -168,14 +169,13 @@ QString StatusBar::getTheCurrentTime()
 void StatusBar::controlTheRefreshFrquency()
 {
     int temp = syssetting->getRefreshCount();
-    if(temp>8){
+    if(temp>COUNTS){
         syssetting->setRefreshCount(0);
-        QApplication::setScreenUpdateMode(QApplication::QApplication::EINK_GL16_MODE);
+        QApplication::setScreenUpdateMode(QApplication::EINK_GC16_MODE);
     }else{
-        syssetting->setRefreshCount(temp++);
-        QApplication::setScreenUpdateMode(QApplication::QApplication::EINK_GC16_LOCAL_MODE);
+        syssetting->setRefreshCount(++temp);
+        QApplication::setScreenUpdateMode(QApplication::EINK_GC16_LOCAL_MODE);
     }
-
 
 }
 
