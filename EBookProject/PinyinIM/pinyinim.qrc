@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>pinyin.db</file>
+        <file>pics/keyboard_cn.png</file>
+        <file>pics/keyboard_cn_symbol.png</file>
+        <file>pics/keyboard_en_lower.png</file>
+        <file>pics/keyboard_en_symbol.png</file>
+        <file>pics/keyboard_en_upper.png</file>
+        <file>pics/keyboard_left_arrow.png</file>
+        <file>pics/keyboard_right_arrow.png</file>
+    </qresource>
+</RCC>
