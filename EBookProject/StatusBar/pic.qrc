@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/pic">
+        <file>pic/rectangle.png</file>
+        <file>pic/wifi.png</file>
+        <file>pic/level0.png</file>
+        <file>pic/level1.png</file>
+        <file>pic/level2.png</file>
+        <file>pic/level3.png</file>
+        <file>pic/level4.png</file>
+        <file>pic/pull_rectangle_unpressed.png</file>
+        <file>pic/line.png</file>
+        <file>pic/statusbar_wifi.png</file>
+        <file>pic/minus_pressed.png</file>
+        <file>pic/minus_uppress.png</file>
+        <file>pic/plus_pressed.png</file>
+        <file>pic/plus_unpress.png</file>
+        <file>pic/pulldown_close.png</file>
+        <file>pic/search_pressed.png</file>
+        <file>pic/search_unpress.png</file>
+        <file>pic/setting_pressed.png</file>
+        <file>pic/setting_unpress.png</file>
+    </qresource>
+</RCC>
